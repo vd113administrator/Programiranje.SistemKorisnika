@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane id="AnchorPane" prefHeight="413.0" prefWidth="467.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="programiranje.baza_korisnika_config.server.Kontrola">
+   <children>
+      <VBox layoutX="14.0" layoutY="-48.0" prefHeight="33.0" prefWidth="339.0" spacing="5.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0">
+         <children>
+            <Label alignment="TOP_CENTER" text="Host baze podataka :" />
+            <TextField fx:id="databaseHost" promptText="localhost" />
+            <Label text="Korisnicko ime za bazu podataka :" />
+            <TextField fx:id="databaseUser" promptText="root" />
+            <Label text="Tabela baze :" />
+            <TextField fx:id="databaseTable" promptText="bk_programiranje_data" />
+            <Label text="Šifra baze podataka:" />
+            <PasswordField fx:id="databasePassword" />
+            <Label text="Period cekanja  na gasenjevremenskih sesija " />
+            <TextField fx:id="timeExitTimedSession" promptText="600000" />
+            <Label text="Putanja datoteke osnovnog serverskog sertifikata" />
+            <TextField fx:id="certificateFilename" promptText="arch.sertifikacija.aktivno/server.pristupni_sertifikat.cer" />
+            <Label text="Putanja datoteke osnovnog serverskog privatnog kljuca" />
+            <TextField fx:id="privatekeyFilename" promptText="arch.sertifikacija.aktivno/server.privatni_sertifikat.jks" />
+            <Button fx:id="save" mnemonicParsing="false" onAction="#save" text="Sačuvaj" />
+         </children>
+      </VBox>
+   </children>
+</AnchorPane>
