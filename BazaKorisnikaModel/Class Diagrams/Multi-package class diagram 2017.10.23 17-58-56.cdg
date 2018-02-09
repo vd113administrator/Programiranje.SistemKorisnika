@@ -1,0 +1,990 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<ClassDiagram name="Multi-package class diagram">
+  <ClassDiagramComponents>
+    <Class name="AutentifikacijaControl" package="programiranje.baza_korisnika_web.autorizacija" visibility="public" xPosition="33.0" yPosition="224.0">
+      <Fields/>
+      <Constructors/>
+      <Methods>
+        <Method name="provjeraSifre" returnType="String" visibility="private" isStatic="true" isSynchronized="true">
+          <Argument type="String" name="password"/>
+        </Method>
+        <Method name="provjeraAutentifikacije" returnType="String" visibility="public" isStatic="true" isSynchronized="true">
+          <Argument type="AutentifikacioniPodaci" name="ap"/>
+          <Argument type="String" name="uname"/>
+          <Argument type="String" name="pass"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="AutorizacijaControl" package="programiranje.baza_korisnika_web.autorizacija" visibility="public" xPosition="320.0" yPosition="20.0">
+      <Fields/>
+      <Constructors/>
+      <Methods>
+        <Method name="provjeraSifre" returnType="String" visibility="private" isStatic="true" isSynchronized="true">
+          <Argument type="String" name="password"/>
+        </Method>
+        <Method name="provjeraAutorizacije" returnType="AutorizacioniPodaci" visibility="public" isStatic="true" isSynchronized="true">
+          <Argument type="AutorizacioniPodaci" name="ap"/>
+        </Method>
+        <Method name="provjeraAutorizacijePoHash" returnType="AutorizacioniPodaci" visibility="public" isStatic="true" isSynchronized="true">
+          <Argument type="AutorizacioniPodaci" name="ap"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="ErrorBean" package="programiranje.baza_korisnika_web.beans.data" visibility="public" xPosition="640.0" yPosition="195.0">
+      <Fields>
+        <Field name="error" type="String" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public"/>
+        <Constructor visibility="public">
+          <Argument type="String" name="err"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="getError" returnType="String" visibility="public"/>
+        <Method name="setError" returnType="String" visibility="public">
+          <Argument type="String" name="error"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="PrijavaBean" package="programiranje.baza_korisnika_web.beans.data" visibility="public" xPosition="920.0" yPosition="20.0">
+      <Fields>
+        <Field name="username" type="String" visibility="private"/>
+        <Field name="password" type="String" visibility="private"/>
+      </Fields>
+      <Constructors/>
+      <Methods>
+        <Method name="getUsername" returnType="String" visibility="public"/>
+        <Method name="getPassword" returnType="String" visibility="public"/>
+        <Method name="setUsername" returnType="String" visibility="public">
+          <Argument type="String" name="username"/>
+        </Method>
+        <Method name="setPassword" returnType="String" visibility="public">
+          <Argument type="String" name="password"/>
+        </Method>
+        <Method name="asList" returnType="List&lt;String&gt;" visibility="public"/>
+        <Method name="fromList" returnType="List&lt;String&gt;" visibility="public">
+          <Argument type="List&lt;String&gt;" name="list"/>
+        </Method>
+        <Method name="asPair" returnType="Pair&lt;String, String&gt;" visibility="public"/>
+        <Method name="fromPair" returnType="Pair&lt;String, String&gt;" visibility="public">
+          <Argument type="Pair&lt;String, String&gt;" name="pair"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="RegistracijaBean" package="programiranje.baza_korisnika_web.beans.data" visibility="public" xPosition="1220.0" yPosition="20.0">
+      <Fields>
+        <Field name="name" type="String" visibility="private"/>
+        <Field name="surname" type="String" visibility="private"/>
+        <Field name="username" type="String" visibility="private"/>
+        <Field name="password" type="String" visibility="private"/>
+        <Field name="identificator" type="String" visibility="private"/>
+        <Field name="telephone" type="String" visibility="private"/>
+        <Field name="workplaces" type="String" visibility="private"/>
+        <Field name="address" type="String" visibility="private"/>
+        <Field name="email" type="String" visibility="private"/>
+        <Field name="webs" type="String" visibility="private"/>
+      </Fields>
+      <Constructors/>
+      <Methods>
+        <Method name="asSignInList" returnType="List&lt;String&gt;" visibility="public"/>
+        <Method name="asSignUpList" returnType="List&lt;String&gt;" visibility="public"/>
+        <Method name="fromSignInList" returnType="List&lt;String&gt;" visibility="public">
+          <Argument type="List&lt;String&gt;" name="list"/>
+        </Method>
+        <Method name="fromSignUpList" returnType="List&lt;String&gt;" visibility="public">
+          <Argument type="List&lt;String&gt;" name="list"/>
+        </Method>
+        <Method name="getName" returnType="String" visibility="public"/>
+        <Method name="getSurname" returnType="String" visibility="public"/>
+        <Method name="getUsername" returnType="String" visibility="public"/>
+        <Method name="getPassword" returnType="String" visibility="public"/>
+        <Method name="getIdentificator" returnType="String" visibility="public"/>
+        <Method name="getTelephone" returnType="String" visibility="public"/>
+        <Method name="getWorkplaces" returnType="String" visibility="public"/>
+        <Method name="getAddress" returnType="String" visibility="public"/>
+        <Method name="getEmail" returnType="String" visibility="public"/>
+        <Method name="getWebs" returnType="String" visibility="public"/>
+        <Method name="setName" returnType="String" visibility="public">
+          <Argument type="String" name="name"/>
+        </Method>
+        <Method name="setSurname" returnType="String" visibility="public">
+          <Argument type="String" name="surname"/>
+        </Method>
+        <Method name="setUsername" returnType="String" visibility="public">
+          <Argument type="String" name="username"/>
+        </Method>
+        <Method name="setPassword" returnType="String" visibility="public">
+          <Argument type="String" name="password"/>
+        </Method>
+        <Method name="setIdentificator" returnType="String" visibility="public">
+          <Argument type="String" name="identificator"/>
+        </Method>
+        <Method name="setTelephone" returnType="String" visibility="public">
+          <Argument type="String" name="telephone"/>
+        </Method>
+        <Method name="setWorkplaces" returnType="String" visibility="public">
+          <Argument type="String" name="workplaces"/>
+        </Method>
+        <Method name="setAddress" returnType="String" visibility="public">
+          <Argument type="String" name="address"/>
+        </Method>
+        <Method name="setEmail" returnType="String" visibility="public">
+          <Argument type="String" name="email"/>
+        </Method>
+        <Method name="setWebs" returnType="String" visibility="public">
+          <Argument type="String" name="webs"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="MainPageController" package="programiranje.baza_korisnika_web.beans" visibility="public" xPosition="1520.0" yPosition="20.0">
+      <Fields/>
+      <Constructors/>
+      <Methods>
+        <Method name="signup" returnType="String" visibility="public"/>
+        <Method name="signin" returnType="String" visibility="public"/>
+        <Method name="connect" returnType="String" visibility="public"/>
+        <Method name="disconnect" returnType="String" visibility="public"/>
+        <Method name="logout" returnType="String" visibility="public"/>
+        <Method name="deregistracija" returnType="String" visibility="public"/>
+      </Methods>
+    </Class>
+    <Class name="PreimenovanjeKorisnikaController" package="programiranje.baza_korisnika_web.beans" visibility="public" xPosition="1820.0" yPosition="20.0">
+      <Fields/>
+      <Constructors/>
+      <Methods>
+        <Method name="preimenovanje" returnType="String" visibility="public"/>
+        <Method name="povratak" returnType="String" visibility="public"/>
+      </Methods>
+    </Class>
+    <Class name="SignedInController" package="programiranje.baza_korisnika_web.beans" visibility="public" xPosition="2120.0" yPosition="20.0">
+      <Fields/>
+      <Constructors/>
+      <Methods>
+        <Method name="renamePage" returnType="String" visibility="public"/>
+      </Methods>
+    </Class>
+    <Class name="SignInController" package="programiranje.baza_korisnika_web.beans" visibility="public" xPosition="20.0" yPosition="420.0">
+      <Fields>
+        <Field name="dm" type="DriverManager" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public"/>
+      </Constructors>
+      <Methods>
+        <Method name="mainpage" returnType="String" visibility="public"/>
+        <Method name="submit" returnType="String" visibility="public"/>
+      </Methods>
+    </Class>
+    <Class name="SignUpController" package="programiranje.baza_korisnika_web.beans" visibility="public" xPosition="320.0" yPosition="420.0">
+      <Fields>
+        <Field name="dm" type="DriverManager" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public"/>
+      </Constructors>
+      <Methods>
+        <Method name="mainpage" returnType="String" visibility="public"/>
+        <Method name="submit" returnType="String" visibility="public"/>
+      </Methods>
+    </Class>
+    <Class name="ErrorBean1" package="programiranje.baza_korisnika_web.beans.data" visibility="public" xPosition="698.0" yPosition="437.0">
+      <Fields>
+        <Field name="error" type="String" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public"/>
+        <Constructor visibility="public">
+          <Argument type="String" name="err"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="getError" returnType="String" visibility="public"/>
+        <Method name="setError" returnType="String" visibility="public">
+          <Argument type="String" name="error"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="PrijavaBean1" package="programiranje.baza_korisnika_web.beans.data" visibility="public" xPosition="892.0" yPosition="373.0">
+      <Fields>
+        <Field name="username" type="String" visibility="private"/>
+        <Field name="password" type="String" visibility="private"/>
+      </Fields>
+      <Constructors/>
+      <Methods>
+        <Method name="getUsername" returnType="String" visibility="public"/>
+        <Method name="getPassword" returnType="String" visibility="public"/>
+        <Method name="setUsername" returnType="String" visibility="public">
+          <Argument type="String" name="username"/>
+        </Method>
+        <Method name="setPassword" returnType="String" visibility="public">
+          <Argument type="String" name="password"/>
+        </Method>
+        <Method name="asList" returnType="List&lt;String&gt;" visibility="public"/>
+        <Method name="fromList" returnType="List&lt;String&gt;" visibility="public">
+          <Argument type="List&lt;String&gt;" name="list"/>
+        </Method>
+        <Method name="asPair" returnType="Pair&lt;String, String&gt;" visibility="public"/>
+        <Method name="fromPair" returnType="Pair&lt;String, String&gt;" visibility="public">
+          <Argument type="Pair&lt;String, String&gt;" name="pair"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="RegistracijaBean1" package="programiranje.baza_korisnika_web.beans.data" visibility="public" xPosition="1220.0" yPosition="420.0">
+      <Fields>
+        <Field name="name" type="String" visibility="private"/>
+        <Field name="surname" type="String" visibility="private"/>
+        <Field name="username" type="String" visibility="private"/>
+        <Field name="password" type="String" visibility="private"/>
+        <Field name="identificator" type="String" visibility="private"/>
+        <Field name="telephone" type="String" visibility="private"/>
+        <Field name="workplaces" type="String" visibility="private"/>
+        <Field name="address" type="String" visibility="private"/>
+        <Field name="email" type="String" visibility="private"/>
+        <Field name="webs" type="String" visibility="private"/>
+      </Fields>
+      <Constructors/>
+      <Methods>
+        <Method name="asSignInList" returnType="List&lt;String&gt;" visibility="public"/>
+        <Method name="asSignUpList" returnType="List&lt;String&gt;" visibility="public"/>
+        <Method name="fromSignInList" returnType="List&lt;String&gt;" visibility="public">
+          <Argument type="List&lt;String&gt;" name="list"/>
+        </Method>
+        <Method name="fromSignUpList" returnType="List&lt;String&gt;" visibility="public">
+          <Argument type="List&lt;String&gt;" name="list"/>
+        </Method>
+        <Method name="getName" returnType="String" visibility="public"/>
+        <Method name="getSurname" returnType="String" visibility="public"/>
+        <Method name="getUsername" returnType="String" visibility="public"/>
+        <Method name="getPassword" returnType="String" visibility="public"/>
+        <Method name="getIdentificator" returnType="String" visibility="public"/>
+        <Method name="getTelephone" returnType="String" visibility="public"/>
+        <Method name="getWorkplaces" returnType="String" visibility="public"/>
+        <Method name="getAddress" returnType="String" visibility="public"/>
+        <Method name="getEmail" returnType="String" visibility="public"/>
+        <Method name="getWebs" returnType="String" visibility="public"/>
+        <Method name="setName" returnType="String" visibility="public">
+          <Argument type="String" name="name"/>
+        </Method>
+        <Method name="setSurname" returnType="String" visibility="public">
+          <Argument type="String" name="surname"/>
+        </Method>
+        <Method name="setUsername" returnType="String" visibility="public">
+          <Argument type="String" name="username"/>
+        </Method>
+        <Method name="setPassword" returnType="String" visibility="public">
+          <Argument type="String" name="password"/>
+        </Method>
+        <Method name="setIdentificator" returnType="String" visibility="public">
+          <Argument type="String" name="identificator"/>
+        </Method>
+        <Method name="setTelephone" returnType="String" visibility="public">
+          <Argument type="String" name="telephone"/>
+        </Method>
+        <Method name="setWorkplaces" returnType="String" visibility="public">
+          <Argument type="String" name="workplaces"/>
+        </Method>
+        <Method name="setAddress" returnType="String" visibility="public">
+          <Argument type="String" name="address"/>
+        </Method>
+        <Method name="setEmail" returnType="String" visibility="public">
+          <Argument type="String" name="email"/>
+        </Method>
+        <Method name="setWebs" returnType="String" visibility="public">
+          <Argument type="String" name="webs"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="AdapterServera" package="programiranje.baza_korisnika_web.control" visibility="public" xPosition="1538.0" yPosition="293.0">
+      <Fields>
+        <Field name="server" type="Socket" visibility="private"/>
+        <Field name="controlServer" type="Socket" visibility="private"/>
+        <Field name="secureReader" type="PotpisaniDekriptReader" visibility="private"/>
+        <Field name="secureWriter" type="PotpisaniEnkriptWriter" visibility="private"/>
+        <Field name="controlSecureReader" type="PotpisaniDekriptReader" visibility="private"/>
+        <Field name="controlSecureWriter" type="PotpisaniEnkriptWriter" visibility="private"/>
+        <Field name="envelop" type="DigitalnaEnvelopa" visibility="private"/>
+        <Field name="controlEnvelop" type="DigitalnaEnvelopa" visibility="private"/>
+        <Field name="reader" type="BufferedReader" visibility="private"/>
+        <Field name="writer" type="PrintWriter" visibility="private"/>
+        <Field name="controlReader" type="BufferedReader" visibility="private"/>
+        <Field name="controlWriter" type="PrintWriter" visibility="private"/>
+        <Field name="izlaznaNit" type="IzlaznaNit" visibility="private"/>
+        <Field name="radnaNit" type="RadnaNit" visibility="private"/>
+        <Field name="sesijskiObjekti" type="SesijskiObjekti" visibility="private"/>
+        <Field name="skServerAdapter" type="SKServerAdapter" visibility="private"/>
+        <Field name="driverManager" type="DriverManager" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public">
+          <Argument type="Socket" name="serv"/>
+          <Argument type="Socket" name="kontrolniServer"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="getDriverManager" returnType="DriverManager" visibility="public"/>
+        <Method name="getServerS" returnType="Socket" visibility="public"/>
+        <Method name="getServerCS" returnType="Socket" visibility="public"/>
+        <Method name="getServerPW" returnType="PrintWriter" visibility="public"/>
+        <Method name="getServerBR" returnType="BufferedReader" visibility="public"/>
+        <Method name="getServerEW" returnType="PotpisaniEnkriptWriter" visibility="public"/>
+        <Method name="getServerDR" returnType="PotpisaniDekriptReader" visibility="public"/>
+        <Method name="getServerCPW" returnType="PrintWriter" visibility="public"/>
+        <Method name="getServerCBR" returnType="BufferedReader" visibility="public"/>
+        <Method name="getServerCEW" returnType="PotpisaniEnkriptWriter" visibility="public"/>
+        <Method name="getServerCDR" returnType="PotpisaniDekriptReader" visibility="public"/>
+        <Method name="readLine" returnType="String" visibility="public"/>
+        <Method name="cReadLine" returnType="String" visibility="public"/>
+        <Method name="writeLine" returnType="String" visibility="public">
+          <Argument type="String" name="msg"/>
+        </Method>
+        <Method name="cWriteLine" returnType="String" visibility="public">
+          <Argument type="String" name="msg"/>
+        </Method>
+        <Method name="izlaz" returnType="void" visibility="public"/>
+        <Method name="registracijaOut" returnType="List&lt;String&gt;" visibility="public">
+          <Argument type="List&lt;String&gt;" name="lista"/>
+        </Method>
+        <Method name="registracijaIn" returnType="Pair&lt;String, String&gt;" visibility="public"/>
+        <Method name="deregistracijaOut" returnType="List&lt;String&gt;" visibility="public">
+          <Argument type="List&lt;String&gt;" name="lista"/>
+        </Method>
+        <Method name="deregistracijaIn" returnType="String" visibility="public"/>
+        <Method name="prijavaOut" returnType="List&lt;String&gt;" visibility="public">
+          <Argument type="List&lt;String&gt;" name="lista"/>
+        </Method>
+        <Method name="prijavaIn" returnType="Pair&lt;String, String&gt;" visibility="public"/>
+        <Method name="podaciIn" returnType="Pair&lt;String, List&lt;String&gt;&gt;" visibility="public"/>
+        <Method name="vezivanjeIn" returnType="String" visibility="public"/>
+        <Method name="izlazIn" returnType="String" visibility="public"/>
+        <Method name="getIzlaznaNit" returnType="IzlaznaNit" visibility="public"/>
+        <Method name="getRadnaNit" returnType="RadnaNit" visibility="public"/>
+        <Method name="odijavaOut" returnType="void" visibility="public"/>
+        <Method name="getSesijskiObjekti" returnType="SesijskiObjekti" visibility="public"/>
+        <Method name="setSesijskiObjekti" returnType="SesijskiObjekti" visibility="public">
+          <Argument type="SesijskiObjekti" name="sesija"/>
+        </Method>
+        <Method name="getSKServerAdapter" returnType="SKServerAdapter" visibility="public"/>
+        <Method name="promenaParametaraOut" returnType="String" visibility="public">
+          <Argument type="String" name="oldusername"/>
+          <Argument type="String" name="newusername"/>
+          <Argument type="String" name="newname"/>
+          <Argument type="String" name="newsname"/>
+          <Argument type="String" name="newaddress"/>
+          <Argument type="String" name="newjobs"/>
+          <Argument type="String" name="newtelephone"/>
+          <Argument type="String" name="newemails"/>
+          <Argument type="String" name="newwebs"/>
+        </Method>
+        <Method name="promenaParametaraIn" returnType="boolean" visibility="public"/>
+        <Method name="promenaSifreOut" returnType="String" visibility="public">
+          <Argument type="String" name="oldusername"/>
+          <Argument type="String" name="newpassword"/>
+        </Method>
+        <Method name="promenaSifreIn" returnType="boolean" visibility="public"/>
+      </Methods>
+    </Class>
+    <Class name="IzlaznaNit" package="programiranje.baza_korisnika_web.control" visibility="public" xPosition="1820.0" yPosition="420.0">
+      <Fields>
+        <Field name="server" type="AdapterServera" visibility="private"/>
+        <Field name="PBKSP_CLOSE" type="String" visibility="public" isStatic="true" isFinal="true"/>
+        <Field name="PBKSP_STOP" type="String" visibility="public" isStatic="true" isFinal="true"/>
+        <Field name="activitiesAfterMain" type="ArrayList&lt;Runnable&gt;" visibility="private"/>
+        <Field name="activitiesBeforeMain" type="ArrayList&lt;Runnable&gt;" visibility="private"/>
+        <Field name="sesijskiObjekti" type="SesijskiObjekti" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public">
+          <Argument type="AdapterServera" name="server"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="getAdapterServera" returnType="AdapterServera" visibility="public"/>
+        <Method name="run" returnType="void" visibility="public"/>
+        <Method name="dodajAktivnostiPrijeGlavne" returnType="Runnable" visibility="public">
+          <Argument type="Runnable" name="r"/>
+        </Method>
+        <Method name="dodajAktivnostiPosleGlavne" returnType="Runnable" visibility="public">
+          <Argument type="Runnable" name="r"/>
+        </Method>
+        <Method name="getSesijskiObjekti" returnType="SesijskiObjekti" visibility="public"/>
+        <Method name="setSesijskiObjekti" returnType="SesijskiObjekti" visibility="public">
+          <Argument type="SesijskiObjekti" name="sesija"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="RadnaNit" package="programiranje.baza_korisnika_web.control" visibility="public" xPosition="2120.0" yPosition="420.0">
+      <Fields>
+        <Field name="server" type="AdapterServera" visibility="private"/>
+        <Field name="sesijskiObjekti" type="SesijskiObjekti" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public">
+          <Argument type="AdapterServera" name="server"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="getSesijskiObjekti" returnType="SesijskiObjekti" visibility="public"/>
+        <Method name="setSesijskiObjekti" returnType="SesijskiObjekti" visibility="public">
+          <Argument type="SesijskiObjekti" name="sesija"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="GlobalneFunkcije" package="programiranje.baza_korisnika_web.global" visibility="public" isFinal="true" xPosition="20.0" yPosition="820.0">
+      <Fields/>
+      <Constructors>
+        <Constructor visibility="private"/>
+      </Constructors>
+      <Methods>
+        <Method name="getSesijskiObjekti" returnType="SesijskiObjekti" visibility="public" isStatic="true"/>
+        <Method name="getPorukaInfo" returnType="String" visibility="public" isStatic="true"/>
+        <Method name="getGreskaInfo" returnType="String" visibility="public" isStatic="true"/>
+        <Method name="resetInfo" returnType="void" visibility="public" isStatic="true"/>
+        <Method name="setPorukaInfo" returnType="String" visibility="public" isStatic="true">
+          <Argument type="String" name="info"/>
+        </Method>
+        <Method name="setGreskaInfo" returnType="String" visibility="public" isStatic="true">
+          <Argument type="String" name="info"/>
+        </Method>
+        <Method name="resetSessionInfo" returnType="void" visibility="public" isStatic="true"/>
+      </Methods>
+    </Class>
+    <Class name="ProtokolBKSP" package="programiranje.baza_korisnika_web.global" visibility="public" isFinal="true" xPosition="320.0" yPosition="820.0">
+      <Fields>
+        <Field name="BKSP_SUCCESS" type="String" visibility="public" isStatic="true" isFinal="true"/>
+        <Field name="BKSP_ERROR" type="String" visibility="public" isStatic="true" isFinal="true"/>
+        <Field name="BKSP_REGISTRACIJA" type="String" visibility="public" isStatic="true" isFinal="true"/>
+        <Field name="BKSP_DEREGISTRACIJA" type="String" visibility="public" isStatic="true" isFinal="true"/>
+        <Field name="BKSP_PRIJAVA" type="String" visibility="public" isStatic="true" isFinal="true"/>
+        <Field name="BKSP_ODIJAVA" type="String" visibility="public" isStatic="true" isFinal="true"/>
+        <Field name="BKSP_CLOSE" type="String" visibility="public" isStatic="true" isFinal="true"/>
+        <Field name="BKSP_PODACI" type="String" visibility="public" isStatic="true" isFinal="true"/>
+        <Field name="PBKSP_CLOSE" type="String" visibility="public" isStatic="true" isFinal="true"/>
+        <Field name="PBKSP_STOP" type="String" visibility="public" isStatic="true" isFinal="true"/>
+        <Field name="BKSP_N1_VEZANJE" type="String" visibility="public" isStatic="true" isFinal="true"/>
+        <Field name="BKSP_N2_AKTIVNOST_PROMENA_TIPA_KORISNIKA" type="String" visibility="public" isStatic="true" isFinal="true"/>
+        <Field name="BKSP_N2_AKTIVNOST_PROMENA_SIFRE_KORISNIKA" type="String" visibility="public" isStatic="true" isFinal="true"/>
+        <Field name="BKSP_N2_AKTIVNOST_PROMENA_PARAMETARA_KORISNIKA" type="String" visibility="public" isStatic="true" isFinal="true"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="private"/>
+      </Constructors>
+      <Methods/>
+    </Class>
+    <Class name="SesijskiObjekti" package="programiranje.baza_korisnika_web.global" visibility="public" isFinal="true" xPosition="620.0" yPosition="820.0">
+      <Fields>
+        <Field name="shellServerSocket" type="Socket" visibility="private" isTransient="true"/>
+        <Field name="shellControlServerSocket" type="Socket" visibility="private" isTransient="true"/>
+        <Field name="serverAdapter" type="AdapterServera" visibility="private" isTransient="true"/>
+        <Field name="connectionId" type="String" visibility="private" isTransient="true"/>
+        <Field name="sessionId" type="String" visibility="private" isTransient="true"/>
+        <Field name="SESSIONTYPE_BKSP_BASIC" type="String" visibility="public" isStatic="true" isFinal="true"/>
+        <Field name="SESSIONTYPE_BKSP_TIMED" type="String" visibility="public" isStatic="true" isFinal="true"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public"/>
+      </Constructors>
+      <Methods>
+        <Method name="setShellServer" returnType="void" visibility="public"/>
+        <Method name="resetShellServer" returnType="void" visibility="public"/>
+        <Method name="getShellServerAdapter" returnType="AdapterServera" visibility="public"/>
+        <Method name="getConnectionId" returnType="String" visibility="public"/>
+        <Method name="setConnectionId" returnType="String" visibility="public">
+          <Argument type="String" name="cid"/>
+        </Method>
+        <Method name="getSessionId" returnType="String" visibility="public"/>
+        <Method name="setSessionId" returnType="String" visibility="public">
+          <Argument type="String" name="str"/>
+        </Method>
+        <Method name="getLoggedInUsername" returnType="String" visibility="public"/>
+      </Methods>
+    </Class>
+    <Class name="StatickiPodaci" package="programiranje.baza_korisnika_web.global" visibility="public" isFinal="true" xPosition="920.0" yPosition="820.0">
+      <Fields>
+        <Field name="serverPort" type="int" visibility="public" isStatic="true" isFinal="true"/>
+        <Field name="serverControlPort" type="int" visibility="public" isStatic="true" isFinal="true"/>
+        <Field name="serverAddress" type="InetAddress" visibility="private" isStatic="true"/>
+        <Field name="clientConfigFile" type="String" visibility="private" isStatic="true" isFinal="true"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="private"/>
+      </Constructors>
+      <Methods>
+        <Method name="getServerAddress" returnType="InetAddress" visibility="public" isStatic="true"/>
+        <Method name="setServerAddress" returnType="InetAddress" visibility="public" isStatic="true">
+          <Argument type="InetAddress" name="adresa"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="GrupeController" package="programiranje.sistem_korisnika.grupe.beans.data" visibility="public" xPosition="1220.0" yPosition="820.0">
+      <Fields/>
+      <Constructors/>
+      <Methods>
+        <Method name="dodavanjeGrupe" returnType="String" visibility="public"/>
+        <Method name="brisanjeGrupe" returnType="String" visibility="public"/>
+        <Method name="preimenovanjeGrupe" returnType="String" visibility="public"/>
+        <Method name="uclanjenje" returnType="String" visibility="public"/>
+        <Method name="isclanjenje" returnType="String" visibility="public"/>
+        <Method name="iskljucenje" returnType="String" visibility="public"/>
+        <Method name="ocitavanjeKorisnika" returnType="String" visibility="public"/>
+        <Method name="generatePodaciKorisnikaJS" returnType="PrijavaBean" visibility="private">
+          <Argument type="String" name="gr"/>
+          <Argument type="String" name="e"/>
+          <Argument type="int" name="x"/>
+          <Argument type="int" name="y"/>
+          <Argument type="AdapterServera" name="as"/>
+          <Argument type="PrijavaBean" name="bean"/>
+        </Method>
+        <Method name="generatePodaciIskljucenjaJS" returnType="PrijavaBean" visibility="private">
+          <Argument type="String" name="gr"/>
+          <Argument type="String" name="e"/>
+          <Argument type="int" name="x"/>
+          <Argument type="int" name="y"/>
+          <Argument type="AdapterServera" name="as"/>
+          <Argument type="PrijavaBean" name="bean"/>
+        </Method>
+        <Method name="generisanjeHTMLaPodatakaKorisnika" returnType="PrijavaBean" visibility="private">
+          <Argument type="String" name="gr"/>
+          <Argument type="String" name="e"/>
+          <Argument type="int" name="x"/>
+          <Argument type="int" name="y"/>
+          <Argument type="AdapterServera" name="as"/>
+          <Argument type="PrijavaBean" name="bean"/>
+        </Method>
+        <Method name="ocitavanjeOpisaGrupe" returnType="String" visibility="public" isSynchronized="true"/>
+        <Method name="ocitavanjeOpisaClanaGrupe" returnType="String" visibility="public" isSynchronized="true"/>
+        <Method name="ocitavanjeOpisaUlogeGrupe" returnType="String" visibility="public" isSynchronized="true"/>
+      </Methods>
+    </Class>
+    <Class name="GrupeInfoBean" package="programiranje.sistem_korisnika.grupe.beans" visibility="public" xPosition="1910.0" yPosition="972.0">
+      <Fields>
+        <Field name="grupeInfoTableHTML" type="String" visibility="private"/>
+        <Field name="korisniciInfoTableHTML" type="String" visibility="private"/>
+      </Fields>
+      <Constructors/>
+      <Methods>
+        <Method name="generisiTekstFN" returnType="int" visibility="private">
+          <Argument type="int" name="i"/>
+        </Method>
+        <Method name="getGrupeInfoTableHTML" returnType="String" visibility="public"/>
+        <Method name="setGrupeInfoTableHTML" returnType="String" visibility="public">
+          <Argument type="String" name="html"/>
+        </Method>
+        <Method name="getKorisniciInfoTableHTML" returnType="String" visibility="public"/>
+        <Method name="setKorisniciInfoTableHTML" returnType="String" visibility="public">
+          <Argument type="String" name="user"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="GrupeIspisListener" package="programiranje.sistem_korisnika.grupe.beans.listener" visibility="public" xPosition="1820.0" yPosition="820.0">
+      <Fields/>
+      <Constructors/>
+      <Methods>
+        <Method name="processValueChange" returnType="ValueChangeEvent" visibility="public">
+          <Argument type="ValueChangeEvent" name="event"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="StranicaKorisnikaBean" package="programiranje.sistem_korisnika.grupe.beans" visibility="public" xPosition="2120.0" yPosition="820.0">
+      <Fields>
+        <Field name="povratnaStranicaURL" type="String" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public"/>
+      </Constructors>
+      <Methods>
+        <Method name="getPovratnaStranicaURL" returnType="String" visibility="public"/>
+        <Method name="setPovratnaStranicaURL" returnType="String" visibility="public">
+          <Argument type="String" name="url"/>
+        </Method>
+        <Method name="init" returnType="void" visibility="public"/>
+      </Methods>
+    </Class>
+    <Class name="GrupeController1" package="programiranje.sistem_korisnika.grupe.beans.data" visibility="public" xPosition="-101.0" yPosition="1239.0">
+      <Fields/>
+      <Constructors/>
+      <Methods>
+        <Method name="dodavanjeGrupe" returnType="String" visibility="public"/>
+        <Method name="brisanjeGrupe" returnType="String" visibility="public"/>
+        <Method name="preimenovanjeGrupe" returnType="String" visibility="public"/>
+        <Method name="uclanjenje" returnType="String" visibility="public"/>
+        <Method name="isclanjenje" returnType="String" visibility="public"/>
+        <Method name="iskljucenje" returnType="String" visibility="public"/>
+        <Method name="ocitavanjeKorisnika" returnType="String" visibility="public"/>
+        <Method name="generatePodaciKorisnikaJS" returnType="PrijavaBean" visibility="private">
+          <Argument type="String" name="gr"/>
+          <Argument type="String" name="e"/>
+          <Argument type="int" name="x"/>
+          <Argument type="int" name="y"/>
+          <Argument type="AdapterServera" name="as"/>
+          <Argument type="PrijavaBean" name="bean"/>
+        </Method>
+        <Method name="generatePodaciIskljucenjaJS" returnType="PrijavaBean" visibility="private">
+          <Argument type="String" name="gr"/>
+          <Argument type="String" name="e"/>
+          <Argument type="int" name="x"/>
+          <Argument type="int" name="y"/>
+          <Argument type="AdapterServera" name="as"/>
+          <Argument type="PrijavaBean" name="bean"/>
+        </Method>
+        <Method name="generisanjeHTMLaPodatakaKorisnika" returnType="PrijavaBean" visibility="private">
+          <Argument type="String" name="gr"/>
+          <Argument type="String" name="e"/>
+          <Argument type="int" name="x"/>
+          <Argument type="int" name="y"/>
+          <Argument type="AdapterServera" name="as"/>
+          <Argument type="PrijavaBean" name="bean"/>
+        </Method>
+        <Method name="ocitavanjeOpisaGrupe" returnType="String" visibility="public" isSynchronized="true"/>
+        <Method name="ocitavanjeOpisaClanaGrupe" returnType="String" visibility="public" isSynchronized="true"/>
+        <Method name="ocitavanjeOpisaUlogeGrupe" returnType="String" visibility="public" isSynchronized="true"/>
+      </Methods>
+    </Class>
+    <Class name="GrupeIspisListener1" package="programiranje.sistem_korisnika.grupe.beans.listener" visibility="public" xPosition="-54.0" yPosition="1137.0">
+      <Fields/>
+      <Constructors/>
+      <Methods>
+        <Method name="processValueChange" returnType="ValueChangeEvent" visibility="public">
+          <Argument type="ValueChangeEvent" name="event"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="SKServerAdapter" package="programiranje.sistem_korisnika.grupe.veb.ulaz_izlaz" visibility="public" xPosition="518.0" yPosition="1220.0">
+      <Fields>
+        <Field name="as" type="AdapterServera" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public">
+          <Argument type="AdapterServera" name="as"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="getAdapterServera" returnType="AdapterServera" visibility="public"/>
+        <Method name="getImenaGrupaZaClanstvo" returnType="ArrayList&lt;String&gt;" visibility="public"/>
+        <Method name="getImenaGrupaZaVlasnistvo" returnType="ArrayList&lt;String&gt;" visibility="public"/>
+        <Method name="getListaSvihGrupa" returnType="ArrayList&lt;String&gt;" visibility="public"/>
+        <Method name="getPodaci" returnType="ArrayList&lt;String&gt;" visibility="public">
+          <Argument type="String" name="grupa"/>
+        </Method>
+        <Method name="dodavanjeGrupe" returnType="Pair&lt;Boolean, String&gt;" visibility="public">
+          <Argument type="PrijavaBean" name="user"/>
+          <Argument type="String" name="group"/>
+        </Method>
+        <Method name="brisanjeGrupe" returnType="Pair&lt;Boolean, String&gt;" visibility="public">
+          <Argument type="PrijavaBean" name="user"/>
+          <Argument type="String" name="group"/>
+        </Method>
+        <Method name="preimenovanjeGrupe" returnType="Pair&lt;Boolean, String&gt;" visibility="public">
+          <Argument type="PrijavaBean" name="admin"/>
+          <Argument type="String" name="stara_grupa"/>
+          <Argument type="String" name="nova_grupa"/>
+        </Method>
+        <Method name="uclanjenje" returnType="Pair&lt;Boolean, String&gt;" visibility="public">
+          <Argument type="String" name="administrator"/>
+          <Argument type="String" name="grupa"/>
+        </Method>
+        <Method name="isclanjenje" returnType="Pair&lt;Boolean, String&gt;" visibility="public">
+          <Argument type="String" name="administrator"/>
+          <Argument type="String" name="grupa"/>
+        </Method>
+        <Method name="listanjeKorisnikaGrupa" returnType="ArrayList&lt;String&gt;" visibility="public">
+          <Argument type="String" name="za"/>
+          <Argument type="String" name="iz"/>
+        </Method>
+        <Method name="listanjePodatakaKorisnikaGrupe" returnType="ArrayList&lt;String&gt;" visibility="public">
+          <Argument type="String" name="za"/>
+          <Argument type="String" name="iz"/>
+          <Argument type="String" name="od"/>
+        </Method>
+        <Method name="iskljucenje" returnType="Pair&lt;Boolean, String&gt;" visibility="public">
+          <Argument type="PrijavaBean" name="bean"/>
+          <Argument type="String" name="iz"/>
+          <Argument type="String" name="za"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="StranicaClanaServlet" package="programiranje.sistem_korisnika.servlet" visibility="public" xPosition="920.0" yPosition="1220.0">
+      <Fields/>
+      <Constructors/>
+      <Methods>
+        <Method name="processRequest" returnType="void" visibility="protected">
+          <Argument type="HttpServletRequest" name="request"/>
+          <Argument type="HttpServletResponse" name="response"/>
+        </Method>
+        <Method name="doGet" returnType="void" visibility="protected">
+          <Argument type="HttpServletRequest" name="request"/>
+          <Argument type="HttpServletResponse" name="response"/>
+        </Method>
+        <Method name="doPost" returnType="void" visibility="protected">
+          <Argument type="HttpServletRequest" name="request"/>
+          <Argument type="HttpServletResponse" name="response"/>
+        </Method>
+        <Method name="getServletInfo" returnType="String" visibility="public"/>
+      </Methods>
+    </Class>
+    <Class name="BazaKorisnikaDriver" package="programiranje.sistem_korisnika_web.driver" visibility="public" xPosition="1248.0" yPosition="1207.0">
+      <Fields/>
+      <Constructors>
+        <Constructor visibility="public"/>
+      </Constructors>
+      <Methods/>
+    </Class>
+    <Class name="Driver" package="programiranje.sistem_korisnika_web.driver" visibility="public" isAbstract="true" xPosition="1520.0" yPosition="1220.0">
+      <Fields>
+        <Field name="mapa" type="HashMap&lt;String, ArrayList&lt;Runnable&gt;&gt;" visibility="private" isFinal="true"/>
+        <Field name="lista" type="ArrayList&lt;Runnable&gt;" visibility="private" isFinal="true"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public"/>
+      </Constructors>
+      <Methods>
+        <Method name="go" returnType="void" visibility="protected" isSynchronized="true">
+          <Argument type="String" name="command"/>
+        </Method>
+        <Method name="add" returnType="void" visibility="protected" isSynchronized="true">
+          <Argument type="String" name="command"/>
+        </Method>
+        <Method name="add" returnType="void" visibility="protected" isSynchronized="true">
+          <Argument type="String" name="command"/>
+          <Argument type="Runnable" name="action"/>
+        </Method>
+        <Method name="remove" returnType="void" visibility="protected" isSynchronized="true">
+          <Argument type="String" name="command"/>
+        </Method>
+        <Method name="remove" returnType="void" visibility="protected" isSynchronized="true">
+          <Argument type="String" name="command"/>
+          <Argument type="Runnable" name="action"/>
+        </Method>
+        <Method name="addDriverAction" returnType="void" visibility="public" isSynchronized="true">
+          <Argument type="Runnable" name="action"/>
+        </Method>
+        <Method name="removeDriverAction" returnType="void" visibility="public" isSynchronized="true">
+          <Argument type="Runnable" name="action"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="DriverManager" package="programiranje.sistem_korisnika_web.driver" visibility="public" xPosition="1820.0" yPosition="1220.0">
+      <Fields>
+        <Field name="vezaci" type="ArrayList&lt;Driver&gt;" visibility="private"/>
+        <Field name="akcije" type="ArrayList&lt;Runnable&gt;" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public"/>
+      </Constructors>
+      <Methods>
+        <Method name="addDriver" returnType="void" visibility="public" isSynchronized="true">
+          <Argument type="Driver" name="d"/>
+        </Method>
+        <Method name="removeDriver" returnType="void" visibility="public" isSynchronized="true">
+          <Argument type="Driver" name="d"/>
+        </Method>
+        <Method name="go" returnType="void" visibility="public" isSynchronized="true">
+          <Argument type="String" name="command"/>
+        </Method>
+        <Method name="go" returnType="void" visibility="public" isSynchronized="true">
+          <Argument type="Class&lt;? extends Driver&gt;" name="vezac"/>
+          <Argument type="String" name="command"/>
+        </Method>
+        <Method name="addManagerAction" returnType="void" visibility="public" isSynchronized="true">
+          <Argument type="Runnable" name="run"/>
+        </Method>
+        <Method name="removeManagerAction" returnType="void" visibility="public" isSynchronized="true">
+          <Argument type="Runnable" name="run"/>
+        </Method>
+        <Method name="getFirstDriver" returnType="Driver" visibility="public" isSynchronized="true">
+          <Argument type="Class&lt;? extends Driver&gt;" name="klasa"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="OpisivanjeDriver" package="programiranje.sistem_korisnika_web.driver" visibility="public" xPosition="2120.0" yPosition="1220.0">
+      <Fields/>
+      <Constructors>
+        <Constructor visibility="public"/>
+      </Constructors>
+      <Methods/>
+    </Class>
+    <Class name="SistemKorisnikaDriver" package="programiranje.sistem_korisnika_web.driver" visibility="public" xPosition="20.0" yPosition="1620.0">
+      <Fields/>
+      <Constructors>
+        <Constructor visibility="public"/>
+      </Constructors>
+      <Methods/>
+    </Class>
+    <Class name="UlazniDriver" package="programiranje.sistem_korisnika_web.driver" visibility="public" xPosition="320.0" yPosition="1620.0">
+      <Fields/>
+      <Constructors>
+        <Constructor visibility="public"/>
+      </Constructors>
+      <Methods/>
+    </Class>
+    <Class name="SKGlobalneFunkcije" package="programiranje.sistem_korisnika_web.global" visibility="public" xPosition="620.0" yPosition="1620.0">
+      <Fields>
+        <Field name="lastContext" type="ExternalContext" visibility="private" isStatic="true"/>
+      </Fields>
+      <Constructors/>
+      <Methods>
+        <Method name="getExternalContext" returnType="ExternalContext" visibility="private" isStatic="true"/>
+        <Method name="getSelekcijaGrupaMode" returnType="String" visibility="public" isStatic="true" isSynchronized="true"/>
+        <Method name="setSelekcijaGrupaMode" returnType="void" visibility="public" isStatic="true" isSynchronized="true">
+          <Argument type="String" name="grupe"/>
+        </Method>
+        <Method name="getStranicaGrupa" returnType="int" visibility="public" isStatic="true" isSynchronized="true"/>
+        <Method name="setStranicaGrupa" returnType="void" visibility="public" isStatic="true" isSynchronized="true">
+          <Argument type="int" name="stranicaGrupa"/>
+        </Method>
+        <Method name="getPoljeNoveGrupe" returnType="String" visibility="public" isStatic="true" isSynchronized="true"/>
+        <Method name="setPoljeNoveGrupe" returnType="void" visibility="public" isStatic="true">
+          <Argument type="String" name="polje"/>
+        </Method>
+        <Method name="getKorisniciInfoHTML" returnType="String" visibility="public" isStatic="true" isSynchronized="true"/>
+        <Method name="setKorisniciInfoHTML" returnType="void" visibility="public" isStatic="true" isSynchronized="true">
+          <Argument type="String" name="infoHTML"/>
+        </Method>
+        <Method name="resetSessionInfo" returnType="void" visibility="public" isStatic="true" isSynchronized="true"/>
+        <Method name="getImeCiljneGrupe" returnType="String" visibility="public" isStatic="true"/>
+        <Method name="setImeCiljneGrupe" returnType="void" visibility="public" isStatic="true">
+          <Argument type="String" name="grupe"/>
+        </Method>
+        <Method name="getImeCiljnogKorisnika" returnType="String" visibility="public" isStatic="true"/>
+        <Method name="setImeCiljnogKorisnika" returnType="void" visibility="public" isStatic="true">
+          <Argument type="String" name="grupe"/>
+        </Method>
+        <Method name="getImeCiljnogAdministratora" returnType="String" visibility="public" isStatic="true"/>
+        <Method name="setImeCiljnogAdministratora" returnType="void" visibility="public" isStatic="true">
+          <Argument type="String" name="admin"/>
+        </Method>
+        <Method name="setDriverManager" returnType="void" visibility="public" isStatic="true">
+          <Argument type="DriverManager" name="dm"/>
+        </Method>
+        <Method name="getDriverManager" returnType="DriverManager" visibility="public" isStatic="true"/>
+      </Methods>
+    </Class>
+    <Class name="Informacije" package="programiranje.sistem_korisnika_web.opis.kontrola" visibility="public" xPosition="920.0" yPosition="1620.0">
+      <Fields>
+        <Field name="serverBK" type="AdapterServera" visibility="private"/>
+        <Field name="serverSK" type="SKServerAdapter" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public"/>
+      </Constructors>
+      <Methods>
+        <Method name="getKonekcijskiId" returnType="String" visibility="public"/>
+        <Method name="getSesijskiId" returnType="String" visibility="public"/>
+        <Method name="getPrijavljeniKorisnik" returnType="String" visibility="public"/>
+        <Method name="getServerBK" returnType="AdapterServera" visibility="public"/>
+        <Method name="getServerSK" returnType="SKServerAdapter" visibility="public"/>
+        <Method name="getCiljnaGrupa" returnType="String" visibility="public"/>
+        <Method name="getCiljniKorisnik" returnType="String" visibility="public"/>
+        <Method name="getCiljniAdmin" returnType="String" visibility="public"/>
+        <Method name="prijavljenAdmin" returnType="boolean" visibility="public"/>
+        <Method name="prijavljenKorisnik" returnType="boolean" visibility="public"/>
+        <Method name="administratorKorisnik" returnType="boolean" visibility="public"/>
+        <Method name="imaPrijavljenKorisnik" returnType="boolean" visibility="public"/>
+      </Methods>
+    </Class>
+    <Class name="TextUtil" package="programiranje.sistem_korisnika_web.text" visibility="public" xPosition="1220.0" yPosition="1620.0">
+      <Fields/>
+      <Constructors>
+        <Constructor visibility="private"/>
+      </Constructors>
+      <Methods>
+        <Method name="removeALG" returnType="String" visibility="public" isStatic="true">
+          <Argument type="String" name="s"/>
+        </Method>
+        <Method name="reverseALG" returnType="String" visibility="public" isStatic="true">
+          <Argument type="String" name="s"/>
+        </Method>
+        <Method name="removeKCN" returnType="String" visibility="public" isStatic="true">
+          <Argument type="String" name="s"/>
+        </Method>
+        <Method name="reverseKCN" returnType="String" visibility="public" isStatic="true">
+          <Argument type="String" name="s"/>
+        </Method>
+        <Method name="removeSpecial" returnType="String" visibility="public" isStatic="true">
+          <Argument type="String" name="s"/>
+        </Method>
+        <Method name="reverseSpecial" returnType="String" visibility="public" isStatic="true">
+          <Argument type="String" name="s"/>
+        </Method>
+        <Method name="removeALG" returnType="String" visibility="public" isStatic="true">
+          <Argument type="String" name="s"/>
+          <Argument type="int" name="n"/>
+        </Method>
+        <Method name="reverseALG" returnType="String" visibility="public" isStatic="true">
+          <Argument type="String" name="s"/>
+          <Argument type="int" name="n"/>
+        </Method>
+        <Method name="removeKCN" returnType="String" visibility="public" isStatic="true">
+          <Argument type="String" name="s"/>
+          <Argument type="int" name="n"/>
+        </Method>
+        <Method name="reverseKCN" returnType="String" visibility="public" isStatic="true">
+          <Argument type="String" name="s"/>
+          <Argument type="int" name="n"/>
+        </Method>
+        <Method name="slicanKCN" returnType="String" visibility="public" isStatic="true">
+          <Argument type="String" name="s"/>
+        </Method>
+        <Method name="pripremiZaHTML" returnType="String" visibility="public" isStatic="true">
+          <Argument type="String" name="s"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="XMLUtil" package="programiranje.sistem_korisnika_web.text" visibility="public" isFinal="true" xPosition="1520.0" yPosition="1620.0">
+      <Fields/>
+      <Constructors>
+        <Constructor visibility="private"/>
+      </Constructors>
+      <Methods>
+        <Method name="getXMLEmbended" returnType="String" visibility="public" isStatic="true">
+          <Argument type="String" name="xml"/>
+        </Method>
+        <Method name="getXMLInFirstKeyTag" returnType="String" visibility="public" isStatic="true">
+          <Argument type="String" name="xml"/>
+          <Argument type="String" name="startKey"/>
+          <Argument type="String" name="endKey"/>
+        </Method>
+      </Methods>
+    </Class>
+  </ClassDiagramComponents>
+  <ClassDiagramRelations>
+    <HasRelation name="sesijskiObjekti" source="programiranje.baza_korisnika_web.control.IzlaznaNit" target="programiranje.baza_korisnika_web.global.SesijskiObjekti" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="as" source="programiranje.sistem_korisnika.grupe.veb.ulaz_izlaz.SKServerAdapter" target="programiranje.baza_korisnika_web.control.AdapterServera" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="programiranje.baza_korisnika_web.global.GlobalneFunkcije" target="programiranje.baza_korisnika_web.global.SesijskiObjekti" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <IsRelation name="is" source="programiranje.sistem_korisnika_web.driver.BazaKorisnikaDriver" target="programiranje.sistem_korisnika_web.driver.Driver"/>
+    <HasRelation name="server" source="programiranje.baza_korisnika_web.control.RadnaNit" target="programiranje.baza_korisnika_web.control.AdapterServera" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="vezaci" source="programiranje.sistem_korisnika_web.driver.DriverManager" target="programiranje.sistem_korisnika_web.driver.Driver" type="Aggregation" sourceCardinality="1..1" targetCardinality="0..*" collectionType="ArrayList&lt;Driver&gt;"/>
+    <UseRelation source="programiranje.sistem_korisnika.grupe.veb.ulaz_izlaz.SKServerAdapter" target="programiranje.baza_korisnika_web.control.AdapterServera" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="programiranje.baza_korisnika_web.global.SesijskiObjekti" target="programiranje.baza_korisnika_web.control.AdapterServera" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="programiranje.sistem_korisnika_web.opis.kontrola.Informacije" target="programiranje.baza_korisnika_web.control.AdapterServera" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="dm" source="programiranje.baza_korisnika_web.beans.SignInController" target="programiranje.sistem_korisnika_web.driver.DriverManager" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="programiranje.baza_korisnika_web.control.AdapterServera" target="programiranje.baza_korisnika_web.control.IzlaznaNit" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="sesijskiObjekti" source="programiranje.baza_korisnika_web.control.RadnaNit" target="programiranje.baza_korisnika_web.global.SesijskiObjekti" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="programiranje.sistem_korisnika_web.global.SKGlobalneFunkcije" target="programiranje.sistem_korisnika_web.driver.DriverManager" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="programiranje.baza_korisnika_web.control.AdapterServera" target="programiranje.sistem_korisnika_web.driver.DriverManager" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="programiranje.sistem_korisnika.grupe.beans.data.GrupeController" target="programiranje.baza_korisnika_web.control.AdapterServera" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="dm" source="programiranje.baza_korisnika_web.beans.SignUpController" target="programiranje.sistem_korisnika_web.driver.DriverManager" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="driverManager" source="programiranje.baza_korisnika_web.control.AdapterServera" target="programiranje.sistem_korisnika_web.driver.DriverManager" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <IsRelation name="is" source="programiranje.sistem_korisnika_web.driver.OpisivanjeDriver" target="programiranje.sistem_korisnika_web.driver.Driver"/>
+    <HasRelation name="server" source="programiranje.baza_korisnika_web.control.IzlaznaNit" target="programiranje.baza_korisnika_web.control.AdapterServera" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="programiranje.baza_korisnika_web.control.RadnaNit" target="programiranje.baza_korisnika_web.global.SesijskiObjekti" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="programiranje.baza_korisnika_web.control.AdapterServera" target="programiranje.sistem_korisnika.grupe.veb.ulaz_izlaz.SKServerAdapter" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="serverAdapter" source="programiranje.baza_korisnika_web.global.SesijskiObjekti" target="programiranje.baza_korisnika_web.control.AdapterServera" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="izlaznaNit" source="programiranje.baza_korisnika_web.control.AdapterServera" target="programiranje.baza_korisnika_web.control.IzlaznaNit" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <IsRelation name="is" source="programiranje.sistem_korisnika_web.driver.SistemKorisnikaDriver" target="programiranje.sistem_korisnika_web.driver.Driver"/>
+    <UseRelation source="programiranje.sistem_korisnika_web.opis.kontrola.Informacije" target="programiranje.sistem_korisnika.grupe.veb.ulaz_izlaz.SKServerAdapter" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="programiranje.sistem_korisnika_web.driver.DriverManager" target="programiranje.sistem_korisnika_web.driver.Driver" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="programiranje.sistem_korisnika.grupe.veb.ulaz_izlaz.SKServerAdapter" target="programiranje.baza_korisnika_web.beans.data.PrijavaBean" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <IsRelation name="is" source="programiranje.sistem_korisnika_web.driver.UlazniDriver" target="programiranje.sistem_korisnika_web.driver.Driver"/>
+    <UseRelation source="programiranje.baza_korisnika_web.control.IzlaznaNit" target="programiranje.baza_korisnika_web.global.SesijskiObjekti" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="skServerAdapter" source="programiranje.baza_korisnika_web.control.AdapterServera" target="programiranje.sistem_korisnika.grupe.veb.ulaz_izlaz.SKServerAdapter" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="radnaNit" source="programiranje.baza_korisnika_web.control.AdapterServera" target="programiranje.baza_korisnika_web.control.RadnaNit" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="serverSK" source="programiranje.sistem_korisnika_web.opis.kontrola.Informacije" target="programiranje.sistem_korisnika.grupe.veb.ulaz_izlaz.SKServerAdapter" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="serverBK" source="programiranje.sistem_korisnika_web.opis.kontrola.Informacije" target="programiranje.baza_korisnika_web.control.AdapterServera" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="programiranje.baza_korisnika_web.control.AdapterServera" target="programiranje.baza_korisnika_web.control.RadnaNit" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="programiranje.baza_korisnika_web.control.AdapterServera" target="programiranje.baza_korisnika_web.global.SesijskiObjekti" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="programiranje.baza_korisnika_web.control.IzlaznaNit" target="programiranje.baza_korisnika_web.control.AdapterServera" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="sesijskiObjekti" source="programiranje.baza_korisnika_web.control.AdapterServera" target="programiranje.baza_korisnika_web.global.SesijskiObjekti" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+  </ClassDiagramRelations>
+</ClassDiagram>

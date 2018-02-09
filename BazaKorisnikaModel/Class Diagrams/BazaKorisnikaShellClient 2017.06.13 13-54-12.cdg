@@ -1,0 +1,366 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<ClassDiagram name="BazaKorisnikaShellClient">
+  <ClassDiagramComponents>
+    <Class name="ApplicationMainProgram" package="programiranje.baza_korisnika_shell.klijent" visibility="public" xPosition="20.0" yPosition="20.0">
+      <Fields>
+        <Field name="resursi" type="Properties" visibility="private" isStatic="true"/>
+        <Field name="komunikator" type="GlobalApplicationCommunicator" visibility="private" isStatic="true"/>
+        <Field name="serverAdapter" type="ClientDataAdapter" visibility="private" isStatic="true"/>
+        <Field name="terminated" type="boolean" visibility="private" isStatic="true"/>
+      </Fields>
+      <Constructors/>
+      <Methods>
+        <Method name="termiante" returnType="void" visibility="public" isStatic="true"/>
+        <Method name="getGlobalApplicationCommunicator" returnType="GlobalApplicationCommunicator" visibility="public" isStatic="true"/>
+        <Method name="getClientDataAdapter" returnType="ClientDataAdapter" visibility="public" isStatic="true"/>
+        <Method name="getGrafickiResursi" returnType="Properties" visibility="public" isStatic="true"/>
+        <Method name="start" returnType="void" visibility="public">
+          <Argument type="Stage" name="stage"/>
+        </Method>
+        <Method name="main" returnType="void" visibility="public" isStatic="true">
+          <Argument type="String[]" name="args"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="ApplicationStatics" package="programiranje.baza_korisnika_shell.klijent" visibility="public" isFinal="true" xPosition="379.0" yPosition="20.0">
+      <Fields>
+        <Field name="serverPort" type="int" visibility="public" isStatic="true" isFinal="true"/>
+        <Field name="serverControlPort" type="int" visibility="public" isStatic="true" isFinal="true"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="private"/>
+      </Constructors>
+      <Methods/>
+    </Class>
+    <Class name="ClientController" package="programiranje.baza_korisnika_shell.klijent" visibility="public" isAbstract="true" xPosition="620.0" yPosition="20.0">
+      <Fields>
+        <Field name="komunikator" type="GlobalApplicationCommunicator" visibility="protected"/>
+        <Field name="serverAdapter" type="ClientDataAdapter" visibility="protected"/>
+        <Field name="resursi" type="Properties" visibility="protected"/>
+      </Fields>
+      <Constructors/>
+      <Methods>
+        <Method name="getPane" returnType="Pane" visibility="public" isAbstract="true"/>
+        <Method name="initialize" returnType="void" visibility="public">
+          <Argument type="URL" name="url"/>
+          <Argument type="ResourceBundle" name="rb"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="ClientObject" package="programiranje.baza_korisnika_shell.klijent" visibility="public" xPosition="920.0" yPosition="20.0">
+      <Fields/>
+      <Constructors/>
+      <Methods/>
+    </Class>
+    <Class name="GlobalApplicationCommunicator" package="programiranje.baza_korisnika_shell.klijent" visibility="public" xPosition="1520.0" yPosition="20.0">
+      <Fields>
+        <Field name="main" type="MainController" visibility="private"/>
+        <Field name="loggedout" type="LoggedOutController" visibility="private"/>
+        <Field name="loggedin" type="LoggedInController" visibility="private"/>
+        <Field name="prijava" type="PrijavaController" visibility="private"/>
+        <Field name="odijava" type="OdijavaController" visibility="private"/>
+        <Field name="registracija" type="RegistracijaController" visibility="private"/>
+        <Field name="deregistracija" type="DeregistracijaController" visibility="private"/>
+        <Field name="red" type="Deque&lt;ClientController&gt;" visibility="private"/>
+        <Field name="konfiguracija" type="ShellClientConfiguration" visibility="private"/>
+      </Fields>
+      <Constructors/>
+      <Methods>
+        <Method name="getMain" returnType="MainController" visibility="public"/>
+        <Method name="getLoggedout" returnType="LoggedOutController" visibility="public"/>
+        <Method name="getLoggedIn" returnType="LoggedInController" visibility="public"/>
+        <Method name="getPrijava" returnType="PrijavaController" visibility="public"/>
+        <Method name="getOdijava" returnType="OdijavaController" visibility="public"/>
+        <Method name="getRegistracija" returnType="RegistracijaController" visibility="public"/>
+        <Method name="getDeregistracija" returnType="DeregistracijaController" visibility="public"/>
+        <Method name="setMain" returnType="void" visibility="public">
+          <Argument type="MainController" name="main"/>
+        </Method>
+        <Method name="postavi" returnType="void" visibility="public">
+          <Argument type="ClientController" name="c"/>
+        </Method>
+        <Method name="ponisti" returnType="void" visibility="public">
+          <Argument type="ClientController" name="c"/>
+        </Method>
+        <Method name="postaviNaRed" returnType="boolean" visibility="public">
+          <Argument type="ClientController" name="c"/>
+        </Method>
+        <Method name="skiniSaReda" returnType="ClientController" visibility="public"/>
+        <Method name="dobijSaReda" returnType="ClientController" visibility="public"/>
+        <Method name="isprazniRed" returnType="void" visibility="public"/>
+        <Method name="loadKonfiguracija" returnType="void" visibility="private"/>
+        <Method name="getKonfiguracija" returnType="ShellClientConfiguration" visibility="public"/>
+      </Methods>
+    </Class>
+    <Class name="ClientDataAdapter" package="programiranje.baza_korisnika_shell.komunikacije" visibility="public" xPosition="1820.0" yPosition="20.0">
+      <Fields>
+        <Field name="no" type="String" visibility="private"/>
+        <Field name="sock" type="Socket" visibility="private"/>
+        <Field name="read" type="BufferedReader" visibility="private"/>
+        <Field name="write" type="PrintWriter" visibility="private"/>
+        <Field name="sessionId" type="String" visibility="private"/>
+        <Field name="csock" type="Socket" visibility="private"/>
+        <Field name="serverClose" type="ServerCloseThread" visibility="private"/>
+        <Field name="BKSP_CLOSE" type="String" visibility="public" isStatic="true" isFinal="true"/>
+        <Field name="BKSP_REGISTRACIJA" type="String" visibility="public" isStatic="true" isFinal="true"/>
+        <Field name="BKSP_DEREGISTRACIJA" type="String" visibility="public" isStatic="true" isFinal="true"/>
+        <Field name="BKSP_PRIJAVA" type="String" visibility="public" isStatic="true" isFinal="true"/>
+        <Field name="BKSP_ODIJAVA" type="String" visibility="public" isStatic="true" isFinal="true"/>
+        <Field name="BKSP_PODACI" type="String" visibility="public" isStatic="true" isFinal="true"/>
+        <Field name="BKSP_SUCCESS" type="String" visibility="public" isStatic="true" isFinal="true"/>
+        <Field name="BKSP_ERROR" type="String" visibility="public" isStatic="true" isFinal="true"/>
+        <Field name="komunikator" type="GlobalApplicationCommunicator" visibility="public"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public">
+          <Argument type="GlobalApplicationCommunicator" name="komunikator"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="readLine" returnType="String" visibility="public"/>
+        <Method name="writeLine" returnType="void" visibility="public">
+          <Argument type="String" name="msg"/>
+        </Method>
+        <Method name="deregistracija" returnType="boolean" visibility="public">
+          <Argument type="String" name="uname"/>
+          <Argument type="String" name="pass"/>
+        </Method>
+        <Method name="prijava" returnType="void" visibility="public">
+          <Argument type="String" name="name"/>
+          <Argument type="String" name="uname"/>
+        </Method>
+        <Method name="odijava" returnType="void" visibility="public"/>
+        <Method name="registracija" returnType="void" visibility="public">
+          <Argument type="String" name="id"/>
+          <Argument type="String" name="ime"/>
+          <Argument type="String" name="prezime"/>
+          <Argument type="String" name="kime"/>
+          <Argument type="String" name="pass"/>
+          <Argument type="String" name="addr"/>
+          <Argument type="String" name="phones"/>
+          <Argument type="String" name="jobs"/>
+          <Argument type="String" name="emails"/>
+          <Argument type="String" name="webs"/>
+        </Method>
+        <Method name="close" returnType="void" visibility="public" isSynchronized="true"/>
+        <Method name="getConnectionId" returnType="String" visibility="public"/>
+        <Method name="getSessionId" returnType="String" visibility="public"/>
+        <Method name="ocitavanjePodataka" returnType="List&lt;String&gt;" visibility="public"/>
+        <Method name="tabtext" returnType="String" visibility="private">
+          <Argument type="String" name="text"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="ServerCloseThread" package="programiranje.baza_korisnika_shell.komunikacije" visibility="public" xPosition="2139.0" yPosition="58.0">
+      <Fields>
+        <Field name="sock" type="Socket" visibility="private"/>
+        <Field name="writer" type="PrintWriter" visibility="private"/>
+        <Field name="reader" type="BufferedReader" visibility="private"/>
+        <Field name="adapter" type="ClientDataAdapter" visibility="private"/>
+        <Field name="PBKSP_CLOSE" type="String" visibility="public" isStatic="true" isFinal="true"/>
+        <Field name="PBKSP_STOP" type="String" visibility="public" isStatic="true" isFinal="true"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public">
+          <Argument type="Socket" name="csock"/>
+          <Argument type="ClientDataAdapter" name="cda"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="run" returnType="void" visibility="public"/>
+        <Method name="zaustavljanje" returnType="void" visibility="public"/>
+      </Methods>
+    </Class>
+    <Class name="DeregistracijaController" package="programiranje.baza_korisnika_shell.pogled.kontrola" visibility="public" xPosition="20.0" yPosition="358.0">
+      <Fields>
+        <Field name="main" type="AnchorPane" visibility="private"/>
+        <Field name="username" type="TextField" visibility="private"/>
+        <Field name="password" type="PasswordField" visibility="private"/>
+        <Field name="deregister" type="Button" visibility="private"/>
+        <Field name="cancel" type="Button" visibility="private"/>
+      </Fields>
+      <Constructors/>
+      <Methods>
+        <Method name="deregister" returnType="void" visibility="private">
+          <Argument type="ActionEvent" name="e"/>
+        </Method>
+        <Method name="cancel" returnType="void" visibility="private">
+          <Argument type="ActionEvent" name="e"/>
+        </Method>
+        <Method name="getPane" returnType="Pane" visibility="public"/>
+        <Method name="initialize" returnType="void" visibility="public">
+          <Argument type="URL" name="url"/>
+          <Argument type="ResourceBundle" name="rb"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="LoggedInController" package="programiranje.baza_korisnika_shell.pogled.kontrola" visibility="public" xPosition="305.0" yPosition="460.0">
+      <Fields>
+        <Field name="odijavaC" type="OdijavaController" visibility="private"/>
+        <Field name="opis" type="TextArea" visibility="private"/>
+        <Field name="main" type="AnchorPane" visibility="private"/>
+        <Field name="sesija" type="Label" visibility="private"/>
+        <Field name="odjava" type="Button" visibility="private"/>
+        <Field name="deregistracija" type="Button" visibility="private"/>
+      </Fields>
+      <Constructors/>
+      <Methods>
+        <Method name="odjava" returnType="void" visibility="private">
+          <Argument type="ActionEvent" name="e"/>
+        </Method>
+        <Method name="deregistracija" returnType="void" visibility="private">
+          <Argument type="ActionEvent" name="e"/>
+        </Method>
+        <Method name="getPane" returnType="Pane" visibility="public"/>
+        <Method name="initialize" returnType="void" visibility="public">
+          <Argument type="URL" name="url"/>
+          <Argument type="ResourceBundle" name="rb"/>
+        </Method>
+        <Method name="setSessionIdInfo" returnType="void" visibility="public">
+          <Argument type="String" name="session"/>
+        </Method>
+        <Method name="postaviInformacije" returnType="void" visibility="public"/>
+      </Methods>
+    </Class>
+    <Class name="LoggedOutController" package="programiranje.baza_korisnika_shell.pogled.kontrola" visibility="public" xPosition="551.0" yPosition="751.0">
+      <Fields>
+        <Field name="main" type="AnchorPane" visibility="private"/>
+      </Fields>
+      <Constructors/>
+      <Methods>
+        <Method name="getPane" returnType="Pane" visibility="public"/>
+        <Method name="pritisakP" returnType="void" visibility="private">
+          <Argument type="ActionEvent" name="e"/>
+        </Method>
+        <Method name="pritisakR" returnType="void" visibility="private">
+          <Argument type="ActionEvent" name="e"/>
+        </Method>
+        <Method name="initialize" returnType="void" visibility="public">
+          <Argument type="URL" name="url"/>
+          <Argument type="ResourceBundle" name="rb"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="MainController" package="programiranje.baza_korisnika_shell.pogled.kontrola" visibility="public" xPosition="886.0" yPosition="656.0">
+      <Fields>
+        <Field name="main" type="AnchorPane" visibility="private"/>
+      </Fields>
+      <Constructors/>
+      <Methods>
+        <Method name="getPane" returnType="Pane" visibility="public"/>
+        <Method name="initialize" returnType="void" visibility="public">
+          <Argument type="URL" name="url"/>
+          <Argument type="ResourceBundle" name="rb"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="OdijavaController" package="programiranje.baza_korisnika_shell.pogled.kontrola" visibility="public" xPosition="1186.0" yPosition="612.0">
+      <Fields>
+        <Field name="main" type="AnchorPane" visibility="private"/>
+      </Fields>
+      <Constructors/>
+      <Methods>
+        <Method name="getPane" returnType="Pane" visibility="public"/>
+        <Method name="odijava" returnType="void" visibility="public"/>
+        <Method name="initialize" returnType="void" visibility="public">
+          <Argument type="URL" name="url"/>
+          <Argument type="ResourceBundle" name="rb"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="PrijavaController" package="programiranje.baza_korisnika_shell.pogled.kontrola" visibility="public" xPosition="1524.0" yPosition="635.0">
+      <Fields>
+        <Field name="main" type="AnchorPane" visibility="private"/>
+        <Field name="username" type="TextField" visibility="private"/>
+        <Field name="password" type="PasswordField" visibility="private"/>
+        <Field name="login" type="Button" visibility="private"/>
+        <Field name="cancel" type="Button" visibility="private"/>
+      </Fields>
+      <Constructors/>
+      <Methods>
+        <Method name="login" returnType="void" visibility="private">
+          <Argument type="ActionEvent" name="e"/>
+        </Method>
+        <Method name="cancel" returnType="void" visibility="private">
+          <Argument type="ActionEvent" name="e"/>
+        </Method>
+        <Method name="getPane" returnType="Pane" visibility="public"/>
+        <Method name="initialize" returnType="void" visibility="public">
+          <Argument type="URL" name="url"/>
+          <Argument type="ResourceBundle" name="rb"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="RegistracijaController" package="programiranje.baza_korisnika_shell.pogled.kontrola" visibility="public" xPosition="1848.0" yPosition="656.0">
+      <Fields>
+        <Field name="main" type="AnchorPane" visibility="private"/>
+        <Field name="webs" type="TextArea" visibility="private"/>
+        <Field name="emails" type="TextArea" visibility="private"/>
+        <Field name="job" type="TextArea" visibility="private"/>
+        <Field name="adress" type="TextArea" visibility="private"/>
+        <Field name="phone" type="TextArea" visibility="private"/>
+        <Field name="password" type="PasswordField" visibility="private"/>
+        <Field name="fname" type="TextField" visibility="private"/>
+        <Field name="sname" type="TextField" visibility="private"/>
+        <Field name="uname" type="TextField" visibility="private"/>
+        <Field name="idt" type="TextField" visibility="private"/>
+        <Field name="register" type="Button" visibility="private"/>
+        <Field name="cancel" type="Button" visibility="private"/>
+      </Fields>
+      <Constructors/>
+      <Methods>
+        <Method name="register" returnType="void" visibility="private">
+          <Argument type="ActionEvent" name="e"/>
+        </Method>
+        <Method name="cancel" returnType="void" visibility="private">
+          <Argument type="ActionEvent" name="e"/>
+        </Method>
+        <Method name="getPane" returnType="Pane" visibility="public"/>
+        <Method name="initialize" returnType="void" visibility="public">
+          <Argument type="URL" name="url"/>
+          <Argument type="ResourceBundle" name="rb"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Interface name="ClientTemplate" package="programiranje.baza_korisnika_shell.klijent" visibility="public" xPosition="1220.0" yPosition="20.0">
+      <Methods/>
+    </Interface>
+  </ClassDiagramComponents>
+  <ClassDiagramRelations>
+    <HasRelation name="deregistracija" source="programiranje.baza_korisnika_shell.klijent.GlobalApplicationCommunicator" target="programiranje.baza_korisnika_shell.pogled.kontrola.DeregistracijaController" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <IsRelation name="is" source="programiranje.baza_korisnika_shell.pogled.kontrola.LoggedInController" target="programiranje.baza_korisnika_shell.klijent.ClientController"/>
+    <HasRelation name="main" source="programiranje.baza_korisnika_shell.klijent.GlobalApplicationCommunicator" target="programiranje.baza_korisnika_shell.pogled.kontrola.MainController" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="serverClose" source="programiranje.baza_korisnika_shell.komunikacije.ClientDataAdapter" target="programiranje.baza_korisnika_shell.komunikacije.ServerCloseThread" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="komunikator" source="programiranje.baza_korisnika_shell.klijent.ClientController" target="programiranje.baza_korisnika_shell.klijent.GlobalApplicationCommunicator" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="prijava" source="programiranje.baza_korisnika_shell.klijent.GlobalApplicationCommunicator" target="programiranje.baza_korisnika_shell.pogled.kontrola.PrijavaController" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="komunikator" source="programiranje.baza_korisnika_shell.klijent.ApplicationMainProgram" target="programiranje.baza_korisnika_shell.klijent.GlobalApplicationCommunicator" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <IsRelation name="is" source="programiranje.baza_korisnika_shell.pogled.kontrola.RegistracijaController" target="programiranje.baza_korisnika_shell.klijent.ClientController"/>
+    <HasRelation name="adapter" source="programiranje.baza_korisnika_shell.komunikacije.ServerCloseThread" target="programiranje.baza_korisnika_shell.komunikacije.ClientDataAdapter" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="programiranje.baza_korisnika_shell.klijent.GlobalApplicationCommunicator" target="programiranje.baza_korisnika_shell.pogled.kontrola.PrijavaController" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="loggedin" source="programiranje.baza_korisnika_shell.klijent.GlobalApplicationCommunicator" target="programiranje.baza_korisnika_shell.pogled.kontrola.LoggedInController" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="programiranje.baza_korisnika_shell.klijent.GlobalApplicationCommunicator" target="programiranje.baza_korisnika_shell.pogled.kontrola.RegistracijaController" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <IsRelation name="is" source="programiranje.baza_korisnika_shell.pogled.kontrola.LoggedOutController" target="programiranje.baza_korisnika_shell.klijent.ClientController"/>
+    <HasRelation name="odijava" source="programiranje.baza_korisnika_shell.klijent.GlobalApplicationCommunicator" target="programiranje.baza_korisnika_shell.pogled.kontrola.OdijavaController" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="programiranje.baza_korisnika_shell.klijent.ApplicationMainProgram" target="programiranje.baza_korisnika_shell.komunikacije.ClientDataAdapter" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="programiranje.baza_korisnika_shell.klijent.ApplicationMainProgram" target="programiranje.baza_korisnika_shell.klijent.GlobalApplicationCommunicator" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="serverAdapter" source="programiranje.baza_korisnika_shell.klijent.ClientController" target="programiranje.baza_korisnika_shell.komunikacije.ClientDataAdapter" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="programiranje.baza_korisnika_shell.klijent.GlobalApplicationCommunicator" target="programiranje.baza_korisnika_shell.pogled.kontrola.MainController" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="programiranje.baza_korisnika_shell.klijent.GlobalApplicationCommunicator" target="programiranje.baza_korisnika_shell.klijent.ClientController" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <IsRelation name="is" source="programiranje.baza_korisnika_shell.pogled.kontrola.DeregistracijaController" target="programiranje.baza_korisnika_shell.klijent.ClientController"/>
+    <HasRelation name="loggedout" source="programiranje.baza_korisnika_shell.klijent.GlobalApplicationCommunicator" target="programiranje.baza_korisnika_shell.pogled.kontrola.LoggedOutController" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="programiranje.baza_korisnika_shell.klijent.GlobalApplicationCommunicator" target="programiranje.baza_korisnika_shell.pogled.kontrola.DeregistracijaController" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="registracija" source="programiranje.baza_korisnika_shell.klijent.GlobalApplicationCommunicator" target="programiranje.baza_korisnika_shell.pogled.kontrola.RegistracijaController" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="programiranje.baza_korisnika_shell.klijent.GlobalApplicationCommunicator" target="programiranje.baza_korisnika_shell.pogled.kontrola.LoggedInController" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="programiranje.baza_korisnika_shell.klijent.GlobalApplicationCommunicator" target="programiranje.baza_korisnika_shell.pogled.kontrola.LoggedOutController" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <IsRelation name="is" source="programiranje.baza_korisnika_shell.pogled.kontrola.MainController" target="programiranje.baza_korisnika_shell.klijent.ClientController"/>
+    <HasRelation name="red" source="programiranje.baza_korisnika_shell.klijent.GlobalApplicationCommunicator" target="programiranje.baza_korisnika_shell.klijent.ClientController" type="Aggregation" sourceCardinality="1..1" targetCardinality="0..*" collectionType="Deque&lt;ClientController&gt;"/>
+    <HasRelation name="komunikator" source="programiranje.baza_korisnika_shell.komunikacije.ClientDataAdapter" target="programiranje.baza_korisnika_shell.klijent.GlobalApplicationCommunicator" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="serverAdapter" source="programiranje.baza_korisnika_shell.klijent.ApplicationMainProgram" target="programiranje.baza_korisnika_shell.komunikacije.ClientDataAdapter" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="programiranje.baza_korisnika_shell.klijent.GlobalApplicationCommunicator" target="programiranje.baza_korisnika_shell.pogled.kontrola.OdijavaController" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <IsRelation name="is" source="programiranje.baza_korisnika_shell.pogled.kontrola.PrijavaController" target="programiranje.baza_korisnika_shell.klijent.ClientController"/>
+    <IsRelation name="is" source="programiranje.baza_korisnika_shell.pogled.kontrola.OdijavaController" target="programiranje.baza_korisnika_shell.klijent.ClientController"/>
+    <IsRelation name="is" source="programiranje.baza_korisnika_shell.klijent.ClientController" target="programiranje.baza_korisnika_shell.klijent.ClientObject"/>
+    <HasRelation name="odijavaC" source="programiranje.baza_korisnika_shell.pogled.kontrola.LoggedInController" target="programiranje.baza_korisnika_shell.pogled.kontrola.OdijavaController" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+  </ClassDiagramRelations>
+</ClassDiagram>

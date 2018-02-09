@@ -1,0 +1,314 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<ClassDiagram name="BazaKorisnikaConsoleClient">
+  <ClassDiagramComponents>
+    <Class name="Aplikacija" package="programiranje.baza_korisnika_console.klijent" visibility="public" xPosition="550.0" yPosition="1779.0">
+      <Fields>
+        <Field name="sesija" type="String" visibility="private" isStatic="true"/>
+        <Field name="server" type="AdapterServera" visibility="private" isStatic="true"/>
+        <Field name="inputThread" type="UlaznaNit" visibility="private" isStatic="true"/>
+        <Field name="closed" type="boolean" visibility="private" isStatic="true"/>
+      </Fields>
+      <Constructors/>
+      <Methods>
+        <Method name="getInputThread" returnType="UlaznaNit" visibility="public" isStatic="true"/>
+        <Method name="isClosed" returnType="boolean" visibility="public" isStatic="true"/>
+        <Method name="setClosed" returnType="void" visibility="public" isStatic="true"/>
+        <Method name="odjava" returnType="void" visibility="public" isStatic="true"/>
+        <Method name="getSesija" returnType="String" visibility="public" isStatic="true"/>
+        <Method name="main" returnType="void" visibility="public" isStatic="true">
+          <Argument type="String" name="args"/>
+        </Method>
+        <Method name="menu" returnType="void" visibility="private" isStatic="true"/>
+        <Method name="branch" returnType="boolean" visibility="private" isStatic="true"/>
+        <Method name="prijavaKorisnika" returnType="void" visibility="private" isStatic="true" isSynchronized="true"/>
+        <Method name="odijavaKorisnika" returnType="void" visibility="private" isStatic="true" isSynchronized="true"/>
+        <Method name="registracijaKorisnika" returnType="void" visibility="private" isStatic="true" isSynchronized="true"/>
+        <Method name="deregistracijaKorisnika" returnType="void" visibility="private" isStatic="true" isSynchronized="true"/>
+        <Method name="pogresanIzbor" returnType="void" visibility="private" isStatic="true" isSynchronized="true"/>
+        <Method name="podaciKorisnika" returnType="void" visibility="private" isStatic="true" isSynchronized="true"/>
+      </Methods>
+    </Class>
+    <Class name="AdapterServera" package="programiranje.baza_korisnika_console.klijent.io" visibility="public" xPosition="1689.0" yPosition="1578.0">
+      <Fields>
+        <Field name="server" type="Socket" visibility="private"/>
+        <Field name="controlServer" type="Socket" visibility="private"/>
+        <Field name="secureReader" type="DekriptReader" visibility="private"/>
+        <Field name="secureWriter" type="EnkriptWriter" visibility="private"/>
+        <Field name="controlSecureReader" type="DekriptReader" visibility="private"/>
+        <Field name="controlSecureWriter" type="EnkriptWriter" visibility="private"/>
+        <Field name="envelop" type="DigitalnaEnvelopa" visibility="private"/>
+        <Field name="controlEnvelop" type="DigitalnaEnvelopa" visibility="private"/>
+        <Field name="reader" type="BufferedReader" visibility="private"/>
+        <Field name="writer" type="PrintWriter" visibility="private"/>
+        <Field name="controlReader" type="BufferedReader" visibility="private"/>
+        <Field name="controlWriter" type="PrintWriter" visibility="private"/>
+        <Field name="izlaznaNit" type="IzlaznaNit" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public">
+          <Argument type="Socket" name="serv"/>
+          <Argument type="Socket" name="kontrolniServer"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="getServerS" returnType="Socket" visibility="public"/>
+        <Method name="getServerCS" returnType="Socket" visibility="public"/>
+        <Method name="getServerPW" returnType="PrintWriter" visibility="public"/>
+        <Method name="getServerBR" returnType="BufferedReader" visibility="public"/>
+        <Method name="getServerEW" returnType="EnkriptWriter" visibility="public"/>
+        <Method name="getServerDR" returnType="DekriptReader" visibility="public"/>
+        <Method name="getServerCPW" returnType="PrintWriter" visibility="public"/>
+        <Method name="getServerCBR" returnType="BufferedReader" visibility="public"/>
+        <Method name="getServerCEW" returnType="EnkriptWriter" visibility="public"/>
+        <Method name="getServerCDR" returnType="DekriptReader" visibility="public"/>
+        <Method name="readLine" returnType="String" visibility="public"/>
+        <Method name="cReadLine" returnType="String" visibility="public"/>
+        <Method name="writeLine" returnType="void" visibility="public">
+          <Argument type="String" name="msg"/>
+        </Method>
+        <Method name="cWriteLine" returnType="void" visibility="public">
+          <Argument type="String" name="msg"/>
+        </Method>
+        <Method name="izlaz" returnType="void" visibility="public"/>
+        <Method name="registracijaOut" returnType="void" visibility="public">
+          <Argument type="List&lt;String&gt;" name="lista"/>
+        </Method>
+        <Method name="registracijaIn" returnType="Pair&lt;String, String&gt;" visibility="public"/>
+        <Method name="deregistracijaOut" returnType="void" visibility="public">
+          <Argument type="List&lt;String&gt;" name="lista"/>
+        </Method>
+        <Method name="deregistracijaIn" returnType="String" visibility="public"/>
+        <Method name="prijavaOut" returnType="void" visibility="public">
+          <Argument type="List&lt;String&gt;" name="lista"/>
+        </Method>
+        <Method name="prijavaIn" returnType="Pair&lt;String, String&gt;" visibility="public"/>
+        <Method name="podaciIn" returnType="Pair&lt;String, List&lt;String&gt;&gt;" visibility="public"/>
+        <Method name="vezivanjeIn" returnType="String" visibility="public"/>
+        <Method name="izlazIn" returnType="String" visibility="public"/>
+        <Method name="getIzlaznaNit" returnType="IzlaznaNit" visibility="public"/>
+        <Method name="odijavaOut" returnType="void" visibility="public"/>
+      </Methods>
+    </Class>
+    <Class name="GlobalniObjekti" package="programiranje.baza_korisnika_console.klijent.io" visibility="public" isFinal="true" xPosition="1689.0" yPosition="421.0">
+      <Fields>
+        <Field name="shellServerSocket" type="Socket" visibility="private" isStatic="true"/>
+        <Field name="shellControlServerSocket" type="Socket" visibility="private" isStatic="true"/>
+        <Field name="serverAdapter" type="AdapterServera" visibility="private" isStatic="true"/>
+        <Field name="connectionId" type="String" visibility="private" isStatic="true"/>
+        <Field name="sessionId" type="String" visibility="private" isStatic="true"/>
+        <Field name="SESSIONTYPE_BKSP_BASIC" type="String" visibility="public" isStatic="true" isFinal="true"/>
+        <Field name="SESSIONTYPE_BKSP_TIMED" type="String" visibility="public" isStatic="true" isFinal="true"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public"/>
+      </Constructors>
+      <Methods>
+        <Method name="setShellServer" returnType="void" visibility="public" isStatic="true"/>
+        <Method name="resetShellServer" returnType="void" visibility="public" isStatic="true"/>
+        <Method name="getShellServerAdapter" returnType="AdapterServera" visibility="public" isStatic="true"/>
+        <Method name="getConnectionId" returnType="String" visibility="public" isStatic="true"/>
+        <Method name="getSessionId" returnType="String" visibility="public" isStatic="true"/>
+        <Method name="setSessionId" returnType="void" visibility="public" isStatic="true">
+          <Argument type="String" name="str"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="UlaznaNit" package="programiranje.baza_korisnika_console.klijent.io" visibility="public" xPosition="154.0" yPosition="1307.0">
+      <Fields>
+        <Field name="adapter" type="AdapterServera" visibility="private"/>
+        <Field name="scanner" type="Scanner" visibility="private"/>
+        <Field name="console" type="Console" visibility="private"/>
+        <Field name="line" type="String" visibility="private"/>
+        <Field name="password" type="String" visibility="private"/>
+        <Field name="integer" type="Integer" visibility="private"/>
+        <Field name="cekanjeNaNitskeZadatke" type="Object" visibility="private"/>
+        <Field name="cekanjeNaAktivneZadatke" type="Object" visibility="private"/>
+        <Field name="zaustavljanjePetlje" type="Object" visibility="private"/>
+        <Field name="aktivnost" type="Runnable" visibility="private"/>
+        <Field name="brojacZadataka" type="int" visibility="private"/>
+        <Field name="unosLinije" type="Runnable" visibility="private" isFinal="true"/>
+        <Field name="unosSifre" type="Runnable" visibility="private" isFinal="true"/>
+        <Field name="unosIntegera" type="Runnable" visibility="private" isFinal="true"/>
+        <Field name="zaustavljeno" type="boolean" visibility="private"/>
+        <Field name="iskljuceno" type="boolean" visibility="private"/>
+        <Field name="uAktivnosti" type="boolean" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public"/>
+      </Constructors>
+      <Methods>
+        <Method name="run" returnType="void" visibility="public"/>
+        <Method name="readLine" returnType="String" visibility="public" isSynchronized="true"/>
+        <Method name="readPassword" returnType="String" visibility="public" isSynchronized="true"/>
+        <Method name="readInteger" returnType="Integer" visibility="public" isSynchronized="true"/>
+        <Method name="zaustavljanje" returnType="void" visibility="public" isSynchronized="true"/>
+        <Method name="glavna" returnType="void" visibility="public" isStatic="true">
+          <Argument type="String" name="args"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="IzlaznaNit" package="programiranje.baza_korisnika_console.klijent" visibility="public" xPosition="1131.0" yPosition="1998.0">
+      <Fields>
+        <Field name="server" type="AdapterServera" visibility="private"/>
+        <Field name="PBKSP_CLOSE" type="String" visibility="public" isStatic="true" isFinal="true"/>
+        <Field name="PBKSP_STOP" type="String" visibility="public" isStatic="true" isFinal="true"/>
+        <Field name="activitiesAfterMain" type="ArrayList&lt;Runnable&gt;" visibility="private"/>
+        <Field name="activitiesBeforeMain" type="ArrayList&lt;Runnable&gt;" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public">
+          <Argument type="AdapterServera" name="server"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="getAdapterServera" returnType="AdapterServera" visibility="public"/>
+        <Method name="run" returnType="void" visibility="public"/>
+        <Method name="dodajAktivnostiPrijeGlavne" returnType="void" visibility="public">
+          <Argument type="Runnable" name="r"/>
+        </Method>
+        <Method name="dodajAktivnostiPosleGlavne" returnType="void" visibility="public">
+          <Argument type="Runnable" name="r"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="PrijavaBean" package="programiranje.baza_korisnika_console.model" visibility="public" xPosition="1900.0" yPosition="1000.0">
+      <Fields>
+        <Field name="username" type="String" visibility="private"/>
+        <Field name="password" type="String" visibility="private"/>
+      </Fields>
+      <Constructors/>
+      <Methods>
+        <Method name="getUsername" returnType="String" visibility="public"/>
+        <Method name="getPassword" returnType="String" visibility="public"/>
+        <Method name="setUsername" returnType="void" visibility="public">
+          <Argument type="String" name="username"/>
+        </Method>
+        <Method name="setPassword" returnType="void" visibility="public">
+          <Argument type="String" name="password"/>
+        </Method>
+        <Method name="asList" returnType="List&lt;String&gt;" visibility="public"/>
+        <Method name="fromList" returnType="void" visibility="public">
+          <Argument type="List&lt;String&gt;" name="list"/>
+        </Method>
+        <Method name="asPair" returnType="Pair&lt;String, String&gt;" visibility="public"/>
+        <Method name="fromPair" returnType="void" visibility="public">
+          <Argument type="Pair&lt;String, String&gt;" name="pair"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="RegistracijaBean" package="programiranje.baza_korisnika_console.model" visibility="public" xPosition="183.0" yPosition="531.0">
+      <Fields>
+        <Field name="name" type="String" visibility="private"/>
+        <Field name="surname" type="String" visibility="private"/>
+        <Field name="username" type="String" visibility="private"/>
+        <Field name="password" type="String" visibility="private"/>
+        <Field name="identificator" type="String" visibility="private"/>
+        <Field name="telephone" type="String" visibility="private"/>
+        <Field name="workplaces" type="String" visibility="private"/>
+        <Field name="address" type="String" visibility="private"/>
+        <Field name="email" type="String" visibility="private"/>
+        <Field name="webs" type="String" visibility="private"/>
+      </Fields>
+      <Constructors/>
+      <Methods>
+        <Method name="asSignInList" returnType="List&lt;String&gt;" visibility="public"/>
+        <Method name="asSignUpList" returnType="List&lt;String&gt;" visibility="public"/>
+        <Method name="fromSignInList" returnType="void" visibility="public">
+          <Argument type="List&lt;String&gt;" name="list"/>
+        </Method>
+        <Method name="fromSignUpList" returnType="void" visibility="public">
+          <Argument type="List&lt;String&gt;" name="list"/>
+        </Method>
+        <Method name="getName" returnType="String" visibility="public"/>
+        <Method name="getSurname" returnType="String" visibility="public"/>
+        <Method name="getUsername" returnType="String" visibility="public"/>
+        <Method name="getPassword" returnType="String" visibility="public"/>
+        <Method name="getIdentificator" returnType="String" visibility="public"/>
+        <Method name="getTelephone" returnType="String" visibility="public"/>
+        <Method name="getWorkplaces" returnType="String" visibility="public"/>
+        <Method name="getAddress" returnType="String" visibility="public"/>
+        <Method name="getEmail" returnType="String" visibility="public"/>
+        <Method name="getWebs" returnType="String" visibility="public"/>
+        <Method name="setName" returnType="void" visibility="public">
+          <Argument type="String" name="name"/>
+        </Method>
+        <Method name="setSurname" returnType="void" visibility="public">
+          <Argument type="String" name="surname"/>
+        </Method>
+        <Method name="setUsername" returnType="void" visibility="public">
+          <Argument type="String" name="username"/>
+        </Method>
+        <Method name="setPassword" returnType="void" visibility="public">
+          <Argument type="String" name="password"/>
+        </Method>
+        <Method name="setIdentificator" returnType="void" visibility="public">
+          <Argument type="String" name="identificator"/>
+        </Method>
+        <Method name="setTelephone" returnType="void" visibility="public">
+          <Argument type="String" name="telephone"/>
+        </Method>
+        <Method name="setWorkplaces" returnType="void" visibility="public">
+          <Argument type="String" name="workplaces"/>
+        </Method>
+        <Method name="setAddress" returnType="void" visibility="public">
+          <Argument type="String" name="address"/>
+        </Method>
+        <Method name="setEmail" returnType="void" visibility="public">
+          <Argument type="String" name="email"/>
+        </Method>
+        <Method name="setWebs" returnType="void" visibility="public">
+          <Argument type="String" name="webs"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="ProtokolBKSP" package="programiranje.baza_korisnika_console.staticno" visibility="public" isFinal="true" xPosition="549.0" yPosition="220.0">
+      <Fields>
+        <Field name="BKSP_SUCCESS" type="String" visibility="public" isStatic="true" isFinal="true"/>
+        <Field name="BKSP_ERROR" type="String" visibility="public" isStatic="true" isFinal="true"/>
+        <Field name="BKSP_REGISTRACIJA" type="String" visibility="public" isStatic="true" isFinal="true"/>
+        <Field name="BKSP_DEREGISTRACIJA" type="String" visibility="public" isStatic="true" isFinal="true"/>
+        <Field name="BKSP_PRIJAVA" type="String" visibility="public" isStatic="true" isFinal="true"/>
+        <Field name="BKSP_ODIJAVA" type="String" visibility="public" isStatic="true" isFinal="true"/>
+        <Field name="BKSP_CLOSE" type="String" visibility="public" isStatic="true" isFinal="true"/>
+        <Field name="BKSP_PODACI" type="String" visibility="public" isStatic="true" isFinal="true"/>
+        <Field name="PBKSP_CLOSE" type="String" visibility="public" isStatic="true" isFinal="true"/>
+        <Field name="PBKSP_STOP" type="String" visibility="public" isStatic="true" isFinal="true"/>
+        <Field name="BKSP_N1_VEZANJE" type="String" visibility="public" isStatic="true" isFinal="true"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="private"/>
+      </Constructors>
+      <Methods/>
+    </Class>
+    <Class name="StatickiPodaci" package="programiranje.baza_korisnika_console.staticno" visibility="public" isFinal="true" xPosition="1156.0" yPosition="113.0">
+      <Fields>
+        <Field name="serverPort" type="int" visibility="public" isStatic="true" isFinal="true"/>
+        <Field name="serverControlPort" type="int" visibility="public" isStatic="true" isFinal="true"/>
+        <Field name="serverAddress" type="InetAddress" visibility="private" isStatic="true"/>
+        <Field name="clientConfigFile" type="String" visibility="private" isStatic="true" isFinal="true"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="private"/>
+      </Constructors>
+      <Methods>
+        <Method name="getServerAddress" returnType="InetAddress" visibility="public" isStatic="true"/>
+        <Method name="setServerAddress" returnType="void" visibility="public" isStatic="true">
+          <Argument type="InetAddress" name="adresa"/>
+        </Method>
+      </Methods>
+    </Class>
+  </ClassDiagramComponents>
+  <ClassDiagramRelations>
+    <UseRelation source="programiranje.baza_korisnika_console.klijent.io.GlobalniObjekti" target="programiranje.baza_korisnika_console.klijent.io.AdapterServera" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="serverAdapter" source="programiranje.baza_korisnika_console.klijent.io.GlobalniObjekti" target="programiranje.baza_korisnika_console.klijent.io.AdapterServera" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="programiranje.baza_korisnika_console.klijent.Aplikacija" target="programiranje.baza_korisnika_console.klijent.io.UlaznaNit" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="programiranje.baza_korisnika_console.klijent.io.AdapterServera" target="programiranje.baza_korisnika_console.klijent.IzlaznaNit" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="adapter" source="programiranje.baza_korisnika_console.klijent.io.UlaznaNit" target="programiranje.baza_korisnika_console.klijent.io.AdapterServera" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="izlaznaNit" source="programiranje.baza_korisnika_console.klijent.io.AdapterServera" target="programiranje.baza_korisnika_console.klijent.IzlaznaNit" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="programiranje.baza_korisnika_console.klijent.IzlaznaNit" target="programiranje.baza_korisnika_console.klijent.io.AdapterServera" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="inputThread" source="programiranje.baza_korisnika_console.klijent.Aplikacija" target="programiranje.baza_korisnika_console.klijent.io.UlaznaNit" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="server" source="programiranje.baza_korisnika_console.klijent.IzlaznaNit" target="programiranje.baza_korisnika_console.klijent.io.AdapterServera" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="server" source="programiranje.baza_korisnika_console.klijent.Aplikacija" target="programiranje.baza_korisnika_console.klijent.io.AdapterServera" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+  </ClassDiagramRelations>
+</ClassDiagram>

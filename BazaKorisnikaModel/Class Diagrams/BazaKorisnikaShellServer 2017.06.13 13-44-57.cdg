@@ -1,0 +1,451 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<ClassDiagram name="BazaKorisnikaShellServer">
+  <ClassDiagramComponents>
+    <Class name="SQLUtil" package="programiranje.baza_korisnika_shell.alati" visibility="public" xPosition="108.0" yPosition="877.0">
+      <Fields/>
+      <Constructors>
+        <Constructor visibility="private"/>
+      </Constructors>
+      <Methods>
+        <Method name="getStatement" returnType="String" visibility="public" isStatic="true">
+          <Argument type="String" name="sqlressta"/>
+          <Argument type="String" name="params"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="StringUtil" package="programiranje.baza_korisnika_shell.alati" visibility="public" isFinal="true" xPosition="174.0" yPosition="641.0">
+      <Fields/>
+      <Constructors>
+        <Constructor visibility="private"/>
+      </Constructors>
+      <Methods>
+        <Method name="sqlEscape" returnType="String" visibility="public" isStatic="true">
+          <Argument type="String" name="str"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="ServerDataAdapter" package="programiranje.baza_korisnika_shell.komunikacije.server" visibility="public" xPosition="189.0" yPosition="1573.0">
+      <Fields>
+        <Field name="no" type="String" visibility="private"/>
+        <Field name="sock" type="Socket" visibility="private"/>
+        <Field name="write" type="PrintWriter" visibility="private"/>
+        <Field name="read" type="BufferedReader" visibility="private"/>
+        <Field name="csock" type="Socket" visibility="private"/>
+        <Field name="cwrite" type="PrintWriter" visibility="private"/>
+        <Field name="cread" type="BufferedReader" visibility="private"/>
+        <Field name="count" type="int" visibility="private" isStatic="true"/>
+        <Field name="s" type="Sesija" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public">
+          <Argument type="Socket" name="sock"/>
+          <Argument type="Socket" name="csock"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="readLine" returnType="String" visibility="public" isSynchronized="true"/>
+        <Method name="cReadLine" returnType="String" visibility="public"/>
+        <Method name="registracijaIn" returnType="AutorizacioniPodaci" visibility="public"/>
+        <Method name="registracijaOut" returnType="void" visibility="public">
+          <Argument type="String" name="ok"/>
+          <Argument type="String" name="msg"/>
+        </Method>
+        <Method name="writeLine" returnType="void" visibility="public" isSynchronized="true">
+          <Argument type="String" name="msg"/>
+        </Method>
+        <Method name="cWriteLine" returnType="void" visibility="public">
+          <Argument type="String" name="msg"/>
+        </Method>
+        <Method name="close" returnType="void" visibility="public"/>
+        <Method name="getConnectionId" returnType="String" visibility="public"/>
+        <Method name="getSesija" returnType="Sesija" visibility="public"/>
+        <Method name="setSesija" returnType="void" visibility="public">
+          <Argument type="Sesija" name="s"/>
+        </Method>
+        <Method name="posaljiPodatke" returnType="void" visibility="public"/>
+      </Methods>
+    </Class>
+    <Class name="UserDatabaseAdapter" package="programiranje.baza_korisnika_shell.komunikacije.server" visibility="public" xPosition="189.0" yPosition="1155.0">
+      <Fields>
+        <Field name="host" type="String" visibility="private"/>
+        <Field name="user" type="String" visibility="private"/>
+        <Field name="password" type="String" visibility="private"/>
+        <Field name="database" type="String" visibility="private"/>
+        <Field name="datatable" type="String" visibility="private"/>
+        <Field name="url" type="String" visibility="private"/>
+        <Field name="konekcija" type="Connection" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public">
+          <Argument type="String" name="host"/>
+          <Argument type="String" name="user"/>
+          <Argument type="String" name="password"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="konektuj" returnType="void" visibility="public" isSynchronized="true"/>
+        <Method name="raskonektuj" returnType="void" visibility="public" isSynchronized="true"/>
+        <Method name="dodajKorisnika" returnType="void" visibility="public" isSynchronized="true">
+          <Argument type="Korisnik" name="k"/>
+        </Method>
+        <Method name="obrisiKorisnika" returnType="void" visibility="public" isSynchronized="true">
+          <Argument type="Korisnik" name="k"/>
+        </Method>
+        <Method name="ucitavanje" returnType="void" visibility="public" isSynchronized="true"/>
+      </Methods>
+    </Class>
+    <Class name="UserDatabaseThread" package="programiranje.baza_korisnika_shell.komunikacije.server" visibility="public" xPosition="1866.0" yPosition="1213.0">
+      <Fields>
+        <Field name="naredbe" type="Deque&lt;Runnable&gt;" visibility="protected"/>
+        <Field name="komunikator" type="ServerGlobalCommunicator" visibility="protected"/>
+        <Field name="databaseAdapter" type="UserDatabaseAdapter" visibility="protected"/>
+        <Field name="izlaz" type="boolean" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public">
+          <Argument type="ServerGlobalCommunicator" name="c"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="run" returnType="void" visibility="public"/>
+        <Method name="dodaj" returnType="void" visibility="public" isSynchronized="true">
+          <Argument type="Korisnik" name="k"/>
+        </Method>
+        <Method name="obrisi" returnType="void" visibility="public" isSynchronized="true">
+          <Argument type="Korisnik" name="k"/>
+        </Method>
+        <Method name="izlaz" returnType="void" visibility="public" isSynchronized="true"/>
+      </Methods>
+    </Class>
+    <Class name="AutentifikacijaControl" package="programiranje.baza_korisnika_shell.kontrola.server" visibility="public" xPosition="289.0" yPosition="447.0">
+      <Fields/>
+      <Constructors/>
+      <Methods>
+        <Method name="provjeraSifre" returnType="boolean" visibility="private" isStatic="true" isSynchronized="true">
+          <Argument type="String" name="password"/>
+        </Method>
+        <Method name="provjeraAutentifikacije" returnType="boolean" visibility="public" isStatic="true" isSynchronized="true">
+          <Argument type="AutentifikacioniPodaci" name="ap"/>
+          <Argument type="String" name="uname"/>
+          <Argument type="String" name="pass"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="AutorizacijaControl" package="programiranje.baza_korisnika_shell.kontrola.server" visibility="public" xPosition="1720.0" yPosition="1881.0">
+      <Fields/>
+      <Constructors/>
+      <Methods>
+        <Method name="provjeraSifre" returnType="boolean" visibility="private" isStatic="true" isSynchronized="true">
+          <Argument type="String" name="password"/>
+        </Method>
+        <Method name="provjeraAutorizacije" returnType="Pair&lt;Boolean, String&gt;" visibility="public" isStatic="true" isSynchronized="true">
+          <Argument type="AutorizacioniPodaci" name="ap"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="DeregistracijaControl" package="programiranje.baza_korisnika_shell.kontrola.server" visibility="public" isFinal="true" xPosition="1724.0" yPosition="540.0">
+      <Fields/>
+      <Constructors>
+        <Constructor visibility="private"/>
+      </Constructors>
+      <Methods>
+        <Method name="deregistruj" returnType="boolean" visibility="public" isStatic="true">
+          <Argument type="Sesija" name="s"/>
+          <Argument type="String" name="uname"/>
+          <Argument type="String" name="pass"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="OdjavaControl" package="programiranje.baza_korisnika_shell.kontrola.server" visibility="public" isFinal="true" xPosition="1683.0" yPosition="740.0">
+      <Fields/>
+      <Constructors>
+        <Constructor visibility="private"/>
+      </Constructors>
+      <Methods>
+        <Method name="odijava" returnType="void" visibility="public" isStatic="true">
+          <Argument type="Sesija" name="s"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="PrijavaControl" package="programiranje.baza_korisnika_shell.kontrola.server" visibility="public" xPosition="189.0" yPosition="273.0">
+      <Fields>
+        <Field name="sesije" type="HashSet&lt;Sesija&gt;" visibility="private" isStatic="true"/>
+      </Fields>
+      <Constructors/>
+      <Methods>
+        <Method name="otvoriSesiju" returnType="String" visibility="public" isStatic="true" isSynchronized="true">
+          <Argument type="AutentifikacioniPodaci" name="ap"/>
+          <Argument type="ServerDataAdapter" name="s"/>
+        </Method>
+        <Method name="zatvoriSesiju" returnType="boolean" visibility="public" isStatic="true" isSynchronized="true">
+          <Argument type="Sesija" name="s"/>
+        </Method>
+        <Method name="otvorenaSesija" returnType="boolean" visibility="public" isStatic="true" isSynchronized="true">
+          <Argument type="Sesija" name="s"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="RegistracijaControl" package="programiranje.baza_korisnika_shell.kontrola.server" visibility="public" isFinal="true" xPosition="468.0" yPosition="1862.0">
+      <Fields>
+        <Field name="korisnici" type="HashSet&lt;Korisnik&gt;" visibility="private" isStatic="true"/>
+        <Field name="komunikator" type="ServerGlobalCommunicator" visibility="private" isStatic="true"/>
+        <Field name="dbthread" type="UserDatabaseThread" visibility="private" isStatic="true"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="private"/>
+      </Constructors>
+      <Methods>
+        <Method name="provjeriPoIdentifikatoru" returnType="boolean" visibility="private" isStatic="true" isSynchronized="true">
+          <Argument type="String" name="id"/>
+        </Method>
+        <Method name="provjeriPoKorisnickomImenu" returnType="boolean" visibility="private" isStatic="true" isSynchronized="true">
+          <Argument type="String" name="uname"/>
+        </Method>
+        <Method name="dodajKorisnikaBezBaze" returnType="Pair&lt;Boolean, String&gt;" visibility="public" isStatic="true" isSynchronized="true">
+          <Argument type="AutorizacioniPodaci" name="ap"/>
+        </Method>
+        <Method name="dodajKorisnika" returnType="Pair&lt;Boolean, String&gt;" visibility="public" isStatic="true" isSynchronized="true">
+          <Argument type="AutorizacioniPodaci" name="ap"/>
+        </Method>
+        <Method name="getKorisnik" returnType="Korisnik" visibility="public" isStatic="true" isSynchronized="true">
+          <Argument type="AutentifikacioniPodaci" name="ap"/>
+        </Method>
+        <Method name="obrsisiKorisnika" returnType="boolean" visibility="public" isStatic="true" isSynchronized="true">
+          <Argument type="AutentifikacioniPodaci" name="ap"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="Korisnik" package="programiranje.baza_korisnika_shell.model" visibility="public" xPosition="957.0" yPosition="1892.0">
+      <Fields>
+        <Field name="podaci" type="AutorizacioniPodaci" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public">
+          <Argument type="AutorizacioniPodaci" name="ap"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="getAutorizacija" returnType="AutorizacioniPodaci" visibility="public"/>
+        <Method name="getAutentifikacija" returnType="AutentifikacioniPodaci" visibility="public"/>
+        <Method name="getDeskripcija" returnType="OpisniPodaci" visibility="public"/>
+        <Method name="hashCode" returnType="int" visibility="public"/>
+        <Method name="toString" returnType="String" visibility="public"/>
+        <Method name="equals" returnType="boolean" visibility="public">
+          <Argument type="Object" name="o"/>
+        </Method>
+        <Method name="compareTo" returnType="int" visibility="public">
+          <Argument type="Object" name="o"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="Sesija" package="programiranje.baza_korisnika_shell.model" visibility="public" xPosition="938.0" yPosition="102.0">
+      <Fields>
+        <Field name="count" type="int" visibility="private" isStatic="true"/>
+        <Field name="korisnik" type="Korisnik" visibility="private"/>
+        <Field name="adapter" type="ServerDataAdapter" visibility="private"/>
+        <Field name="sessionId" type="String" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public">
+          <Argument type="Korisnik" name="k"/>
+          <Argument type="ServerDataAdapter" name="s"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="getKorisnik" returnType="Korisnik" visibility="public"/>
+        <Method name="getServerDataAdapter" returnType="ServerDataAdapter" visibility="public"/>
+        <Method name="getSessionId" returnType="String" visibility="public"/>
+        <Method name="hashCode" returnType="int" visibility="public"/>
+        <Method name="equals" returnType="boolean" visibility="public">
+          <Argument type="Object" name="o"/>
+        </Method>
+        <Method name="toString" returnType="String" visibility="public"/>
+        <Method name="compareTo" returnType="int" visibility="public">
+          <Argument type="Object" name="o"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="IzlazApplication" package="programiranje.baza_korisnika_shell.server.izlaz" visibility="public" xPosition="1235.0" yPosition="86.0">
+      <Fields>
+        <Field name="thread" type="IzlazThread" visibility="private"/>
+      </Fields>
+      <Constructors/>
+      <Methods>
+        <Method name="start" returnType="void" visibility="public">
+          <Argument type="Stage" name="primaryStage"/>
+        </Method>
+        <Method name="pokreni" returnType="void" visibility="public" isStatic="true">
+          <Argument type="String" name="args"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="IzlazController" package="programiranje.baza_korisnika_shell.server.izlaz" visibility="public" xPosition="1454.0" yPosition="1785.0">
+      <Fields>
+        <Field name="exit" type="Button" visibility="package"/>
+      </Fields>
+      <Constructors/>
+      <Methods>
+        <Method name="exit" returnType="void" visibility="private">
+          <Argument type="ActionEvent" name="ae"/>
+        </Method>
+        <Method name="initialize" returnType="void" visibility="public">
+          <Argument type="URL" name="url"/>
+          <Argument type="ResourceBundle" name="rb"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="IzlazThread" package="programiranje.baza_korisnika_shell.server.izlaz" visibility="public" xPosition="1604.0" yPosition="315.0">
+      <Fields>
+        <Field name="args" type="String[]" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public">
+          <Argument type="String" name="args"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="run" returnType="void" visibility="public"/>
+        <Method name="close" returnType="void" visibility="public"/>
+      </Methods>
+    </Class>
+    <Class name="ServerGlobalCommunicator" package="programiranje.baza_korisnika_shell.server" visibility="public" xPosition="574.0" yPosition="118.0">
+      <Fields>
+        <Field name="databaseAdapter" type="UserDatabaseAdapter" visibility="private"/>
+        <Field name="databaseThread" type="UserDatabaseThread" visibility="private"/>
+        <Field name="konfiguracija" type="ShellServerConfiguration" visibility="private"/>
+      </Fields>
+      <Constructors/>
+      <Methods>
+        <Method name="getDatabaseAdapter" returnType="UserDatabaseAdapter" visibility="public"/>
+        <Method name="setDatabaseAdapter" returnType="void" visibility="public">
+          <Argument type="UserDatabaseAdapter" name="adapter"/>
+        </Method>
+        <Method name="getDatabaseThread" returnType="UserDatabaseThread" visibility="public"/>
+        <Method name="setDatabaseThread" returnType="void" visibility="public">
+          <Argument type="UserDatabaseThread" name="thread"/>
+        </Method>
+        <Method name="loadKonfiguracija" returnType="void" visibility="private"/>
+        <Method name="getKonfiguracija" returnType="ShellServerConfiguration" visibility="public"/>
+      </Methods>
+    </Class>
+    <Class name="ServerMainProgram" package="programiranje.baza_korisnika_shell.server" visibility="public" xPosition="1828.0" yPosition="1518.0">
+      <Fields>
+        <Field name="RUNNING" type="boolean" visibility="public" isStatic="true"/>
+        <Field name="BLOCKED" type="boolean" visibility="public" isStatic="true"/>
+        <Field name="komunikator" type="ServerGlobalCommunicator" visibility="private" isStatic="true"/>
+        <Field name="databaseAdapter" type="UserDatabaseAdapter" visibility="private" isStatic="true"/>
+        <Field name="databaseThread" type="UserDatabaseThread" visibility="private" isStatic="true"/>
+        <Field name="izlazThread" type="IzlazThread" visibility="private" isStatic="true"/>
+        <Field name="ss" type="ServerSocket" visibility="private" isStatic="true"/>
+        <Field name="cs" type="ServerSocket" visibility="private" isStatic="true"/>
+      </Fields>
+      <Constructors/>
+      <Methods>
+        <Method name="getServerKomunikator" returnType="ServerGlobalCommunicator" visibility="public" isStatic="true"/>
+        <Method name="getUserDatabaseAdapter" returnType="UserDatabaseAdapter" visibility="public" isStatic="true"/>
+        <Method name="main" returnType="void" visibility="public" isStatic="true">
+          <Argument type="String[]" name="args"/>
+        </Method>
+        <Method name="setRunning" returnType="void" visibility="public" isStatic="true">
+          <Argument type="boolean" name="running"/>
+        </Method>
+        <Method name="close" returnType="void" visibility="public" isStatic="true"/>
+      </Methods>
+    </Class>
+    <Class name="ServerMainThread" package="programiranje.baza_korisnika_shell.server" visibility="public" xPosition="1904.0" yPosition="787.0">
+      <Fields>
+        <Field name="clientAdapter" type="ServerDataAdapter" visibility="private"/>
+        <Field name="BKSP_REGISTRACIJA" type="String" visibility="public" isStatic="true" isFinal="true"/>
+        <Field name="BKSP_DEREGISTRACIJA" type="String" visibility="public" isStatic="true" isFinal="true"/>
+        <Field name="BKSP_PRIJAVA" type="String" visibility="public" isStatic="true" isFinal="true"/>
+        <Field name="BKSP_ODIJAVA" type="String" visibility="public" isStatic="true" isFinal="true"/>
+        <Field name="BKSP_CLOSE" type="String" visibility="public" isStatic="true" isFinal="true"/>
+        <Field name="BKSP_PODACI" type="String" visibility="public" isStatic="true" isFinal="true"/>
+        <Field name="BKSP_SUCCESS" type="String" visibility="public" isStatic="true" isFinal="true"/>
+        <Field name="BKSP_ERROR" type="String" visibility="public" isStatic="true" isFinal="true"/>
+        <Field name="PBKSP_CLOSE" type="String" visibility="public" isStatic="true" isFinal="true"/>
+        <Field name="PBKSP_STOP" type="String" visibility="public" isStatic="true" isFinal="true"/>
+        <Field name="clients" type="List&lt;ServerMainThread&gt;" visibility="private" isStatic="true"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public">
+          <Argument type="Socket" name="sock"/>
+          <Argument type="Socket" name="csock"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="closeAll" returnType="void" visibility="public" isStatic="true"/>
+        <Method name="run" returnType="void" visibility="public"/>
+      </Methods>
+    </Class>
+    <Class name="ServerObject" package="programiranje.baza_korisnika_shell.server" visibility="public" xPosition="98.0" yPosition="1046.0">
+      <Fields/>
+      <Constructors/>
+      <Methods/>
+    </Class>
+    <Class name="ServerSredstva" package="programiranje.baza_korisnika_shell.server" visibility="public" isFinal="true" xPosition="1498.0" yPosition="133.0">
+      <Fields>
+        <Field name="sqlNaredbe" type="String" visibility="public" isStatic="true" isFinal="true"/>
+        <Field name="sqlNaredbeObj" type="Properties" visibility="public" isStatic="true" isFinal="true"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="private"/>
+      </Constructors>
+      <Methods/>
+    </Class>
+    <Class name="ServerStatics" package="programiranje.baza_korisnika_shell.server" visibility="public" isFinal="true" xPosition="1214.0" yPosition="1881.0">
+      <Fields>
+        <Field name="serverPort" type="int" visibility="public" isStatic="true" isFinal="true"/>
+        <Field name="serverControlPort" type="int" visibility="public" isStatic="true" isFinal="true"/>
+        <Field name="databaseName" type="String" visibility="public" isStatic="true" isFinal="true"/>
+        <Field name="databaseTable" type="String" visibility="public" isStatic="true" isFinal="true"/>
+        <Field name="adefaultDatabaseHost" type="String" visibility="public" isStatic="true" isFinal="true"/>
+        <Field name="defaultDatabaseUser" type="String" visibility="public" isStatic="true" isFinal="true"/>
+        <Field name="defaultDatabasePassword" type="String" visibility="public" isStatic="true" isFinal="true"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="private"/>
+      </Constructors>
+      <Methods/>
+    </Class>
+    <Interface name="ServerTemplate" package="programiranje.baza_korisnika_shell.server" visibility="public" xPosition="780.0" yPosition="1647.0">
+      <Methods/>
+    </Interface>
+  </ClassDiagramComponents>
+  <ClassDiagramRelations>
+    <HasRelation name="komunikator" source="programiranje.baza_korisnika_shell.kontrola.server.RegistracijaControl" target="programiranje.baza_korisnika_shell.server.ServerGlobalCommunicator" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="databaseThread" source="programiranje.baza_korisnika_shell.server.ServerMainProgram" target="programiranje.baza_korisnika_shell.komunikacije.server.UserDatabaseThread" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="programiranje.baza_korisnika_shell.kontrola.server.OdjavaControl" target="programiranje.baza_korisnika_shell.model.Sesija" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="adapter" source="programiranje.baza_korisnika_shell.model.Sesija" target="programiranje.baza_korisnika_shell.komunikacije.server.ServerDataAdapter" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="izlazThread" source="programiranje.baza_korisnika_shell.server.ServerMainProgram" target="programiranje.baza_korisnika_shell.server.izlaz.IzlazThread" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="korisnik" source="programiranje.baza_korisnika_shell.model.Sesija" target="programiranje.baza_korisnika_shell.model.Korisnik" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="komunikator" source="programiranje.baza_korisnika_shell.server.ServerMainProgram" target="programiranje.baza_korisnika_shell.server.ServerGlobalCommunicator" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="programiranje.baza_korisnika_shell.komunikacije.server.UserDatabaseAdapter" target="programiranje.baza_korisnika_shell.model.Korisnik" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="programiranje.baza_korisnika_shell.komunikacije.server.UserDatabaseThread" target="programiranje.baza_korisnika_shell.model.Korisnik" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="programiranje.baza_korisnika_shell.kontrola.server.RegistracijaControl" target="programiranje.baza_korisnika_shell.model.Korisnik" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <ImplementsRelation name="&lt;&lt;implements&gt;&gt;" source="programiranje.baza_korisnika_shell.server.ServerMainThread" target="programiranje.baza_korisnika_shell.server.ServerTemplate"/>
+    <UseRelation source="programiranje.baza_korisnika_shell.kontrola.server.PrijavaControl" target="programiranje.baza_korisnika_shell.komunikacije.server.ServerDataAdapter" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="korisnici" source="programiranje.baza_korisnika_shell.kontrola.server.RegistracijaControl" target="programiranje.baza_korisnika_shell.model.Korisnik" type="Aggregation" sourceCardinality="1..1" targetCardinality="0..*" collectionType="HashSet&lt;Korisnik&gt;"/>
+    <HasRelation name="thread" source="programiranje.baza_korisnika_shell.server.izlaz.IzlazApplication" target="programiranje.baza_korisnika_shell.server.izlaz.IzlazThread" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="programiranje.baza_korisnika_shell.model.Sesija" target="programiranje.baza_korisnika_shell.komunikacije.server.ServerDataAdapter" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="sesije" source="programiranje.baza_korisnika_shell.kontrola.server.PrijavaControl" target="programiranje.baza_korisnika_shell.model.Sesija" type="Aggregation" sourceCardinality="1..1" targetCardinality="0..*" collectionType="HashSet&lt;Sesija&gt;"/>
+    <UseRelation source="programiranje.baza_korisnika_shell.kontrola.server.PrijavaControl" target="programiranje.baza_korisnika_shell.model.Sesija" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="programiranje.baza_korisnika_shell.model.Sesija" target="programiranje.baza_korisnika_shell.model.Korisnik" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="clientAdapter" source="programiranje.baza_korisnika_shell.server.ServerMainThread" target="programiranje.baza_korisnika_shell.komunikacije.server.ServerDataAdapter" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="programiranje.baza_korisnika_shell.komunikacije.server.ServerDataAdapter" target="programiranje.baza_korisnika_shell.model.Sesija" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="programiranje.baza_korisnika_shell.server.ServerMainProgram" target="programiranje.baza_korisnika_shell.server.ServerGlobalCommunicator" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="programiranje.baza_korisnika_shell.server.ServerGlobalCommunicator" target="programiranje.baza_korisnika_shell.komunikacije.server.UserDatabaseAdapter" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="programiranje.baza_korisnika_shell.server.ServerMainProgram" target="programiranje.baza_korisnika_shell.komunikacije.server.UserDatabaseAdapter" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="programiranje.baza_korisnika_shell.server.ServerGlobalCommunicator" target="programiranje.baza_korisnika_shell.komunikacije.server.UserDatabaseThread" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="clients" source="programiranje.baza_korisnika_shell.server.ServerMainThread" target="programiranje.baza_korisnika_shell.server.ServerMainThread" type="Aggregation" sourceCardinality="1..1" targetCardinality="0..*" collectionType="List&lt;ServerMainThread&gt;"/>
+    <HasRelation name="databaseAdapter" source="programiranje.baza_korisnika_shell.komunikacije.server.UserDatabaseThread" target="programiranje.baza_korisnika_shell.komunikacije.server.UserDatabaseAdapter" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="s" source="programiranje.baza_korisnika_shell.komunikacije.server.ServerDataAdapter" target="programiranje.baza_korisnika_shell.model.Sesija" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="komunikator" source="programiranje.baza_korisnika_shell.komunikacije.server.UserDatabaseThread" target="programiranje.baza_korisnika_shell.server.ServerGlobalCommunicator" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="databaseAdapter" source="programiranje.baza_korisnika_shell.server.ServerGlobalCommunicator" target="programiranje.baza_korisnika_shell.komunikacije.server.UserDatabaseAdapter" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="programiranje.baza_korisnika_shell.kontrola.server.DeregistracijaControl" target="programiranje.baza_korisnika_shell.model.Sesija" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="dbthread" source="programiranje.baza_korisnika_shell.kontrola.server.RegistracijaControl" target="programiranje.baza_korisnika_shell.komunikacije.server.UserDatabaseThread" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="databaseAdapter" source="programiranje.baza_korisnika_shell.server.ServerMainProgram" target="programiranje.baza_korisnika_shell.komunikacije.server.UserDatabaseAdapter" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="databaseThread" source="programiranje.baza_korisnika_shell.server.ServerGlobalCommunicator" target="programiranje.baza_korisnika_shell.komunikacije.server.UserDatabaseThread" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+  </ClassDiagramRelations>
+</ClassDiagram>

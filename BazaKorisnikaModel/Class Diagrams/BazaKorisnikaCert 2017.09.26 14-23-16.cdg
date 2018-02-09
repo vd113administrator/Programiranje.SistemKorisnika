@@ -1,0 +1,674 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<ClassDiagram name="BazaKorisnikaCert">
+  <ClassDiagramComponents>
+    <Class name="AsimetricniAlgoritam" package="programiranje.baza_korisnika.cert.alg" visibility="public" xPosition="20.0" yPosition="20.0">
+      <Fields>
+        <Field name="cipher" type="Cipher" visibility="private"/>
+        <Field name="algorithm" type="String" visibility="private"/>
+        <Field name="privateKey" type="PrivateKey" visibility="private"/>
+        <Field name="publicKey" type="PublicKey" visibility="private"/>
+        <Field name="communicationKey" type="PublicKey" visibility="private"/>
+        <Field name="keyPair" type="KeyPair" visibility="private"/>
+        <Field name="keyPairGenerator" type="KeyPairGenerator" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public"/>
+        <Constructor visibility="public">
+          <Argument type="String" name="alg"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="getPrivateKey" returnType="PrivateKey" visibility="public"/>
+        <Method name="getPublicKey" returnType="PublicKey" visibility="public"/>
+        <Method name="getCommunicationKey" returnType="PublicKey" visibility="public"/>
+        <Method name="initKeyPairGenerator" returnType="void" visibility="public">
+          <Argument type="int" name="keylength"/>
+        </Method>
+        <Method name="generateKeysInPair" returnType="void" visibility="public"/>
+        <Method name="encryptDataForSingle" returnType="byte[]" visibility="public">
+          <Argument type="byte[]" name="input"/>
+        </Method>
+        <Method name="decryptDataForSingle" returnType="byte[]" visibility="public">
+          <Argument type="byte[]" name="input"/>
+        </Method>
+        <Method name="encryptDataForGroup" returnType="byte[]" visibility="public">
+          <Argument type="byte[]" name="input"/>
+        </Method>
+        <Method name="decryptDataForGroup" returnType="byte[]" visibility="public">
+          <Argument type="byte[]" name="input"/>
+        </Method>
+        <Method name="setCommunicationKey" returnType="void" visibility="public">
+          <Argument type="PublicKey" name="communicationKey"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="ListeAlgoritama" package="programiranje.baza_korisnika.cert.alg" visibility="public" isFinal="true" xPosition="320.0" yPosition="20.0">
+      <Fields/>
+      <Constructors>
+        <Constructor visibility="private"/>
+      </Constructors>
+      <Methods>
+        <Method name="getAlgorithm" returnType="Map&lt;String, String&gt;" visibility="public" isStatic="true">
+          <Argument type="String" name="alg"/>
+        </Method>
+        <Method name="getAlgorithmFor" returnType="Pair&lt;String, String&gt;" visibility="public" isStatic="true">
+          <Argument type="String" name="key"/>
+          <Argument type="String" name="alg"/>
+        </Method>
+        <Method name="getAlgorithmsFor" returnType="Map.Entry&lt;String, Set&lt;String&gt;&gt;" visibility="public" isStatic="true">
+          <Argument type="String" name="key"/>
+        </Method>
+        <Method name="getAlgorithms" returnType="Map&lt;String, Set&lt;String&gt;&gt;" visibility="public" isStatic="true"/>
+        <Method name="main" returnType="void" visibility="public" isStatic="true">
+          <Argument type="String" name="args"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="SimetricniAlgoritam" package="programiranje.baza_korisnika.cert.alg" visibility="public" xPosition="620.0" yPosition="20.0">
+      <Fields>
+        <Field name="symmetricAlgorithm" type="String" visibility="private"/>
+        <Field name="symmetricKey" type="SecretKey" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public"/>
+        <Constructor visibility="public">
+          <Argument type="String" name="symmetricAlgorithm"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="getAlgorithm" returnType="String" visibility="public"/>
+        <Method name="getSecretKey" returnType="SecretKey" visibility="public"/>
+        <Method name="generateSecretKey" returnType="void" visibility="public"/>
+        <Method name="symmetricEncrypt" returnType="byte[]" visibility="public">
+          <Argument type="byte[]" name="input"/>
+        </Method>
+        <Method name="symmetricDecrypt" returnType="byte[]" visibility="public">
+          <Argument type="byte[]" name="input"/>
+        </Method>
+        <Method name="setSecretKey" returnType="void" visibility="public">
+          <Argument type="SecretKey" name="key"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="UpravljanjeDokumentima" package="programiranje.baza_korisnika.cert.alg" visibility="public" xPosition="920.0" yPosition="20.0">
+      <Fields>
+        <Field name="algorithm" type="String" visibility="private"/>
+        <Field name="encoding" type="String" visibility="private"/>
+        <Field name="hashRepeat" type="int" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public"/>
+        <Constructor visibility="public">
+          <Argument type="String" name="algorithm"/>
+        </Constructor>
+        <Constructor visibility="public">
+          <Argument type="String" name="algorithm"/>
+          <Argument type="String" name="encoding"/>
+        </Constructor>
+        <Constructor visibility="public">
+          <Argument type="String" name="algorithm"/>
+          <Argument type="String" name="encoding"/>
+          <Argument type="int" name="hashRepeat"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="getOneHash" returnType="byte[]" visibility="public">
+          <Argument type="File" name="file"/>
+        </Method>
+        <Method name="getOneHash" returnType="byte[]" visibility="public">
+          <Argument type="String" name="string"/>
+        </Method>
+        <Method name="getOneHash" returnType="byte[]" visibility="public">
+          <Argument type="byte[]" name="by"/>
+        </Method>
+        <Method name="getHash" returnType="byte[]" visibility="public">
+          <Argument type="byte[]" name="by"/>
+        </Method>
+        <Method name="getHash" returnType="byte[]" visibility="public">
+          <Argument type="String" name="s"/>
+        </Method>
+        <Method name="getHash" returnType="byte[]" visibility="public">
+          <Argument type="File" name="file"/>
+        </Method>
+        <Method name="toHashString" returnType="String" visibility="public">
+          <Argument type="byte[]" name="by"/>
+        </Method>
+        <Method name="toHashString" returnType="String" visibility="public">
+          <Argument type="String" name="str"/>
+        </Method>
+        <Method name="toHashString" returnType="String" visibility="public">
+          <Argument type="File" name="file"/>
+        </Method>
+        <Method name="checkHash" returnType="boolean" visibility="public">
+          <Argument type="byte[]" name="by"/>
+          <Argument type="String" name="hash"/>
+        </Method>
+        <Method name="checkHash" returnType="boolean" visibility="public">
+          <Argument type="String" name="str"/>
+          <Argument type="String" name="hash"/>
+        </Method>
+        <Method name="checkHash" returnType="boolean" visibility="public">
+          <Argument type="File" name="file"/>
+          <Argument type="String" name="hash"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="UpravljanjeSiframa" package="programiranje.baza_korisnika.cert.alg" visibility="public" xPosition="1220.0" yPosition="20.0">
+      <Fields>
+        <Field name="algorithm" type="String" visibility="private"/>
+        <Field name="encoding" type="String" visibility="private"/>
+        <Field name="hashRepeat" type="int" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public"/>
+        <Constructor visibility="public">
+          <Argument type="String" name="algorithm"/>
+        </Constructor>
+        <Constructor visibility="public">
+          <Argument type="String" name="algorithm"/>
+          <Argument type="String" name="encoding"/>
+        </Constructor>
+        <Constructor visibility="public">
+          <Argument type="String" name="algorithm"/>
+          <Argument type="String" name="encoding"/>
+          <Argument type="int" name="hashRepeat"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="getOneHash" returnType="byte[]" visibility="public">
+          <Argument type="String" name="password"/>
+          <Argument type="String" name="salt"/>
+        </Method>
+        <Method name="getOneHash" returnType="byte[]" visibility="public">
+          <Argument type="byte[]" name="by"/>
+        </Method>
+        <Method name="getHash" returnType="byte[]" visibility="public">
+          <Argument type="String" name="password"/>
+          <Argument type="String" name="salt"/>
+        </Method>
+        <Method name="toHashString" returnType="String" visibility="public">
+          <Argument type="String" name="password"/>
+          <Argument type="String" name="salt"/>
+        </Method>
+        <Method name="checkHash" returnType="boolean" visibility="public">
+          <Argument type="String" name="password"/>
+          <Argument type="String" name="salt"/>
+          <Argument type="String" name="hash"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="DekriptReader" package="programiranje.baza_korisnika.cert.io" visibility="public" xPosition="1520.0" yPosition="20.0">
+      <Fields>
+        <Field name="de" type="DigitalnaEnvelopa" visibility="private"/>
+        <Field name="closed" type="boolean" visibility="protected"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public">
+          <Argument type="DigitalnaEnvelopa" name="de"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="readLine" returnType="String" visibility="public" isSynchronized="true"/>
+        <Method name="close" returnType="void" visibility="public" isSynchronized="true"/>
+        <Method name="getDigitalnaEnvelopa" returnType="DigitalnaEnvelopa" visibility="public"/>
+      </Methods>
+    </Class>
+    <Class name="EnkriptWriter" package="programiranje.baza_korisnika.cert.io" visibility="public" xPosition="1820.0" yPosition="20.0">
+      <Fields>
+        <Field name="de" type="DigitalnaEnvelopa" visibility="private"/>
+        <Field name="closed" type="boolean" visibility="protected"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public">
+          <Argument type="DigitalnaEnvelopa" name="de"/>
+        </Constructor>
+        <Constructor visibility="public">
+          <Argument type="DigitalnaEnvelopa" name="de"/>
+          <Argument type="boolean" name="autoflush"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="println" returnType="void" visibility="public">
+          <Argument type="Object" name="x"/>
+        </Method>
+        <Method name="println" returnType="void" visibility="public" isSynchronized="true">
+          <Argument type="String" name="x"/>
+        </Method>
+        <Method name="println" returnType="void" visibility="public">
+          <Argument type="char[]" name="x"/>
+        </Method>
+        <Method name="println" returnType="void" visibility="public">
+          <Argument type="double" name="x"/>
+        </Method>
+        <Method name="println" returnType="void" visibility="public">
+          <Argument type="float" name="x"/>
+        </Method>
+        <Method name="println" returnType="void" visibility="public">
+          <Argument type="long" name="x"/>
+        </Method>
+        <Method name="println" returnType="void" visibility="public">
+          <Argument type="int" name="x"/>
+        </Method>
+        <Method name="println" returnType="void" visibility="public">
+          <Argument type="char" name="x"/>
+        </Method>
+        <Method name="println" returnType="void" visibility="public">
+          <Argument type="boolean" name="x"/>
+        </Method>
+        <Method name="println" returnType="void" visibility="public"/>
+        <Method name="close" returnType="void" visibility="public" isSynchronized="true"/>
+        <Method name="getDigitalnaEnvelopa" returnType="DigitalnaEnvelopa" visibility="public"/>
+      </Methods>
+    </Class>
+    <Class name="PotpisaniDekriptReader" package="programiranje.baza_korisnika.cert.io" visibility="public" xPosition="2120.0" yPosition="20.0">
+      <Fields>
+        <Field name="sm" type="SignatureManager" visibility="private"/>
+        <Field name="closed" type="boolean" visibility="protected"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public">
+          <Argument type="SignatureManager" name="sm"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="readLine" returnType="String" visibility="public" isSynchronized="true"/>
+        <Method name="close" returnType="void" visibility="public" isSynchronized="true"/>
+        <Method name="getSignatureManager" returnType="SignatureManager" visibility="public"/>
+      </Methods>
+    </Class>
+    <Class name="PotpisaniEnkriptWriter" package="programiranje.baza_korisnika.cert.io" visibility="public" xPosition="20.0" yPosition="420.0">
+      <Fields>
+        <Field name="sm" type="SignatureManager" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public">
+          <Argument type="SignatureManager" name="sm"/>
+        </Constructor>
+        <Constructor visibility="public">
+          <Argument type="SignatureManager" name="sm"/>
+          <Argument type="boolean" name="autoflush"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="println" returnType="void" visibility="public" isSynchronized="true">
+          <Argument type="String" name="x"/>
+        </Method>
+        <Method name="println" returnType="void" visibility="public">
+          <Argument type="Object" name="x"/>
+        </Method>
+        <Method name="println" returnType="void" visibility="public">
+          <Argument type="char[]" name="x"/>
+        </Method>
+        <Method name="println" returnType="void" visibility="public">
+          <Argument type="double" name="x"/>
+        </Method>
+        <Method name="println" returnType="void" visibility="public">
+          <Argument type="float" name="x"/>
+        </Method>
+        <Method name="println" returnType="void" visibility="public">
+          <Argument type="long" name="x"/>
+        </Method>
+        <Method name="println" returnType="void" visibility="public">
+          <Argument type="int" name="x"/>
+        </Method>
+        <Method name="println" returnType="void" visibility="public">
+          <Argument type="char" name="x"/>
+        </Method>
+        <Method name="println" returnType="void" visibility="public">
+          <Argument type="boolean" name="x"/>
+        </Method>
+        <Method name="println" returnType="void" visibility="public"/>
+        <Method name="close" returnType="void" visibility="public" isSynchronized="true"/>
+        <Method name="getSignatureManager" returnType="SignatureManager" visibility="public"/>
+      </Methods>
+    </Class>
+    <Class name="ClientDE" package="programiranje.baza_korisnika.cert.main" visibility="public" xPosition="320.0" yPosition="420.0">
+      <Fields/>
+      <Constructors/>
+      <Methods>
+        <Method name="main" returnType="void" visibility="public" isStatic="true">
+          <Argument type="String" name="args"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="ClientIO" package="programiranje.baza_korisnika.cert.main" visibility="public" xPosition="620.0" yPosition="420.0">
+      <Fields/>
+      <Constructors/>
+      <Methods>
+        <Method name="main" returnType="void" visibility="public" isStatic="true">
+          <Argument type="String" name="args"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="ClientPIO" package="programiranje.baza_korisnika.cert.main" visibility="public" xPosition="920.0" yPosition="420.0">
+      <Fields/>
+      <Constructors/>
+      <Methods>
+        <Method name="main" returnType="void" visibility="public" isStatic="true">
+          <Argument type="String" name="args"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="Potpis" package="programiranje.baza_korisnika.cert.main" visibility="public" xPosition="1220.0" yPosition="420.0">
+      <Fields>
+        <Field name="client" type="Thread" visibility="private" isStatic="true"/>
+        <Field name="server" type="Thread" visibility="private" isStatic="true"/>
+        <Field name="serverOn" type="boolean" visibility="private" isStatic="true"/>
+        <Field name="synchron" type="Object" visibility="private" isStatic="true"/>
+        <Field name="printSynch" type="Object" visibility="private" isStatic="true"/>
+      </Fields>
+      <Constructors/>
+      <Methods>
+        <Method name="main" returnType="void" visibility="public" isStatic="true">
+          <Argument type="String" name="args"/>
+        </Method>
+        <Method name="client" returnType="void" visibility="public" isStatic="true">
+          <Argument type="String" name="args"/>
+        </Method>
+        <Method name="server" returnType="void" visibility="public" isStatic="true">
+          <Argument type="String" name="args"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="ServerDE" package="programiranje.baza_korisnika.cert.main" visibility="public" xPosition="1520.0" yPosition="420.0">
+      <Fields/>
+      <Constructors/>
+      <Methods>
+        <Method name="main" returnType="void" visibility="public" isStatic="true">
+          <Argument type="String" name="args"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="ServerIO" package="programiranje.baza_korisnika.cert.main" visibility="public" xPosition="1820.0" yPosition="420.0">
+      <Fields/>
+      <Constructors/>
+      <Methods>
+        <Method name="main" returnType="void" visibility="public" isStatic="true">
+          <Argument type="String" name="args"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="ServerPIO" package="programiranje.baza_korisnika.cert.main" visibility="public" xPosition="2120.0" yPosition="420.0">
+      <Fields/>
+      <Constructors/>
+      <Methods>
+        <Method name="main" returnType="void" visibility="public" isStatic="true">
+          <Argument type="String" name="args"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="Sifarnik" package="programiranje.baza_korisnika.cert.main" visibility="public" xPosition="20.0" yPosition="820.0">
+      <Fields>
+        <Field name="passmgr" type="UpravljanjeSiframa" visibility="private" isStatic="true"/>
+        <Field name="saltmgr" type="SaltManager" visibility="private" isStatic="true"/>
+        <Field name="sifre" type="HashMap&lt;String, String&gt;" visibility="private" isStatic="true"/>
+        <Field name="hsifre" type="HashMap&lt;String, String&gt;" visibility="private" isStatic="true"/>
+      </Fields>
+      <Constructors/>
+      <Methods>
+        <Method name="main" returnType="void" visibility="public" isStatic="true">
+          <Argument type="String" name="args"/>
+        </Method>
+        <Method name="menu" returnType="boolean" visibility="public" isStatic="true"/>
+        <Method name="pogresanIzbor" returnType="void" visibility="public" isStatic="true"/>
+        <Method name="unosKorisnika" returnType="void" visibility="public" isStatic="true"/>
+        <Method name="brisanjeKorisnika" returnType="void" visibility="public" isStatic="true"/>
+        <Method name="brisanjeSalta" returnType="void" visibility="public" isStatic="true"/>
+        <Method name="listaKorisnika" returnType="void" visibility="public" isStatic="true"/>
+        <Method name="provjeraSifre" returnType="void" visibility="public" isStatic="true"/>
+      </Methods>
+    </Class>
+    <Class name="DigitalnaEnvelopa" package="programiranje.baza_korisnika.cert.tech" visibility="public" xPosition="320.0" yPosition="820.0">
+      <Fields>
+        <Field name="t" type="TackaDigitalneEnvelope" visibility="private"/>
+        <Field name="br" type="BufferedReader" visibility="private"/>
+        <Field name="pw" type="PrintWriter" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="private"/>
+        <Constructor visibility="public">
+          <Argument type="BufferedReader" name="r"/>
+          <Argument type="PrintWriter" name="p"/>
+        </Constructor>
+        <Constructor visibility="public">
+          <Argument type="TackaDigitalneEnvelope" name="ta"/>
+          <Argument type="BufferedReader" name="r"/>
+          <Argument type="PrintWriter" name="p"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="slanjeJavnogKljuca" returnType="void" visibility="public"/>
+        <Method name="prijemJavnogKljuca" returnType="void" visibility="public"/>
+        <Method name="getTackaDE" returnType="TackaDigitalneEnvelope" visibility="public"/>
+        <Method name="getWriter" returnType="PrintWriter" visibility="public"/>
+        <Method name="getReader" returnType="BufferedReader" visibility="public"/>
+        <Method name="slanjeSesijskogKljuca" returnType="void" visibility="public"/>
+        <Method name="prijemSesijskogKljuca" returnType="void" visibility="public"/>
+        <Method name="slanjePodataka" returnType="void" visibility="public">
+          <Argument type="byte[]" name="by"/>
+        </Method>
+        <Method name="prijemPodataka" returnType="byte[]" visibility="public"/>
+        <Method name="slanjeSignala" returnType="void" visibility="public"/>
+        <Method name="prijemSignala" returnType="void" visibility="public"/>
+        <Method name="instancirajSaIstomTackom" returnType="DigitalnaEnvelopa" visibility="public">
+          <Argument type="PrintWriter" name="pw"/>
+          <Argument type="BufferedReader" name="br"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="TackaDigitalneEnvelope" package="programiranje.baza_korisnika.cert.tech" visibility="public" xPosition="620.0" yPosition="820.0">
+      <Fields>
+        <Field name="outa" type="AsimetricniAlgoritam" visibility="private"/>
+        <Field name="ina" type="SimetricniAlgoritam" visibility="private"/>
+        <Field name="ablok" type="int" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public"/>
+        <Constructor visibility="public">
+          <Argument type="int" name="b"/>
+        </Constructor>
+        <Constructor visibility="public">
+          <Argument type="AsimetricniAlgoritam" name="a"/>
+          <Argument type="SimetricniAlgoritam" name="s"/>
+        </Constructor>
+        <Constructor visibility="public">
+          <Argument type="AsimetricniAlgoritam" name="a"/>
+          <Argument type="SimetricniAlgoritam" name="s"/>
+          <Argument type="int" name="b"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="getAsimetricniAlgoritam" returnType="AsimetricniAlgoritam" visibility="public"/>
+        <Method name="getSimetricniAlgoritam" returnType="SimetricniAlgoritam" visibility="public"/>
+        <Method name="setSimetricniAlgoritam" returnType="void" visibility="public">
+          <Argument type="SimetricniAlgoritam" name="s"/>
+        </Method>
+        <Method name="getJavniKljuc" returnType="PublicKey" visibility="public"/>
+        <Method name="getTajniKljuc" returnType="PrivateKey" visibility="public"/>
+        <Method name="getSesijskiKljuc" returnType="SecretKey" visibility="public"/>
+        <Method name="getKomunikacijskiKljuc" returnType="PublicKey" visibility="public"/>
+        <Method name="setSesijskiKljuc" returnType="void" visibility="public">
+          <Argument type="SecretKey" name="key"/>
+        </Method>
+        <Method name="setKomunikacijaskiKljuc" returnType="void" visibility="public">
+          <Argument type="PublicKey" name="key"/>
+        </Method>
+        <Method name="inicijalizacijaAsimetricnogAlgoritma" returnType="void" visibility="public"/>
+        <Method name="inicijalizacijaSimetricnogAlgoritma" returnType="void" visibility="public"/>
+      </Methods>
+    </Class>
+    <Class name="FileTools" package="programiranje.baza_korisnika.cert.util" visibility="public" xPosition="920.0" yPosition="820.0">
+      <Fields>
+        <Field name="manager" type="SignatureManager" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public">
+          <Argument type="SignatureManager" name="sm"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="getSignatureManager" returnType="SignatureManager" visibility="public"/>
+        <Method name="getContentBytes" returnType="byte[]" visibility="public">
+          <Argument type="File" name="file"/>
+        </Method>
+        <Method name="fromDescContentBytes" returnType="byte[]" visibility="public">
+          <Argument type="File" name="file"/>
+        </Method>
+        <Method name="fromDescContentBytes" returnType="byte[]" visibility="public">
+          <Argument type="FileContent" name="file"/>
+        </Method>
+        <Method name="toDescContentBytes" returnType="FileContent" visibility="public">
+          <Argument type="byte[]" name="by"/>
+        </Method>
+        <Method name="sendDocument" returnType="boolean" visibility="public">
+          <Argument type="FileContent" name="f"/>
+        </Method>
+        <Method name="sendDocument" returnType="boolean" visibility="public">
+          <Argument type="File" name="f"/>
+        </Method>
+        <Method name="receiveDocument" returnType="FileContent" visibility="public"/>
+      </Methods>
+    </Class>
+    <Class name="SaltManager" package="programiranje.baza_korisnika.cert.util" visibility="public" xPosition="1220.0" yPosition="820.0">
+      <Fields>
+        <Field name="salts" type="HashMap&lt;String, String&gt;" visibility="private"/>
+      </Fields>
+      <Constructors/>
+      <Methods>
+        <Method name="add" returnType="boolean" visibility="public" isSynchronized="true">
+          <Argument type="String" name="key"/>
+          <Argument type="String" name="salt"/>
+        </Method>
+        <Method name="removeKey" returnType="boolean" visibility="public" isSynchronized="true">
+          <Argument type="String" name="key"/>
+        </Method>
+        <Method name="removeSalt" returnType="boolean" visibility="public" isSynchronized="true">
+          <Argument type="String" name="salt"/>
+        </Method>
+        <Method name="containsKey" returnType="boolean" visibility="public" isSynchronized="true">
+          <Argument type="String" name="key"/>
+        </Method>
+        <Method name="containsSalt" returnType="boolean" visibility="public" isSynchronized="true">
+          <Argument type="String" name="salt"/>
+        </Method>
+        <Method name="generateSalt" returnType="String" visibility="public" isSynchronized="true"/>
+        <Method name="getSalt" returnType="String" visibility="public" isSynchronized="true">
+          <Argument type="String" name="key"/>
+        </Method>
+        <Method name="getKey" returnType="String" visibility="public" isSynchronized="true">
+          <Argument type="String" name="salt"/>
+        </Method>
+        <Method name="getCopyMap" returnType="Map&lt;String, String&gt;" visibility="public" isSynchronized="true"/>
+      </Methods>
+    </Class>
+    <Class name="SignatureManager" package="programiranje.baza_korisnika.cert.util" visibility="public" xPosition="1520.0" yPosition="820.0">
+      <Fields>
+        <Field name="de" type="DigitalnaEnvelopa" visibility="private"/>
+        <Field name="ud" type="UpravljanjeDokumentima" visibility="private"/>
+        <Field name="ft" type="FileTools" visibility="private"/>
+        <Field name="st" type="StringTools" visibility="private"/>
+        <Field name="potpisivanje" type="Signature" visibility="private"/>
+        <Field name="algorithm" type="String" visibility="private"/>
+        <Field name="rezultat" type="boolean" visibility="private"/>
+        <Field name="visited" type="boolean" visibility="private"/>
+        <Field name="visitSynchron" type="Object" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public">
+          <Argument type="DigitalnaEnvelopa" name="de"/>
+          <Argument type="UpravljanjeDokumentima" name="ud"/>
+        </Constructor>
+        <Constructor visibility="public">
+          <Argument type="DigitalnaEnvelopa" name="de"/>
+          <Argument type="UpravljanjeDokumentima" name="ud"/>
+          <Argument type="String" name="alg"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="getFileTools" returnType="FileTools" visibility="public"/>
+        <Method name="getStringTools" returnType="StringTools" visibility="public"/>
+        <Method name="sendPublicKey" returnType="void" visibility="public"/>
+        <Method name="receivePublicKey" returnType="void" visibility="public"/>
+        <Method name="initAsymetric" returnType="void" visibility="public"/>
+        <Method name="initSymetric" returnType="void" visibility="public"/>
+        <Method name="initSignature" returnType="void" visibility="public"/>
+        <Method name="getDigitalnaEnvelopa" returnType="DigitalnaEnvelopa" visibility="public"/>
+        <Method name="getUpravljanjeDokumentima" returnType="UpravljanjeDokumentima" visibility="public"/>
+        <Method name="getDocumentHash" returnType="byte[]" visibility="public">
+          <Argument type="byte[]" name="by"/>
+        </Method>
+        <Method name="cryptedDocumentHash" returnType="byte[]" visibility="public">
+          <Argument type="byte[]" name="by"/>
+        </Method>
+        <Method name="decryptedDocumentHash" returnType="byte[]" visibility="public">
+          <Argument type="byte[]" name="by"/>
+        </Method>
+        <Method name="checkDocument" returnType="boolean" visibility="public">
+          <Argument type="byte[]" name="doc"/>
+          <Argument type="byte[]" name="cryptedhash"/>
+        </Method>
+        <Method name="getSignatureHash" returnType="byte[]" visibility="public">
+          <Argument type="byte[]" name="doc"/>
+        </Method>
+        <Method name="receiveDocument" returnType="byte[]" visibility="public"/>
+        <Method name="sendDocument" returnType="boolean" visibility="public">
+          <Argument type="byte[]" name="doc"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="StringTools" package="programiranje.baza_korisnika.cert.util" visibility="public" xPosition="1820.0" yPosition="820.0">
+      <Fields>
+        <Field name="manager" type="SignatureManager" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public">
+          <Argument type="SignatureManager" name="sm"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="getSignatureManager" returnType="SignatureManager" visibility="public"/>
+        <Method name="getBytes" returnType="byte[]" visibility="public">
+          <Argument type="String" name="s"/>
+        </Method>
+        <Method name="sendDocument" returnType="boolean" visibility="public">
+          <Argument type="String" name="s"/>
+        </Method>
+        <Method name="receiveDocument" returnType="String" visibility="public"/>
+      </Methods>
+    </Class>
+  </ClassDiagramComponents>
+  <ClassDiagramRelations>
+    <HasRelation name="manager" source="programiranje.baza_korisnika.cert.util.FileTools" target="programiranje.baza_korisnika.cert.util.SignatureManager" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="programiranje.baza_korisnika.cert.util.SignatureManager" target="programiranje.baza_korisnika.cert.tech.DigitalnaEnvelopa" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="sm" source="programiranje.baza_korisnika.cert.io.PotpisaniDekriptReader" target="programiranje.baza_korisnika.cert.util.SignatureManager" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="programiranje.baza_korisnika.cert.util.SignatureManager" target="programiranje.baza_korisnika.cert.util.FileTools" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="programiranje.baza_korisnika.cert.io.EnkriptWriter" target="programiranje.baza_korisnika.cert.tech.DigitalnaEnvelopa" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="st" source="programiranje.baza_korisnika.cert.util.SignatureManager" target="programiranje.baza_korisnika.cert.util.StringTools" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="programiranje.baza_korisnika.cert.util.SignatureManager" target="programiranje.baza_korisnika.cert.alg.UpravljanjeDokumentima" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="programiranje.baza_korisnika.cert.tech.TackaDigitalneEnvelope" target="programiranje.baza_korisnika.cert.alg.SimetricniAlgoritam" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="programiranje.baza_korisnika.cert.util.FileTools" target="programiranje.baza_korisnika.cert.util.SignatureManager" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="de" source="programiranje.baza_korisnika.cert.io.DekriptReader" target="programiranje.baza_korisnika.cert.tech.DigitalnaEnvelopa" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="programiranje.baza_korisnika.cert.util.SignatureManager" target="programiranje.baza_korisnika.cert.util.StringTools" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="passmgr" source="programiranje.baza_korisnika.cert.main.Sifarnik" target="programiranje.baza_korisnika.cert.alg.UpravljanjeSiframa" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="outa" source="programiranje.baza_korisnika.cert.tech.TackaDigitalneEnvelope" target="programiranje.baza_korisnika.cert.alg.AsimetricniAlgoritam" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="programiranje.baza_korisnika.cert.tech.DigitalnaEnvelopa" target="programiranje.baza_korisnika.cert.tech.DigitalnaEnvelopa" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="programiranje.baza_korisnika.cert.io.DekriptReader" target="programiranje.baza_korisnika.cert.tech.DigitalnaEnvelopa" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="t" source="programiranje.baza_korisnika.cert.tech.DigitalnaEnvelopa" target="programiranje.baza_korisnika.cert.tech.TackaDigitalneEnvelope" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="programiranje.baza_korisnika.cert.util.StringTools" target="programiranje.baza_korisnika.cert.util.SignatureManager" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="de" source="programiranje.baza_korisnika.cert.io.EnkriptWriter" target="programiranje.baza_korisnika.cert.tech.DigitalnaEnvelopa" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="saltmgr" source="programiranje.baza_korisnika.cert.main.Sifarnik" target="programiranje.baza_korisnika.cert.util.SaltManager" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <IsRelation name="is" source="programiranje.baza_korisnika.cert.io.PotpisaniDekriptReader" target="programiranje.baza_korisnika.cert.io.DekriptReader"/>
+    <HasRelation name="ft" source="programiranje.baza_korisnika.cert.util.SignatureManager" target="programiranje.baza_korisnika.cert.util.FileTools" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="sm" source="programiranje.baza_korisnika.cert.io.PotpisaniEnkriptWriter" target="programiranje.baza_korisnika.cert.util.SignatureManager" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="manager" source="programiranje.baza_korisnika.cert.util.StringTools" target="programiranje.baza_korisnika.cert.util.SignatureManager" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="programiranje.baza_korisnika.cert.io.PotpisaniDekriptReader" target="programiranje.baza_korisnika.cert.util.SignatureManager" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="programiranje.baza_korisnika.cert.io.PotpisaniEnkriptWriter" target="programiranje.baza_korisnika.cert.util.SignatureManager" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="ina" source="programiranje.baza_korisnika.cert.tech.TackaDigitalneEnvelope" target="programiranje.baza_korisnika.cert.alg.SimetricniAlgoritam" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <IsRelation name="is" source="programiranje.baza_korisnika.cert.io.PotpisaniEnkriptWriter" target="programiranje.baza_korisnika.cert.io.EnkriptWriter"/>
+    <UseRelation source="programiranje.baza_korisnika.cert.tech.DigitalnaEnvelopa" target="programiranje.baza_korisnika.cert.tech.TackaDigitalneEnvelope" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="de" source="programiranje.baza_korisnika.cert.util.SignatureManager" target="programiranje.baza_korisnika.cert.tech.DigitalnaEnvelopa" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="programiranje.baza_korisnika.cert.tech.TackaDigitalneEnvelope" target="programiranje.baza_korisnika.cert.alg.AsimetricniAlgoritam" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="ud" source="programiranje.baza_korisnika.cert.util.SignatureManager" target="programiranje.baza_korisnika.cert.alg.UpravljanjeDokumentima" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+  </ClassDiagramRelations>
+</ClassDiagram>
