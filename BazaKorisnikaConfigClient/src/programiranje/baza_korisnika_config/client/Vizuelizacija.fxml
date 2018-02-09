@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane id="AnchorPane" prefHeight="134.0" prefWidth="467.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="programiranje.baza_korisnika_config.client.Kontrola">
+   <children>
+      <VBox layoutX="14.0" layoutY="-48.0" prefHeight="33.0" prefWidth="339.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0">
+         <children>
+            <Label alignment="TOP_CENTER" text="IP/URL adresa servera :" />
+            <TextField fx:id="serverAddress" promptText="127.0.0.1" />
+            <Label text="Putanja datoteke sertifikata servera" />
+            <TextField fx:id="certificateFilename" promptText="arch.sertifikacija.aktivno/server.pristupni_sertifikat.cer" />
+         </children>
+      </VBox>
+      <Button fx:id="save" layoutX="10.0" layoutY="102.0" mnemonicParsing="false" onAction="#save" text="Sačuvaj" />
+   </children>
+</AnchorPane>
