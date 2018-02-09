@@ -975,4 +975,16 @@ public class PodaciKorisnikaAdapterKlijenta{
             Logger.getLogger(PodaciKorisnikaAdapterKlijenta.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+    
+    public void informacijeOSlikama(){
+    }
+    
+    public void zahtijevZaPovlacenjeSertifikata(){
+    }
+    
+    public void zahtijevZaCRLListu(){
+    }
+    
+    public void ocitavanjeCRLListe(){
+    }
 }

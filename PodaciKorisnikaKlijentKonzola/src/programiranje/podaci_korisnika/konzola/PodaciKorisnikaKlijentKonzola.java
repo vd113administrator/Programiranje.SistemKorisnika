@@ -100,6 +100,18 @@ public class PodaciKorisnikaKlijentKonzola extends Aplikacija implements BKSPEks
             case 26: 
                 adapter.mapaIsporuka();
                 return true; 
+            case 27:
+                adapter.informacijeOSlikama();
+                return true; 
+            case 28: 
+                adapter.zahtijevZaPovlacenjeSertifikata();
+                return true; 
+            case 29: 
+                adapter.zahtijevZaCRLListu();
+                return true; 
+            case 30: 
+                adapter.ocitavanjeCRLListe();
+                return true; 
             default:
                 return false;
         }
@@ -136,6 +148,11 @@ public class PodaciKorisnikaKlijentKonzola extends Aplikacija implements BKSPEks
         System.out.println("\t24. Kontrolno ocitavanje poruka u slici za slanje ili ugradnju u sliku");
         System.out.println("\t25. Listanje poruka u formata za kontrolisanje sadrzaja");
         System.out.println("\t26. Ocitavanje spiska isporuka sa servera");
+        System.out.println("\nPODACI_KORISNIKA.MENI:OSTALE OPERACIJE");
+        System.out.println("\t27. Prikaz informacija o slikama");
+        System.out.println("\t28. Zahtijev za povlacenjem sertifikata");
+        System.out.println("\t29. Zahtijev za CRL listom");
+        System.out.println("\t30. Ocitavanje CRL liste");
         return 0;
     }
     
