@@ -1,0 +1,49 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : Aug 27, 2017, 10:04:05 AM
+    Author     : Mikec
+*/
+ 
+
+td table.checkable{
+    width:100%;
+    margin:0;
+}
+
+table.checkable{
+    margin:1em 20px 0 0;
+    border:0;
+    border-top:1px solid #999;
+    border-left:1px solid #999;
+    font-size:90%;
+    font-family: monospace, Courier New;
+    box-sizing: content-box;  
+}
+
+td.checkable,th.checkable{
+    border:0;
+    border-right:1px solid #999;
+    border-bottom:1px solid #999;
+    padding:.2em .3em;
+}
+
+th.checkable{
+    background:#eee;
+    text-align:left;
+}
+
+thead.checkable td.checkable,thead.checkable th.checkable{
+    background:greenyellow;
+}
+
+tbody tr.checkable:hover td,tbody tr.checkable:hover th{
+    background:#ccffcc;
+}
+
+.operacija{
+    color:steelblue;
+}

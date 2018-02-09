@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app version="3.1" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd">
+    <context-param>
+        <param-name>javax.faces.PROJECT_STAGE</param-name>
+        <param-value>Development</param-value>
+    </context-param>
+    <!--Ukljucenje konfiguracije-->
+    <context-param>
+        <param-name>javax.faces.CONFIG_FILES</param-name>
+        <param-value>/WEB-INF/faces-config.xml</param-value>
+    </context-param>
+    <servlet>
+        <servlet-name>Faces Servlet</servlet-name>
+        <servlet-class>javax.faces.webapp.FacesServlet</servlet-class>
+        <load-on-startup>1</load-on-startup>
+    </servlet>
+    <!--Stranica clana korisnika-->
+    <servlet>
+        <servlet-name>StranicaClanaServlet</servlet-name>
+        <servlet-class>programiranje.sistem_korisnika.servlet.StranicaClanaServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>PromjenaOpisaKorisnika</servlet-name>
+        <servlet-class>programiranje.sistem_korisnika.servlet.PromjenaOpisaKorisnika</servlet-class>
+        <init-param>
+            <param-name>html</param-name>
+            <param-value/>
+        </init-param>
+    </servlet>
+    <servlet>
+        <servlet-name>PromjenaOpisaGrupe</servlet-name>
+        <servlet-class>programiranje.sistem_korisnika.servlet.PromjenaOpisaGrupe</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>PromjenaOpisaUloge</servlet-name>
+        <servlet-class>programiranje.sistem_korisnika.servlet.PromjenaOpisaUloge</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>PromjenaOpisaUlogeAdmin</servlet-name>
+        <servlet-class>programiranje.sistem_korisnika.servlet.PromjenaOpisaUlogeAdmin</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>Faces Servlet</servlet-name>
+        <url-pattern>/faces/*</url-pattern>
+    </servlet-mapping>
+    <!--Mapiranje clana korisnika-->
+    <servlet-mapping>
+        <servlet-name>StranicaClanaServlet</servlet-name>
+        <url-pattern>/StranicaClanaServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>PromjenaOpisaKorisnika</servlet-name>
+        <url-pattern>/PromjenaOpisaKorisnika</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>PromjenaOpisaGrupe</servlet-name>
+        <url-pattern>/PromjenaOpisaGrupe</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>PromjenaOpisaUloge</servlet-name>
+        <url-pattern>/PromjenaOpisaUloge</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>PromjenaOpisaUlogeAdmin</servlet-name>
+        <url-pattern>/PromjenaOpisaUlogeAdmin</url-pattern>
+    </servlet-mapping>
+    <session-config>
+        <session-timeout>
+            30
+        </session-timeout>
+    </session-config>
+    <welcome-file-list>
+        <welcome-file>faces/mainPage.jsp</welcome-file>
+    </welcome-file-list>
+</web-app>

@@ -1,0 +1,267 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<faces-config version="2.2"
+              xmlns="http://xmlns.jcp.org/xml/ns/javaee"
+              xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+              xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-facesconfig_2_2.xsd">
+              
+              <!--Osnovna stranica-->
+              <from-view-id>/mainPage.jsp</from-view-id>
+              <managed-bean>
+                  <managed-bean-name>mainPageController</managed-bean-name>
+                  <managed-bean-class>programiranje.baza_korisnika_web.beans.MainPageController</managed-bean-class>
+                  <managed-bean-scope>request</managed-bean-scope>
+              </managed-bean>
+              
+              <navigation-rule>
+                  <navigation-case>
+                      <from-outcome>signup</from-outcome>
+                      <to-view-id>/signUpPage.jsp</to-view-id>
+                  </navigation-case>
+                  <navigation-case>
+                      <from-outcome>signin</from-outcome>
+                      <to-view-id>/signInPage.jsp</to-view-id>
+                  </navigation-case>
+                  <navigation-case>
+                      <from-outcome>mainpage</from-outcome>
+                      <to-view-id>/mainPage.jsp</to-view-id>
+                  </navigation-case>
+                  <navigation-case>
+                      <from-outcome>errorpage</from-outcome>
+                      <to-view-id>/errorPage.jsp</to-view-id>
+                  </navigation-case>
+              </navigation-rule>
+              
+              <!--Prijava-->
+              <managed-bean>
+                  <managed-bean-name>signInController</managed-bean-name>
+                  <managed-bean-class>programiranje.baza_korisnika_web.beans.SignInController</managed-bean-class>    
+                  <managed-bean-scope>request</managed-bean-scope></managed-bean>
+                  
+              <navigation-rule>
+                  <navigation-case>
+                      <from-outcome>submitIn</from-outcome>
+                      <to-view-id>/signedInPage.jsp</to-view-id>
+                  </navigation-case>
+                  <navigation-case>
+                      <from-outcome>mainpageIn</from-outcome>
+                      <to-view-id>/mainPage.jsp</to-view-id>
+                  </navigation-case>
+                  <navigation-case>
+                      <from-outcome>errorIn</from-outcome>
+                      <to-view-id>/errorPage.jsp</to-view-id>
+                  </navigation-case>
+              </navigation-rule>
+
+              <!--Registracija-->
+              <managed-bean>
+                  <managed-bean-name>signUpController</managed-bean-name>
+                  <managed-bean-class>programiranje.baza_korisnika_web.beans.SignUpController</managed-bean-class>    
+                  <managed-bean-scope>request</managed-bean-scope>
+              </managed-bean>
+                  
+              <navigation-rule>
+                  <navigation-case>
+                      <from-view-id>/signUpPage.jsp</from-view-id>
+                      <from-outcome>submitUp</from-outcome>
+                      <to-view-id>/signedInPage.jsp</to-view-id>
+                  </navigation-case>
+                  <navigation-case>
+                      <from-outcome>mainpageUp</from-outcome>
+                      <to-view-id>/mainPage.jsp</to-view-id>
+                  </navigation-case>
+                  <navigation-case>
+                      <from-outcome>errorUp</from-outcome>
+                      <to-view-id>/errorPage.jsp</to-view-id>
+                  </navigation-case>
+              </navigation-rule>
+              
+              <!--Greska-->
+              <managed-bean>
+                  <managed-bean-name>errorBean</managed-bean-name>
+                  <managed-bean-class>programiranje.baza_korisnika_web.beans.data.ErrorBean</managed-bean-class>
+                  <managed-bean-scope>request</managed-bean-scope>
+                  <managed-property>
+                      <property-name>error</property-name>
+                      <property-class>java.lang.String</property-class>
+                  </managed-property>
+              </managed-bean>
+              
+              <!--Podaci o prijavi-->
+              <managed-bean>
+                  <managed-bean-name>prijavaBean</managed-bean-name>
+                  <managed-bean-class>programiranje.baza_korisnika_web.beans.data.PrijavaBean</managed-bean-class>
+                  <managed-bean-scope>request</managed-bean-scope>
+                  <managed-property>
+                      <property-name>username</property-name>
+                      <property-class>java.lang.String</property-class>
+                  </managed-property>
+                  <managed-property>
+                      <property-name>password</property-name>
+                      <property-class>java.lang.String</property-class>
+                  </managed-property>
+              </managed-bean>
+              
+              <!--Podaci o registraciji-->
+              <managed-bean>
+                  <managed-bean-name>registracijaBean</managed-bean-name>
+                  <managed-bean-class>programiranje.baza_korisnika_web.beans.data.RegistracijaBean</managed-bean-class>
+                  <managed-bean-scope>request</managed-bean-scope>
+                  <managed-property>
+                      <property-name>name</property-name>
+                      <property-class>java.lang.String</property-class>
+                  </managed-property>
+                  <managed-property>
+                      <property-name>surname</property-name>
+                      <property-class>java.lang.String</property-class>
+                  </managed-property>
+                  <managed-property>
+                      <property-name>username</property-name>
+                      <property-class>java.lang.String</property-class>
+                  </managed-property>
+                  <managed-property>
+                      <property-name>password</property-name>
+                      <property-class>java.lang.String</property-class>
+                  </managed-property>
+                  <managed-property>
+                      <property-name>identificator</property-name>
+                      <property-class>java.lang.String</property-class>
+                  </managed-property>
+                  <managed-property>
+                      <property-name>telephone</property-name>
+                      <property-class>java.lang.String</property-class>
+                  </managed-property>
+                  <managed-property>
+                      <property-name>workplaces</property-name>
+                      <property-class>java.lang.String</property-class>
+                  </managed-property>
+                  <managed-property>
+                      <property-name>address</property-name>
+                      <property-class>java.lang.String</property-class>
+                  </managed-property>
+                  <managed-property>
+                      <property-name>email</property-name>
+                      <property-class>java.lang.String</property-class>
+                  </managed-property>
+                  <managed-property>
+                      <property-name>webs</property-name>
+                      <property-class>java.lang.String</property-class>
+                  </managed-property>
+              </managed-bean>
+              
+              <!--Podaci o grupi-->
+              <managed-bean>
+                  <managed-bean-name>grupeInfoBean</managed-bean-name>
+                  <managed-bean-class>programiranje.sistem_korisnika.grupe.beans.GrupeInfoBean</managed-bean-class>
+                  <managed-bean-scope>request</managed-bean-scope>
+                  <managed-property>
+                      <property-name>grupeInfoTableHTML</property-name>
+                      <property-class>java.lang.String</property-class>
+                  </managed-property>
+                  <managed-property>
+                      <property-name>korisniciInfoTableHTML</property-name>
+                      <property-class>java.lang.String</property-class>
+                  </managed-property>
+              </managed-bean>
+              
+              <!--Prijavljenost-->
+              <managed-bean>
+                  <managed-bean-name>signedInController</managed-bean-name>
+                  <managed-bean-class>programiranje.baza_korisnika_web.beans.SignedInController</managed-bean-class>
+                  <managed-bean-scope>request</managed-bean-scope>
+              </managed-bean>
+              
+              <navigation-rule>
+                  <navigation-case>
+                      <from-outcome>renamePage</from-outcome>
+                      <to-view-id>/renameUserPage.jsp</to-view-id>
+                  </navigation-case>
+              </navigation-rule>
+              
+              <!--Preimenovanje-->
+              <managed-bean>
+                  <managed-bean-name>preimenovanjeKorisnikaController</managed-bean-name>
+                  <managed-bean-class>programiranje.baza_korisnika_web.beans.PreimenovanjeKorisnikaController</managed-bean-class>
+                  <managed-bean-scope>request</managed-bean-scope>
+              </managed-bean>
+              
+              <navigation-rule>
+                  <navigation-case>
+                      <from-outcome>preimenovanje</from-outcome>
+                      <to-view-id>/signedInPage.jsp</to-view-id>
+                  </navigation-case>
+                  <navigation-case>
+                      <from-outcome>povratak</from-outcome>
+                      <to-view-id>/signedInPage.jsp</to-view-id>
+                  </navigation-case>
+                  <navigation-case>
+                      <from-outcome>errorRen</from-outcome>
+                      <to-view-id>/errorPage.jsp</to-view-id>
+                  </navigation-case>
+              </navigation-rule>
+              
+              <!--Kontroler grupa-->
+              <managed-bean>
+                  <managed-bean-name>grupeController</managed-bean-name>
+                  <managed-bean-class>programiranje.sistem_korisnika.grupe.beans.data.GrupeController</managed-bean-class>
+                  <managed-bean-scope>request</managed-bean-scope>
+              </managed-bean>
+              
+              <navigation-rule>
+                  <navigation-case>
+                      <from-outcome>dodavanjeGrupe</from-outcome>
+                      <to-view-id>/signedInPage.jsp</to-view-id>
+                  </navigation-case>
+                  <navigation-case>
+                      <from-outcome>brisanjeGrupe</from-outcome>
+                      <to-view-id>/signedInPage.jsp</to-view-id>
+                  </navigation-case>
+                  <navigation-case>
+                      <from-outcome>preimenovanjeGrupe</from-outcome>
+                      <to-view-id>/signedInPage.jsp</to-view-id>
+                  </navigation-case>
+                  <navigation-case>
+                      <from-outcome>iskljucenje</from-outcome>
+                      <to-view-id>/signedInPage.jsp</to-view-id>
+                  </navigation-case>
+                  <navigation-case>
+                      <from-outcome>uclanjenje</from-outcome>
+                      <to-view-id>/signedInPage.jsp</to-view-id>
+                  </navigation-case>
+                  <navigation-case>
+                      <from-outcome>isclanjenje</from-outcome>
+                      <to-view-id>/signedInPage.jsp</to-view-id>
+                  </navigation-case>
+                  <navigation-case>
+                      <from-outcome>ocitavanjeKorisnika</from-outcome>
+                      <to-view-id>/signedInPage.jsp</to-view-id>
+                  </navigation-case>
+                  <navigation-case>
+                      <from-outcome>errorGr</from-outcome>
+                      <to-view-id>/errorPage.jsp</to-view-id>
+                  </navigation-case>
+                  <navigation-case>
+                      <from-outcome>opisGrupe</from-outcome>
+                      <to-view-id>/WEB-SRV/stranicaGrupe.jsp</to-view-id>
+                  </navigation-case>
+                  <navigation-case>
+                      <from-outcome>opisUloge</from-outcome>
+                      <to-view-id>/WEB-SRV/stranicaUloge.jsp</to-view-id>
+                  </navigation-case>
+                  <navigation-case>
+                      <from-outcome>opisClana</from-outcome>
+                      <to-view-id>/StranicaClanaServlet</to-view-id>
+                  </navigation-case>
+              </navigation-rule>
+              
+              <!--Stranice korisnika-->
+              <managed-bean>
+                  <managed-bean-name>stranicaKorisnikaBean</managed-bean-name>
+                  <managed-bean-class>programiranje.sistem_korisnika.grupe.beans.StranicaKorisnikaBean</managed-bean-class>
+                  <managed-bean-scope>session</managed-bean-scope>
+                  <managed-property>
+                      <property-name>povratnaStranicaURL</property-name>
+                      <property-class>java.lang.String</property-class>
+                  </managed-property>
+              </managed-bean>
+</faces-config>
+

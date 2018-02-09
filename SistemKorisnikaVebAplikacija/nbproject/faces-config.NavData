@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Scene Scope="Faces Configuration Only" version="2">
+    <Scope Scope="Faces Configuration Only">
+        <Node id="signInPage.jsp" x="150" y="150" zoom="true"/>
+        <Node id="signUpPage.jsp" x="400" y="150" zoom="true"/>
+        <Node id="mainPage.jsp" x="150" y="300" zoom="true"/>
+        <Node id="WEB-SRV/stranicaUloge.jsp" x="400" y="450" zoom="true"/>
+        <Node id="StranicaClanaServlet" x="650" y="150" zoom="true"/>
+        <Node id="WEB-SRV/stranicaGrupe.jsp" x="150" y="600" zoom="true"/>
+        <Node id="errorPage.jsp" x="400" y="300" zoom="true"/>
+        <Node id="renameUserPage.jsp" x="650" y="300" zoom="true"/>
+        <Node id="signedInPage.jsp" x="900" y="150" zoom="true"/>
+    </Scope>
+    <Scope Scope="Project">
+        <Node id="WEB-SRV/korisnickaStranica.jsp" x="650" y="150" zoom="true"/>
+        <Node id="signInPage.jsp" x="400" y="150" zoom="true"/>
+        <Node id="signUpPage.jsp" x="400" y="300" zoom="true"/>
+        <Node id="mainPage.jsp" x="150" y="600" zoom="true"/>
+        <Node id="WEB-SRV/stranicaUloge.jsp" x="650" y="300" zoom="true"/>
+        <Node id="WEB-SRV/stranicaGrupe.jsp" x="400" y="450" zoom="true"/>
+        <Node id="errorPage.jsp" x="150" y="450" zoom="true"/>
+        <Node id="StranicaClanaServlet" x="150" y="150" zoom="true"/>
+        <Node id="renameUserPage.jsp" x="976" y="149" zoom="true"/>
+        <Node id="signedInPage.jsp" x="150" y="300" zoom="true"/>
+    </Scope>
+    <Scope Scope="All Faces Configurations">
+        <Node id="signInPage.jsp" x="400" y="150" zoom="true"/>
+        <Node id="mainPage.jsp" x="150" y="600" zoom="true"/>
+        <Node id="signUpPage.jsp" x="400" y="300" zoom="true"/>
+        <Node id="WEB-SRV/stranicaUloge.jsp" x="650" y="300" zoom="true"/>
+        <Node id="StranicaClanaServlet" x="150" y="150" zoom="true"/>
+        <Node id="errorPage.jsp" x="150" y="450" zoom="true"/>
+        <Node id="WEB-SRV/stranicaGrupe.jsp" x="400" y="450" zoom="true"/>
+        <Node id="renameUserPage.jsp" x="976" y="149" zoom="true"/>
+        <Node id="signedInPage.jsp" x="150" y="300" zoom="true"/>
+    </Scope>
+</Scene>
