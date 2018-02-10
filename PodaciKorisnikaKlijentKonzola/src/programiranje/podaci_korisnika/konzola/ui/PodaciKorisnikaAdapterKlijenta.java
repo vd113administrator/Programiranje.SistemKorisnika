@@ -990,6 +990,7 @@ public class PodaciKorisnikaAdapterKlijenta{
                 System.out.println("\t\tVelicina: "+funit.getContent().length+" B");
                 System.out.println("\t\tDimenzije: "+img.getWidth()+"x"+img.getHeight());
             }catch(Exception ex){
+                return;
             }
         }
     }
