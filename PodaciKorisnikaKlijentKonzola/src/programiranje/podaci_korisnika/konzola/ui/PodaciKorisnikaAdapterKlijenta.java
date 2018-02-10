@@ -5,6 +5,7 @@
  */
 package programiranje.podaci_korisnika.konzola.ui;
 
+import java.awt.image.BufferedImage;
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
@@ -34,6 +35,7 @@ import javafx.util.Pair;
 import javax.crypto.BadPaddingException;
 import javax.crypto.IllegalBlockSizeException;
 import javax.crypto.NoSuchPaddingException;
+import javax.imageio.ImageIO;
 import javax.net.ssl.KeyManagerFactory;
 import programiranje.baza_korisnika.cert.alg.AsimetricniAlgoritam;
 import programiranje.baza_korisnika.cert.alg.UpravljanjeDokumentima;
@@ -977,6 +979,19 @@ public class PodaciKorisnikaAdapterKlijenta{
     }
     
     public void informacijeOSlikama(){
+        AktivniDirektorijumi ad = new AktivniDirektorijumi();
+        System.out.println("<< OSTALE OPERACIJE >>");
+        System.out.println("<< LISTA SLIKA BEZ PORUKE >>");
+        for(File f: ad.ocitajImenaSlika()){
+            try{
+                FileUnit funit = new FileUnit(f).open();
+                BufferedImage img = ImageIO.read(f);
+                System.out.println("\t"+f.getName());
+                System.out.println("\t\tVelicina: "+funit.getContent().length+" B");
+                System.out.println("\t\tDimenzije: "+img.getWidth()+"x"+img.getHeight());
+            }catch(Exception ex){
+            }
+        }
     }
     
     public void zahtijevZaPovlacenjeSertifikata(){
