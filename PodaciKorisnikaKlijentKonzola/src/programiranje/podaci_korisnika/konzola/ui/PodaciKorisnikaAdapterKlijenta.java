@@ -996,6 +996,7 @@ public class PodaciKorisnikaAdapterKlijenta{
     }
     
     public void zahtijevZaPovlacenjeSertifikata(){
+        
     }
     
     public void zahtijevZaCRLListu(){
