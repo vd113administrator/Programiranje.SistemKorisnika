@@ -26,6 +26,7 @@ public class SablonskiUzorciNaredbiSertifikovanja {
     public final static String location = "<l>"; 
     public final static String organization = "<o>";
     public final static String organizationUnit = "<ou>";
+    public final static String revocationDir = "<revokedir>";
     
     private String mainStoreValue = KonstanteSertifikataServera.glavniKeyStore;
     private String dirValue = "."; 
@@ -33,14 +34,18 @@ public class SablonskiUzorciNaredbiSertifikovanja {
     private String certnameValue; 
     private String imeIPrezimeValue = "";
     private String countryValue = "BA";
-    public  String stateValue = "Republika Srpska";
-    public  String locationValue = "";
-    public  String organizationValue = "";
-    public  String organizationUnitValue = "";
-    
+    private  String stateValue = "Republika Srpska";
+    private  String locationValue = "";
+    private  String organizationValue = "";
+    private  String organizationUnitValue = "";
+    private  String revocationDirValue = "."; 
     
     public String getDirValue() {
         return dirValue;
+    }
+    
+    public String getRevocationDirValue() {
+        return revocationDirValue;
     }
 
     public SablonskiUzorciNaredbiSertifikovanja setDirValue(String dirValue) {
@@ -48,6 +53,11 @@ public class SablonskiUzorciNaredbiSertifikovanja {
         return this; 
     }
 
+    public SablonskiUzorciNaredbiSertifikovanja setRevocationDirValue(String dirValue) {
+        this.revocationDirValue = dirValue;
+        return this; 
+    }
+    
     public String getMainStoreValue() {
         return mainStoreValue;
     }
@@ -87,6 +97,16 @@ public class SablonskiUzorciNaredbiSertifikovanja {
     
     public SablonskiUzorciNaredbiSertifikovanja setWindowsDirValue(){
         dirValue = "..\\\\"+ KonstanteDirektorijuma.arhivacertifikata; 
+        return this; 
+    }
+    
+    public SablonskiUzorciNaredbiSertifikovanja setLinuxDirRevokeValue(){
+        revocationDirValue = "../"+ KonstanteDirektorijuma.arhivapovucenikcertifikata; 
+        return this;
+    }
+    
+    public SablonskiUzorciNaredbiSertifikovanja setWindowsDirRevokeValue(){
+        revocationDirValue = "..\\\\"+ KonstanteDirektorijuma.arhivapovucenikcertifikata; 
         return this; 
     }
     
@@ -148,7 +168,7 @@ public class SablonskiUzorciNaredbiSertifikovanja {
     }
     
     public String zamijenaUzorakaVrijednostima(String text){
-        return text.replaceAll(dir, dirValue)
+        return text.replaceAll(dir, dirValue).replaceAll(revocationDir, revocationDirValue)
                    .replaceAll(username.replaceAll("[<]","[<]").replaceAll("[>]", "[>]"), usernameValue)
                    .replaceAll(certname.replaceAll("[<]","[<]").replaceAll("[>]", "[>]"), certnameValue)
                    .replaceAll(mainstore.replaceAll("[<]","[<]").replaceAll("[>]", "[>]"), mainStoreValue)
@@ -162,7 +182,7 @@ public class SablonskiUzorciNaredbiSertifikovanja {
     
     public String generateBatScriptSadrzaj(){
         String res = "";
-        Scanner scan = new Scanner(getClass().getResourceAsStream("/programiranje/podaci_korisnika/server/sabloni/korisnik.specifikacija.bat.txt"));
+        Scanner scan = new Scanner(getClass().getResourceAsStream("/programiranje/podaci_korisnika/server/sabloni/korisnik.sertifikacija.bat.txt"));
         while(scan.hasNextLine()){
             res+=scan.nextLine()+"\n";
         }
@@ -174,11 +194,35 @@ public class SablonskiUzorciNaredbiSertifikovanja {
     
     public String generateShellScriptSadrzaj(){
         String res = "";
-        Scanner scan = new Scanner(getClass().getResourceAsStream("/programiranje/podaci_korisnika/server/sabloni/korisnik.specifikacija.sh.txt"));
+        Scanner scan = new Scanner(getClass().getResourceAsStream("/programiranje/podaci_korisnika/server/sabloni/korisnik.sertifikacija.sh.txt"));
         while(scan.hasNextLine()){
             res+=scan.nextLine()+"\n";
         }
         this.setLinuxDirValue();
+        res = this.zamijenaUzorakaVrijednostima(res);
+        scan.close();
+        return res;
+    }
+    
+    public String generateBatScriptZaPovlacenjeSadrzaj(){
+        String res = "";
+        Scanner scan = new Scanner(getClass().getResourceAsStream("/programiranje/podaci_korisnika/server/sabloni/korisnik.sertifikacija.revoke.bat.txt"));
+        while(scan.hasNextLine()){
+            res+=scan.nextLine()+"\n";
+        }
+        this.setWindowsDirValue().setWindowsDirRevokeValue();
+        res = this.zamijenaUzorakaVrijednostima(res);
+        scan.close();
+        return res;
+    }
+    
+    public String generateShellScriptZaPovlacenjeSadrzaj(){
+        String res = "";
+        Scanner scan = new Scanner(getClass().getResourceAsStream("/programiranje/podaci_korisnika/server/sabloni/korisnik.sertifikacija.revoke.sh.txt"));
+        while(scan.hasNextLine()){
+            res+=scan.nextLine()+"\n";
+        }
+        this.setLinuxDirValue().setLinuxDirRevokeValue();
         res = this.zamijenaUzorakaVrijednostima(res);
         scan.close();
         return res;

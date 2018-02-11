@@ -1,0 +1,19 @@
+rem: GENERISANJE CRL LISTE I POMJERANJE POVUCENIH SERTIFIKATA 
+openssl ca -revoke <dir>\<certname>-PK-medjusertifikat.pem -crl_reason superseded -keyfile <dir>\server.privatni_kljuc.pem.key -cert <dir>\server.pristupni_sertifikat.cer -config openssl.cnf -passin pass:server
+openssl ca -gencrl -out <revokedir>\sertifikacija.pem.crl -keyfile <dir>\server.privatni_kljuc.pem.key -cert <dir>\server.pristupni_sertifikat.cer -config openssl.cnf -passin pass:server
+openssl crl -in <revokedir>\sertifikacija.pem.crl -out <revokedir>\sertifikacija.der.crl -inform PEM -outform DER
+copy <dir>\<certname>-PK-medjusertifikat.pem <revokedir>\<certname>-PK-medjusertifikat.pem
+copy <dir>\<certname>-NK-zahtijev_sertifikata.csr <revokedir>\<certname>-NK-zahtijev_sertifikata.csr
+copy <dir>\<certname>-PK-privatni_sertifikat.jks <revokedir>\<certname>-PK-privatni_sertifikat.jks
+copy <dir>\<certname>-PK-medjusertifikat.p12 <revokedir>\<certname>-PK-medjusertifikat.p12
+copy <dir>\<certname>-PK-privatni_kljuc.pem.key <revokedir>\<certname>-PK-privatni_kljuc.pem.key
+copy <dir>\<certname>-NPK-pristupni_sertifikat.der <revokedir>\<certname>-NPK-pristupni_sertifikat.der
+copy <dir>\<certname>-NPKS-pristupni_sertifikat.cer <revokedir>\<certname>-NPKS-pristupni_sertifikat.cer
+del <dir>\<certname>-PK-medjusertifikat.pem
+del <dir>\<certname>-NK-zahtijev_sertifikata.csr 
+del <dir>\<certname>-PK-privatni_sertifikat.jks
+del <dir>\<certname>-PK-medjusertifikat.p12
+del <dir>\<certname>-PK-privatni_kljuc.pem.key
+del <dir>\<certname>-NPK-pristupni_sertifikat.der
+del <dir>\<certname>-NPKS-pristupni_sertifikat.cer
+pause

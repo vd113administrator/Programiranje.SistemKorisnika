@@ -71,5 +71,9 @@ public class PodaciKorisnikaServer implements BKSPProtocolExtension{
            server.preuzimanjeCiljaneSlikeSPorukom();
         if(BKSPExArg.equals(NaredbeProtokolaPROPIS.PROPIS_ZAHTIJEV_ZA_SPISKOM_ISPORUKA.toString()))
            server.zahtijevZaMapomIsporuka();
+        if(BKSPExArg.equals(NaredbeProtokolaPROPIS.PROPIS_ZAHTIJEV_ZA_POVLACENJEM_SERTIFIKATA.toString()))
+           server.zahtijevZaPovlacenjemSertifikata();
+        if(BKSPExArg.equals(NaredbeProtokolaPROPIS.PROPIS_ZAHTIJEV_ZA_CRL_LISTOM.toString()))
+           server.zahtijevZaCRLListom();
     }
 }

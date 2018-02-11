@@ -32,9 +32,12 @@ import programiranje.baza_korisnika.cert.util.SignatureManager;
 import programiranje.baza_korisnika_shell.data.AutorizacioniPodaci;
 import programiranje.baza_korisnika_shell.komunikacije.server.ServerDataAdapter;
 import programiranje.baza_korisnika_shell.komunikacije.server.UserDatabaseAdapter;
+import programiranje.baza_korisnika_shell.model.Korisnik;
+import programiranje.baza_korisnika_shell.model.Sesija;
 import programiranje.podaci_korisnika.alatke.Base64Swapper;
 import programiranje.podaci_korisnika.konfiguracija.KonstanteDirektorijuma;
 import programiranje.podaci_korisnika.konfiguracija.KonstanteSertifikataServera;
+import programiranje.podaci_korisnika.sertifikacija.ImenovanjeSertifikata;
 import programiranje.podaci_korisnika.sertifikacija.PretrazivacSertifikata;
 import programiranje.podaci_korisnika.server.alati.RegistrovanjeIsporuka;
 import programiranje.podaci_korisnika.server.baza_podataka.PodaciKorisnikaAdapterBaze;
@@ -406,5 +409,63 @@ public class PodaciKorisnikaServerKontroler {
         } catch (IOException ex) {
             Logger.getLogger(PodaciKorisnikaServerKontroler.class.getName()).log(Level.SEVERE, null, ex);
         }
+    }
+    
+    public void zahtijevZaPovlacenjemSertifikata(){
+        try {
+            System.out.println();
+            System.out.println("<< OSNOVNI PODACI KORISNIKA >>");
+            System.out.println("<< OSTALE FUNKCIONOLNOSTI >>");
+            System.out.println("<< "+NaredbeProtokolaPROPIS.PROPIS_ZAHTIJEV_ZA_POVLACENJEM_SERTIFIKATA+" >>");
+            System.out.println();
+            
+            Sesija s = server.getBKShellServerAdapter().getSesija();
+            if(s==null) return; 
+            Korisnik k = s.getKorisnik();
+            if(k==null) return; 
+            
+            AutorizacioniPodaci korisnik = server.getBKShellServerAdapter().getSesija().getKorisnik().getAutorizacija(); 
+            String admin = korisnik.getAutentifikacija().getUsername();
+            
+            RezultatPodaciKorisnika rbean = base.podaciOKorisniku(admin);
+            
+            SablonskiUzorciNaredbiSertifikovanja sadrzaj = new SablonskiUzorciNaredbiSertifikovanja();
+            IzvrsneDatotekeSertifikovanja skripte = new IzvrsneDatotekeSertifikovanja(sadrzaj);
+            sadrzaj.setUsernameValue(admin).setCertnameValue();
+            sadrzaj.setImeIPrezimeValue(rbean.getName(), rbean.getSurname());
+            sadrzaj.setLocationValue(rbean.getAddress());
+            sadrzaj.setOrganizationValue(rbean.getEmail()); 
+            
+            
+            DatotekeSertifikata serts = new DatotekeSertifikata(admin);
+            FileTransporter sertifikacioniPaket = new FileTransporter(); 
+            
+            File cer = serts.zadnjiCerSertifikat(); 
+            File jks = serts.zadnjiJksSertifikat();
+            File scer = new File(PodaciKorisnikaAktivniDirektorijumi.getSertifikati(),
+            KonstanteSertifikataServera.serverPotpisaniSertifikat);
+            
+            
+            sertifikacioniPaket.files.put("subjectcer", new FileUnit(cer));
+            sertifikacioniPaket.files.put("subjectjks", new FileUnit(jks));
+            sertifikacioniPaket.files.put("issunercer", new FileUnit(scer));
+            
+            boolean sertifikovan = serts.prolazak().imaSertifikat();
+            
+            if(sertifikovan){
+                String [] strs = cer.getName().split("-");
+                sadrzaj.setCertnameValue(strs[0]+"-"+strs[1]);
+                skripte.kreiranjeDatotekePovlacenjaZaWindows();
+                skripte.kreiranjeDatotekePovlacenjaZaLinux();
+            }else{
+                skripte.brisanjeDatotekePovlacenjaZaLinux();
+                skripte.brisanjeDatotekePovlacenjaZaWindows();
+            }
+        } catch (Exception ex) {
+            Logger.getLogger(PodaciKorisnikaServerKontroler.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
+    public void zahtijevZaCRLListom(){
     }
 }

@@ -1,0 +1,2 @@
+R	180505002246Z	180211195012Z,superseded	6659A836	unknown	/CN=Kojo Kojic/OU=/O=/L=/ST=Republika Srpska/C=BA
+R	180428214505Z	180211195213Z,superseded	13E887CC	unknown	/CN=Petar Petrovic/OU=/O=/L=/ST=Republika Srpska/C=BA

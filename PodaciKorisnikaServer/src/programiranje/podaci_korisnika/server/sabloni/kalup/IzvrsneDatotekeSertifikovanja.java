@@ -43,12 +43,32 @@ public class IzvrsneDatotekeSertifikovanja {
         return sadrzaj.getUsernameValue()+".sertifikacija.bat"; 
     }
     
+    public String generisanjeImenaIzvrsnjeDatotekePovlacenja(){
+        return sadrzaj.getUsernameValue()+".sertifikacija.revoke"; 
+    }
+    
+    public String generisanjeImenaIzvrsnjeDatotekePovlacenjaZaLinux(){
+        return sadrzaj.getUsernameValue()+".sertifikacija.revoke.sh"; 
+    }
+    
+    public String generisanjeImenaIzvrsnjeDatotekePovlacenjaZaWindows(){
+        return sadrzaj.getUsernameValue()+".sertifikacija.revoke.bat"; 
+    }
+    
     public File generisanjeFileObjektaDatotekeZaLinux(){
         return new File(PodaciKorisnikaAktivniDirektorijumi.getSertifikacija(), generisanjeImenaIzvrsnjeDatotekeZaLinux());
     }
     
     public File generisanjeFileObjektaDatotekeZaWindows(){
         return new File(PodaciKorisnikaAktivniDirektorijumi.getSertifikacija(), generisanjeImenaIzvrsnjeDatotekeZaWindows());
+    }
+    
+    public File generisanjeFileObjektaDatotekePovlacenjaZaLinux(){
+        return new File(PodaciKorisnikaAktivniDirektorijumi.getSertifikacija(), generisanjeImenaIzvrsnjeDatotekePovlacenjaZaLinux());
+    }
+    
+    public File generisanjeFileObjektaDatotekePovlacenjaZaWindows(){
+        return new File(PodaciKorisnikaAktivniDirektorijumi.getSertifikacija(), generisanjeImenaIzvrsnjeDatotekePovlacenjaZaWindows());
     }
     
     public void kreiranjeDatotekeZaLinux() throws IOException{
@@ -87,6 +107,45 @@ public class IzvrsneDatotekeSertifikovanja {
     
     public void brisanjeDatotekeZaWindows() throws IOException{
         File file = generisanjeFileObjektaDatotekeZaWindows();
+        if(file.exists()) file.delete(); 
+    }
+    
+    public void kreiranjeDatotekePovlacenjaZaLinux() throws IOException{
+        File file = generisanjeFileObjektaDatotekePovlacenjaZaLinux();
+        if(!file.exists()) {
+            file.createNewFile();
+            PrintWriter pw = new PrintWriter(new OutputStreamWriter(new FileOutputStream(file)));
+            pw.println(sadrzaj.generateShellScriptZaPovlacenjeSadrzaj());
+            pw.close();
+        }else{
+            PrintWriter pw = new PrintWriter(new OutputStreamWriter(new FileOutputStream(file)));
+            pw.println(sadrzaj.generateShellScriptZaPovlacenjeSadrzaj());
+            pw.close();
+        }
+    }
+    
+    public void kreiranjeDatotekePovlacenjaZaWindows() throws IOException{
+        File file = generisanjeFileObjektaDatotekePovlacenjaZaWindows();
+        if(!file.exists()) {
+            file.createNewFile();
+            PrintWriter pw = new PrintWriter(new OutputStreamWriter(new FileOutputStream(file)));
+            pw.println(sadrzaj.generateBatScriptZaPovlacenjeSadrzaj());
+            pw.close();
+        }
+        else{
+            PrintWriter pw = new PrintWriter(new OutputStreamWriter(new FileOutputStream(file)));
+            pw.println(sadrzaj.generateBatScriptZaPovlacenjeSadrzaj());
+            pw.close();
+        }
+    }
+    
+    public void brisanjeDatotekePovlacenjaZaLinux() throws IOException{
+        File file = generisanjeFileObjektaDatotekePovlacenjaZaLinux();
+        if(file.exists()) file.delete(); 
+    }
+    
+    public void brisanjeDatotekePovlacenjaZaWindows() throws IOException{
+        File file = generisanjeFileObjektaDatotekePovlacenjaZaWindows();
         if(file.exists()) file.delete(); 
     }
 }
