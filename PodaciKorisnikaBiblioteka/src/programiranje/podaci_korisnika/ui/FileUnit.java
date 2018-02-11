@@ -63,6 +63,25 @@ public class FileUnit implements Serializable{
         return this;
     }
     
+    public FileUnit openIfExists() throws IOException{
+        if(!file.exists()) return this; 
+        if(!file.isFile()) return this;
+        FileInputStream fis = new FileInputStream(file);
+        content = new byte[fis.available()];
+        fis.read(content);
+        fis.close();
+        return this;
+    }
+    
+    public FileUnit saveIfnotExists() throws FileNotFoundException, IOException{
+        if(file.exists()) return this; 
+        System.err.println(file);
+        FileOutputStream fos = new FileOutputStream(file);
+        fos.write(content);
+        fos.close();
+        return this;
+    }
+    
     public FileUnit setDirectory(File file){
         this.file = new File(file,this.file.getName());
         return this;
