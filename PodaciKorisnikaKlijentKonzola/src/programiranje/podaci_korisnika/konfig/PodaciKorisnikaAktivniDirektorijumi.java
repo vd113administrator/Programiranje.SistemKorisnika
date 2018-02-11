@@ -6,6 +6,8 @@
 package programiranje.podaci_korisnika.konfig;
 
 import java.io.File;
+import java.io.IOException;
+import programiranje.podaci_korisnika.ui.FileUnit;
 
 /**
  *
@@ -68,4 +70,70 @@ public final class PodaciKorisnikaAktivniDirektorijumi {
         if(!stegonografija.exists()) stegonografija.mkdir();
         if(!sertifikati.exists()) sertifikati.mkdir();
     }
+    
+    
+    private static FileUnit slikaJava; 
+    private static FileUnit slikaOpenssl; 
+    private static FileUnit slikaSteghide; 
+    private static FileUnit slikaSportZOI; 
+    private static FileUnit slikaFudbalEuroleague;
+    private static FileUnit slikaFudbalSP; 
+
+    public static FileUnit getSlikaJava() {
+        return slikaJava;
+    }
+
+    public static FileUnit getSlikaSportZOI() {
+        return slikaSportZOI;
+    }
+
+    public static void setSlikaSportZOI(FileUnit slikaSportZOI) {
+        PodaciKorisnikaAktivniDirektorijumi.slikaSportZOI = slikaSportZOI;
+    }
+
+    public static FileUnit getSlikaFudbalEuroleague() {
+        return slikaFudbalEuroleague;
+    }
+
+    public static void setSlikaFudbalEuroleague(FileUnit slikaFudbalEuroleague) {
+        PodaciKorisnikaAktivniDirektorijumi.slikaFudbalEuroleague = slikaFudbalEuroleague;
+    }
+
+    public static FileUnit getSlikaFudbalSP() {
+        return slikaFudbalSP;
+    }
+
+    public static void setSlikaFudbalSP(FileUnit slikaFudbalSP) {
+        PodaciKorisnikaAktivniDirektorijumi.slikaFudbalSP = slikaFudbalSP;
+    }
+
+    public static void setSlikaJava(FileUnit slikaJava) {
+        PodaciKorisnikaAktivniDirektorijumi.slikaJava = slikaJava;
+    }
+
+    public static FileUnit getSlikaOpenssl() {
+        return slikaOpenssl;
+    }
+
+    public static void setSlikaOpenssl(FileUnit slikaOpenssl) {
+        PodaciKorisnikaAktivniDirektorijumi.slikaOpenssl = slikaOpenssl;
+    }
+
+    public static FileUnit getSlikaSteghide() {
+        return slikaSteghide;
+    }
+
+    public static void setSlikaSteghide(FileUnit slikaSteghide) {
+        PodaciKorisnikaAktivniDirektorijumi.slikaSteghide = slikaSteghide;
+    }
+
+    public static void kreiranjeNepostojecihDatoteka() throws IOException{ 
+        slikaJava.setDirectory(slikeBezPoruka).saveIfnotExists(); 
+        slikaOpenssl.setDirectory(slikeBezPoruka).saveIfnotExists(); 
+        slikaSteghide.setDirectory(slikeBezPoruka).saveIfnotExists();
+        slikaSportZOI.setDirectory(slikeBezPoruka).saveIfnotExists(); 
+        slikaFudbalEuroleague.setDirectory(slikeBezPoruka).saveIfnotExists(); 
+        slikaFudbalSP.setDirectory(slikeBezPoruka).saveIfnotExists();
+    }     
+    
 }
