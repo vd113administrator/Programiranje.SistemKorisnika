@@ -467,5 +467,19 @@ public class PodaciKorisnikaServerKontroler {
     }
     
     public void zahtijevZaCRLListom(){
+        System.out.println();
+        System.out.println("<< OSNOVNI PODACI KORISNIKA >>");
+        System.out.println("<< OSTALE FUNKCIONOLNOSTI >>");
+        System.out.println("<< "+NaredbeProtokolaPROPIS.PROPIS_ZAHTIJEV_ZA_CRL_LISTOM+" >>");
+        System.out.println();
+        File file = new File(KonstanteDirektorijuma.arhivapovucenikcertifikata+File.separator,"sertifikacija.der.crl");
+        try{
+            FileUnit crl = new FileUnit(file).openIfExists();
+            String str = Base64Swapper.encode(crl.getContent());
+            server.getBKShellServerAdapter().writeLine("true");
+            server.getBKShellServerAdapter().writeLine(str);
+        }catch(Exception ex){
+            server.getBKShellServerAdapter().writeLine("false");
+        }
     }
 }
