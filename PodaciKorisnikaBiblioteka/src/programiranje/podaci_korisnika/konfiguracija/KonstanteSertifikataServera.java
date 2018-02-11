@@ -17,7 +17,7 @@ public final class KonstanteSertifikataServera {
     public final static String serverPotpisaniSertifikat = "server.pristupni_sertifikat.cer";
     public final static String serverPKCSMedjuSertifikat = "server.medjusertifikat.p12"; 
     public final static String serverPEMMedjuSertifikat = "server.medjusertifikat.pem";
-    public final static String seveerPrivatniKljuc = "server.privatni_kljuc.pem.key";
+    public final static String serverPrivatniKljuc = "server.privatni_kljuc.pem.key";
     public final static String serverIzvrsnaDatotekaWindows = "server.sertifikacija.bat";
     public final static String serverIzvrsnaDatotekaLinux = "server.sertifikacija.sh";
 }
