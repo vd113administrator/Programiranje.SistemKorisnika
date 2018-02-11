@@ -9,6 +9,7 @@ import java.awt.image.BufferedImage;
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.Serializable;
@@ -20,8 +21,10 @@ import java.security.NoSuchAlgorithmException;
 import java.security.PrivateKey;
 import java.security.SignatureException;
 import java.security.UnrecoverableKeyException;
+import java.security.cert.CRL;
 import java.security.cert.Certificate;
 import java.security.cert.CertificateException;
+import java.security.cert.CertificateFactory;
 import java.security.cert.X509Certificate;
 import java.text.ParseException;
 import java.util.ArrayList;
@@ -999,18 +1002,95 @@ public class PodaciKorisnikaAdapterKlijenta{
         AktivniDirektorijumi ad = new AktivniDirektorijumi();
         System.out.println("<< OSTALE OPERACIJE >>");
         System.out.println("<< ZAHTIJEV ZA POVLACENJEM SERTIFIKATA >>");
-        client.writeLine(NaredbeProtokolaPROPIS.PROPIS_ZAHTIJEV_ZA_POVLACENJEM_SERTIFIKATA.toString());
         String ok = PodaciKorisnikaKlijentKonzola.getSesija();
         PrijavaBean admin = PodaciKorisnikaKlijentKonzola.getPrijavljeniKorisnik();
-        if(admin!=null)
+        if(admin!=null){
             System.out.println("Zahtijev za povlacenje sertifikata je upucen.");
+            client.writeLine(NaredbeProtokolaPROPIS.PROPIS_ZAHTIJEV_ZA_POVLACENJEM_SERTIFIKATA.toString());
+        }
         else
             System.out.println("Nema prijavljenog korisnika.");
     }
     
     public void zahtijevZaCRLListu(){
+        try {
+            System.out.println("<< OSTALE OPERACIJE >>");
+            System.out.println("<< ZAHTIJEV ZA LISTOM POVUCENIH SERTIFIKATA >>");
+            String ok = PodaciKorisnikaKlijentKonzola.getSesija();
+            PrijavaBean admin = PodaciKorisnikaKlijentKonzola.getPrijavljeniKorisnik();
+            if(admin==null){
+                System.out.println("Zahtijev se ne moze poslati bez prijave klijenta."); 
+                return;
+            }
+            client.writeLine(NaredbeProtokolaPROPIS.PROPIS_ZAHTIJEV_ZA_CRL_LISTOM.toString());
+            
+            boolean have = Boolean.parseBoolean(client.readLine());
+            if(!have){
+                System.out.println("Lista povucenih sertifikata nije dostupna.");
+            }else{
+                byte[] crlby = Base64Swapper.decodeToBytes(client.readLine());
+                File file = new File(KonstanteDirektorijuma.arhivacertifikata,"sertifikacija.crl");
+                FileUnit funit = new FileUnit(file, crlby).save();
+                System.out.println("Lista povucenih sertifikata je preuzeta.");
+            }
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }
     }
     
     public void ocitavanjeCRLListe(){
+        System.out.println("<< OSTALE OPERACIJE >>");
+        System.out.println("<< OCITAVANJE CRL LISTE I PERIODA VAZENJA SERTIFIKATA >>");
+        String ok = PodaciKorisnikaKlijentKonzola.getSesija();
+        PrijavaBean admin = PodaciKorisnikaKlijentKonzola.getPrijavljeniKorisnik();
+        if(admin==null){
+            System.out.println("Aplikacija zahtijeva prijavu korisnika."); 
+            return;
+        }
+        AktivniDirektorijumi ad = new AktivniDirektorijumi();
+        System.out.println("Dostupni sertifikati");
+        List<File> cers = ad.ocitajImenaCerSertifikata(); 
+        for(File f: ad.ocitajImenaCerSertifikata()){
+            System.out.println("\t"+f.getName());
+        }
+        
+        CRL list = null; 
+        
+        try{
+            File crl  = new File(KonstanteDirektorijuma.arhivacertifikata,"sertifikacija.crl");
+            FileInputStream fis = new FileInputStream(crl);
+            CertificateFactory cf = CertificateFactory.getInstance("X.509");
+            list = cf.generateCRL(fis);
+            fis.close();
+            
+            System.out.println("Lista povucenih sertifikata : ");
+            System.out.println(list);
+        }
+        catch(Exception ex){
+            ex.printStackTrace();
+        }
+        while(true){
+            Scanner scan = new Scanner(System.in);
+            System.out.print("Izlaz [ne/da]: ");
+            String line = scan.nextLine(); 
+            if(!line.trim().toLowerCase().equals("ne")) break;
+            System.out.print("Ime sertifikata : ");
+            String cert = scan.nextLine();
+            File file = new File(KonstanteDirektorijuma.arhivacertifikata,cert); 
+            if(!file.exists()|| !file.getName().trim().toLowerCase().endsWith(".cer")) System.out.println("Pogresan sertifikat!");
+            else{
+                try {
+                    CertificateManager cmg = new CertificateManager(file);
+                    X509Certificate crt = cmg.getCert();
+                    System.out.println("Vazi od : "+crt.getNotBefore());
+                    System.out.println("Vazi do : "+crt.getNotAfter());
+                    if(list!=null) System.out.println("Povuceno : "+list.isRevoked(crt));
+                } catch (CertificateException ex) {
+                    System.out.println("Greska pri upravljanju sertifikatom!");
+                } catch (IOException ex) {
+                    System.out.println("Greska pri upravljanju sertifikatom!");
+                }
+            }
+        }
     }
 }

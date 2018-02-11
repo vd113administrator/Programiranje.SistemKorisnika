@@ -44,6 +44,36 @@ public class AktivniDirektorijumi {
         return sertifikati;
     } 
     
+    public List<File> ocitajImenaCerSertifikata(){
+        ArrayList<File> sertifikati = new ArrayList<>();
+        File dir = PodaciKorisnikaAktivniDirektorijumi.getSertifikati();
+        for(File file: dir.listFiles()){
+            if(file.getName().endsWith(".cer"))
+                sertifikati.add(file);
+        }
+        return sertifikati;
+    }
+    
+    public List<File> ocitajImenaJksSertifikata(){
+        ArrayList<File> sertifikati = new ArrayList<>();
+        File dir = PodaciKorisnikaAktivniDirektorijumi.getSertifikati();
+        for(File file: dir.listFiles()){
+            if(file.getName().endsWith(".jks"))
+                sertifikati.add(file);
+        }
+        return sertifikati;
+    }
+    
+    public List<File> ocitajImenaCrlListi(){
+        ArrayList<File> sertifikati = new ArrayList<>();
+        File dir = PodaciKorisnikaAktivniDirektorijumi.getSertifikati();
+        for(File file: dir.listFiles()){
+            if(file.getName().endsWith(".crl"))
+                sertifikati.add(file);
+        }
+        return sertifikati;
+    }
+    
     public List<File> ocitajEnkriptovanePoruke(){
         ArrayList<File> poruke = new ArrayList<>();
         File dir = PodaciKorisnikaAktivniDirektorijumi.getPorukeIzSlika(); 
