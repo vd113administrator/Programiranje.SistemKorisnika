@@ -996,7 +996,16 @@ public class PodaciKorisnikaAdapterKlijenta{
     }
     
     public void zahtijevZaPovlacenjeSertifikata(){
-        
+        AktivniDirektorijumi ad = new AktivniDirektorijumi();
+        System.out.println("<< OSTALE OPERACIJE >>");
+        System.out.println("<< ZAHTIJEV ZA POVLACENJEM SERTIFIKATA >>");
+        client.writeLine(NaredbeProtokolaPROPIS.PROPIS_ZAHTIJEV_ZA_POVLACENJEM_SERTIFIKATA.toString());
+        String ok = PodaciKorisnikaKlijentKonzola.getSesija();
+        PrijavaBean admin = PodaciKorisnikaKlijentKonzola.getPrijavljeniKorisnik();
+        if(admin!=null)
+            System.out.println("Zahtijev za povlacenje sertifikata je upucen.");
+        else
+            System.out.println("Nema prijavljenog korisnika.");
     }
     
     public void zahtijevZaCRLListu(){

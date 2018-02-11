@@ -5,6 +5,8 @@
  */
 package programiranje.podaci_korisnika.konzola;
 
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
 import programiranje.baza_korisnika_console.klijent.Aplikacija;
 import programiranje.baza_korisnika_console.ekstenzije.BKSPEkstenzije;
 import programiranje.baza_korisnika_console.model.PrijavaBean;
@@ -17,6 +19,17 @@ import programiranje.podaci_korisnika.konzola.ui.PodaciKorisnikaAdapterKlijenta;
  * @author Mikec
  */
 public class PodaciKorisnikaKlijentKonzola extends Aplikacija implements BKSPEkstenzije{    
+    private static boolean menubreaker = true;
+    
+    private void menubreak(){
+        if(!menubreaker){
+            menubreaker = true; 
+        }else{
+            System.out.print("\n[Pritisni dugme za nastavak ...]");
+            try{new BufferedReader(new InputStreamReader(System.in)).readLine();}catch(Exception ex){}
+        }
+    }
+    
     /**
      * Pocetna tacka 
      * @param args argumenti 
@@ -39,78 +52,103 @@ public class PodaciKorisnikaKlijentKonzola extends Aplikacija implements BKSPEks
         switch(izbor){
             case 6:
                 adapter.listaKorisnika();
+                menubreak();
                 return true;
             case 7:
                 adapter.podaciKorisnika();
+                menubreak();
                 return true; 
             case 8:
                 adapter.podaciDrugogKorisnika();
+                menubreak();
                 return true; 
             case 9: 
                 adapter.zahtijevZaVlastitimSertifikatom();
+                menubreak();
                 return true; 
             case 10: 
                 adapter.listaSertifikata();
+                menubreak();
                 return true; 
             case 11: 
                 adapter.listaSertifikovanih();
+                menubreak();
                 return true; 
             case 12: 
                 adapter.zahtijevZaSertifikatomDrugogKorisnika();
+                menubreak();
                 return true; 
             case 13: 
                 adapter.listaSlikaBezPoruke();
+                menubreak();
                 return true; 
             case 14: 
                 adapter.listaProcitanihPoruka();
+                menubreak();
                 return true; 
             case 15:
                 adapter.listaProcitanihEnkriptovanihPoruka();
+                menubreak();
                 return true;
             case 16: 
                 adapter.listaNeprocitanihPoruka();
+                menubreak();
                 return true; 
             case 17:
                 adapter.stvaranjeSkripteZaUgradjivanje();
+                menubreak();
                 return true; 
             case 18: 
                 adapter.stvaranjeSkripteZaIzdvajanje();
+                menubreak();
                 return true; 
             case 19:
                 adapter.ocitavanjeEnkriptovanePoruke();
+                menubreak();
                 return true;
             case 20:
                 adapter.slanjePorukeUSlici();
+                menubreak();
                 return true; 
             case 21: 
                 adapter.listaNeprimljenihPorukaServera();
+                menubreak();
                 return true; 
             case 22:
                 adapter.prijemSvihPorukaSaServera();
+                menubreak();
                 return true; 
             case 23: 
                 adapter.prijemPorukeSaServera();
+                menubreak();
                 return true; 
             case 24: 
                 adapter.ocitavanjeKontrolnePoruke();
+                menubreak();
                 return true; 
             case 25: 
                 adapter.listaKontrolnihPoruka();
+                menubreak();
                 return true;
             case 26: 
                 adapter.mapaIsporuka();
+                menubreak();
                 return true; 
             case 27:
                 adapter.informacijeOSlikama();
+                menubreak();
                 return true; 
             case 28: 
                 adapter.zahtijevZaPovlacenjeSertifikata();
+                menubreak();
                 return true; 
             case 29: 
                 adapter.zahtijevZaCRLListu();
+                menubreak();
                 return true; 
             case 30: 
                 adapter.ocitavanjeCRLListe();
+                menubreak();
                 return true; 
             default:
                 return false;
