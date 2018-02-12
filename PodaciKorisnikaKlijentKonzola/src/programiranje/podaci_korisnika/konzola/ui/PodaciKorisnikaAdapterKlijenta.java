@@ -1085,6 +1085,9 @@ public class PodaciKorisnikaAdapterKlijenta{
                     System.out.println("Vazi od : "+crt.getNotBefore());
                     System.out.println("Vazi do : "+crt.getNotAfter());
                     if(list!=null) System.out.println("Povuceno : "+list.isRevoked(crt));
+                    System.out.println("Potpisnik : "+crt.getIssuerX500Principal().getName());
+                    System.out.println("Vlasnik :" + crt.getIssuerX500Principal().getName());
+                    System.out.println("Potpis : "+Base64Swapper.encode(crt.getSignature()));
                 } catch (CertificateException ex) {
                     System.out.println("Greska pri upravljanju sertifikatom!");
                 } catch (IOException ex) {
